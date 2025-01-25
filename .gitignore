@@ -60,7 +60,8 @@ build
 tmp
 store
 apps/grafana/README.md
-apps/grafana/bin_sh
+apps/grafana/bin_sh/
+!apps/grafana/bin_sh/*_wan
 apps/grafana/etc/*.yml
 apps/grafana/etc/*.ini
 apps/grafana/etc/dashboards
