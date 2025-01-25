@@ -1,0 +1,2 @@
+PRODUCT=geode
+CLUSTER_TYPE=gemfire

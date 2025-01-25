@@ -39,7 +39,7 @@ docker
 k8s
 pods
 .workspace
-.cluster
+#.cluster
 
 # GemFire specifics
 *.gfs
