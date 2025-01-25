@@ -38,6 +38,9 @@ if [ "$ERROR_OCCURED" == "false" ]; then
 fi
 
 if [ "$ERROR_OCCURED" == "false" ]; then
+   # Switch workspace. This is required in order to build the bundle environment.
+   switch_workspace $WORKSPACE_NAME
+
    # The following fixes the bug that installs clusters with PRODUCT=none (since PadoGrid 1.0.1).
    RWE_NAME=$(pwd_rwe)
    mkdir -p ~/.padogrid/workspaces/$RWE_NAME/$WORKSPACE_NAME/clusters/mygemfire1
@@ -50,9 +53,6 @@ if [ "$ERROR_OCCURED" == "false" ]; then
    cp $WORKSPACE_PATH/clusters/mygemfire1/.cluster/clusterenv.sh ~/.padogrid/workspaces/$RWE_NAME/$WORKSPACE_NAME/clusters/mygemfire3/
    cp $WORKSPACE_PATH/clusters/mygemfire1/.cluster/clusterenv.sh ~/.padogrid/workspaces/$RWE_NAME/$WORKSPACE_NAME/clusters/wan1/
    cp $WORKSPACE_PATH/clusters/mygemfire1/.cluster/clusterenv.sh ~/.padogrid/workspaces/$RWE_NAME/$WORKSPACE_NAME/clusters/wan2/
-
-   # Switch workspace. This is required in order to build the bundle environment.
-   switch_workspace $WORKSPACE_NAME
 
    #
    # Add 1 locator and 3 members to each cluster
