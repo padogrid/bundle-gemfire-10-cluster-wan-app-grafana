@@ -57,7 +57,7 @@ if [ "$ERROR_OCCURED" == "false" ]; then
    #
    # Add 1 locator and 3 members to each cluster
    #
-   clusters="mygemfire1 mygemfire2 mygemfire3 wan1, wan2"
+   clusters="mygemfire1 mygemfire2 mygemfire3 wan1 wan2"
    for i in $clusters; do
       locator_count=$(show_cluster -no-color -cluster $i | grep "Locators Running" | awk '{print $3}' | sed 's/^.*\///')
       count=$((1 - $locator_count))
