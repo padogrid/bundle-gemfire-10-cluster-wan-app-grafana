@@ -14,7 +14,7 @@ Please see [Release Notes](RELEASE_NOTES.md) for change logs.
 ## Installing Bundle
 
 ```bash
-install_bundle -init -checkout bundle-gemfire-grafana
+install_bundle -init -checkout bundle-gemfire-10-cluster-wan-app-grafana
 ```
 
 ## Use Case
@@ -44,7 +44,7 @@ This demo bundle configures five (5) GemFire clusters, one (1) `grafana` app, an
 ## Required Hardware
 
 - Linux OS
-- \>10 GB RAM
+- \>16 GB (~10 GB for non-wan clusters) RAM
 - \>30 GB Disk Space
 
 ## Bundle Contents
@@ -103,14 +103,8 @@ The following ports are used by this demo.
 The `grafana` app contains scripts for starting and stopping Grafana and Prometheus. This app has been configured to scrape metrics from the GemFire clusters `mygemfire1`, `mygemfire2`, `mygemfire3`, `wan1` and `wan2`. Grafana and Prometheus are accessible as follows.
 
 - Grafana: [http://0.0.0.0:3000](http://0.0.0.0:3000)
-- Prometheus for Grafana: [http://0.0.0.0:9090](http://0.0.0.0:9090)
-- 
-### grafana_wan
-
-The `grafana_wan` app contains scripts for starting and stopping Prometheus for monitoring the `wan1` and `wan2` clusters. Grafana and Prometheus are accessible as follows.
-
-- Grafana: [http://0.0.0.0:3001](http://0.0.0.0:3001)
-- Prometheus for Grafana: [http://0.0.0.0:9091](http://0.0.0.0:9091)
+- Prometheus for `mygemfire` clusters: [http://0.0.0.0:9090](http://0.0.0.0:9090)
+- Prometheus for `wan` clusters: [http://0.0.0.0:9091](http://0.0.0.0:9091)
 
 ### perf_test
 
@@ -130,7 +124,7 @@ The `wan1` cluster defines `wan1-to-wan2` gateway senders for replication data o
 
 The `wan2` cluster defines `wan2-to-wan1` gateway senders for replication data over the WAN to the `wan1` cluster.
 
-## Updating Prometheus Configuration Files
+## Updating Prometheus Configuration Files (Optional)
 
 ✏️  *This section is for your information only. The steps shown below are automatically done by PadoGrid when you installed the bundle.*
 
@@ -144,12 +138,12 @@ cd_app grafana/etc
 cp config_templates/* .
 
 # Update the EIB address
-sed -i "s/HOST-ADDRESS/`hostname -i`/g" *.yml
+sed -i "s/HOST-ADDRESS/`hostname`/g" *.yml
 ```
 
-## Adding Members to Clusters
+## Adding Members to Clusters (Optional)
 
-✏️  *This bundle automcatically configures the clusters with three (3) members each.* 
+✏️  *This bundle automcatically configures the clusters with one (1) locator and three (3) members for each cluster.* 
 
 To view the member counts, run the following:
 
@@ -218,23 +212,23 @@ Now, go to the browser and select *Home/Dashboards/GemFireTemplates*.
 
 ### 1. Start clusters
 
-The following starts both clusters, `wan1` and `wan2`.
-
-```bash
-# Start wan1, wan2
-start_group -group wan
-```
-
-The following starts both clusters, `mygemfire1`, `mygemfire2`, and `mygemfire3`.
+The following starts `mygemfire` clusters, `mygemfire1`, `mygemfire2`, and `mygemfire3`.
 
 ```bash
 # Start mygemfire1, mygemfire2, mygemfire3
 start_group -group mygemfire
 ```
 
+The following starts the `wan` clusters, `wan1` and `wan2`.
+
+```bash
+# Start wan1, wan2
+start_group -group wan
+```
+
 ### 2. Start Prometheus and Grafana
 
-- Start Promtheus for the `mygemfire` group of clusters. Also, start Grafana for monitoring both `mygemfire` and `wan` groups of clusters.
+- Start Promtheus for the `mygemfire` clusters. Also, start Grafana for monitoring both `mygemfire` and `wan` groups of clusters.
 
 ```bash
 cd_app grafana/bin_sh
@@ -249,10 +243,10 @@ To view Prometheus and Grafana statuses:
 ./show_grafana
 ```
 
-- Start Prometheus for the `wan` group of clusters.
+- Start Prometheus for the `wan` clusters.
 
 ```bash
-./start_promtheus_wan
+./start_prometheus_wan
 ```
 
 ### 3. Set user and password from Grafana
@@ -367,20 +361,20 @@ The included `etc/group-workflow.properties` file simulates workflows by executi
 ```bash
 cd_app perf_test/bin_sh
 
+# mygemfire1
+./test_group -run -prop ../etc/group-workflow.properties -cluster mygemfire1
+
+# mygemfire1
+./test_group -run -prop ../etc/group-workflow.properties -cluster mygemfire2
+
+# mygemfire1
+./test_group -run -prop ../etc/group-workflow.properties -cluster mygemfire3
+
 # wan1
 ./test_group -run -prop ../etc/group-workflow.properties -cluster wan1
 
 # wan2
 ./test_group -run -prop ../etc/group-workflow.properties -cluster wan2
-
-# myhz1
-./test_group -run -prop ../etc/group-workflow.properties -cluster mygemfire1
-
-# myhz2
-./test_group -run -prop ../etc/group-workflow.properties -cluster mygemfire2
-
-# myhz3
-./test_group -run -prop ../etc/group-workflow.properties -cluster mygemfire3
 ```
 
 ## Teardown

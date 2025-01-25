@@ -4,19 +4,29 @@ global:
     monitor: 'gemfire'
 
 scrape_configs:
-  - job_name: 'locator-wan1'
+  - job_name: 'locator-mygemfire1'
     file_sd_configs:
       - files:
-        - locator-wan1-targets.yml
-  - job_name: 'wan1'
+        - locator-mygemfire1-targets.yml
+  - job_name: 'mygemfire1'
     file_sd_configs:
       - files:
-        - wan1-targets.yml
-  - job_name: 'locator-wan2'
+        - mygemfire1-targets.yml
+
+  - job_name: 'locator-mygemfire2'
     file_sd_configs:
       - files:
-        - locator-wan2-targets.yml
-  - job_name: 'wan2'
+        - locator-mygemfire2-targets.yml
+  - job_name: 'mygemfire2'
     file_sd_configs:
       - files:
-        - wan2-targets.yml
+        - mygemfire2-targets.yml
+
+  - job_name: 'locator-mygemfire3'
+    file_sd_configs:
+      - files:
+        - locator-mygemfire3-targets.yml
+  - job_name: 'mygemfire3'
+    file_sd_configs:
+      - files:
+        - mygemfire3-targets.yml

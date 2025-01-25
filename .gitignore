@@ -57,3 +57,10 @@ results
 *.sh0
 pom.xml0
 build
+tmp
+store
+apps/grafana/README.md
+apps/grafana/bin_sh
+apps/grafana/etc/*.yml
+apps/grafana/etc/*.ini
+apps/grafana/etc/dashboards
