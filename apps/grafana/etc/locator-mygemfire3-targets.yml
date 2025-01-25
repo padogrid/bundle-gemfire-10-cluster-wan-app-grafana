@@ -1,0 +1,3 @@
+- targets: [padogrid:8681, padogrid:8682, padogrid:8683]
+  labels:
+    member_type: 'locator'

@@ -5,26 +5,24 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>padogrid.addon</groupId>
-	<!-- @template: Enter your bundle name here -->
-	<artifactId>bundle-gemfire-template</artifactId>
+	<artifactId>bundle-gemfire-10-cluster-wan-app-grafana</artifactId>
 	<packaging>pom</packaging>
 	<name>${project.artifactId}</name>
 	<version>1.0.0</version>
-	<!-- @template: Enter your bundle description -->
-	<description>Bundle template</description>
+	<description>Multi-cluster Grafana demo for monitoring GemFire stats</description>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<maven.compiler.source>1.8</maven.compiler.source>
-		<geode.version>1.15.0</geode.version>
+		<geode.version>1.15.1</geode.version>
 		<skipTests>true</skipTests>
 	</properties>
 
 	<dependencies>
 		<dependency>
-			<groupId>org.apache.</groupId>
-			<artifactId>-core</artifactId>
+			<groupId>org.apache.geode</groupId>
+			<artifactId>geode-core</artifactId>
 			<version>${geode.version}</version>
 		</dependency>
 	</dependencies>

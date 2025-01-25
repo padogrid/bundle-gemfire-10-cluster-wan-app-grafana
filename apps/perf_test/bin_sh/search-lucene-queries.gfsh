@@ -1,0 +1,20 @@
+#
+# Create Lucene indexes on /nw/customers, /nw/orders
+#
+create lucene index --name=simpleIndex --region=/nw/customers --field=contactName,city
+create lucene index --name=analyzerIndex --analyzer=DEFAULT,org.apache.lucene.analysis.core.KeywordAnalyzer --region=/nw/customers --field=contactTitle,address
+create lucene index --name=customerIndex --region=/nw/customers --field=companyName,contactName,address,city,region,postalCode,country,phone --serializer=org.apache.geode.cache.lucene.FlatFormatSerializer
+create lucene index --name=orderIndex --region=/nw/orders --field=shipName,shipAddress,shipCity,shipRegion,shipPostalCode,shipCountry, --serializer=org.apache.geode.cache.lucene.FlatFormatSerializer
+
+#
+# Execute Lucene queries
+#
+search lucene --name=simpleIndex --region=/nw/customers --queryStrings="test" --defaultField=contactName
+search lucene --name=simpleIndex --region=/nw/customers --queryStrings="Fisher" --defaultField=contactName
+search lucene --name=simpleIndex --region=/nw/customers --queryStrings="Fis" --defaultField=contactName
+search lucene --name=simpleIndex --region=/nw/customers --queryStrings="Fis*" --defaultField=contactName
+search lucene --name=analyzerIndex --region=/nw/customers --queryStrings="Winn*" --defaultField=address
+search lucene --name=analyzerIndex --region=/nw/customers --queryStrings="Winnie" --defaultField=address
+search lucene --name=analyzerIndex --region=/nw/customers --queryStrings="International" --defaultField=address
+search lucene --name=customerIndex --region=/nw/customers --queryString="companyName:Metz*" --defaultField=contactName
+search lucene --name=orderIndex --region=/nw/orders --queryString="shipAddress:Purdy*" --defaultField=shipName

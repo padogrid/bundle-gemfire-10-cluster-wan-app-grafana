@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<cache xmlns="http://geode.apache.org/schema/cache"
+	xmlns:lucene="http://geode.apache.org/schema/lucene"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://geode.apache.org/schema/cache
+            http://geode.apache.org/schema/cache/cache-1.0.xsd
+            http://geode.apache.org/schema/lucene
+            http://geode.apache.org/schema/lucene/lucene-1.0.xsd"
+	version="1.0">
+
+	<!-- Gateway sender -->
+	<!-- Parallel event queue for summary -->
+	<gateway-sender id="wan1-to-wan2-summary"
+		remote-distributed-system-id="2" parallel="true"
+		dispatcher-threads="5" maximum-queue-memory="150"
+		disk-store-name="WanStore" enable-persistence="true">
+	</gateway-sender>
+	<!-- Parallel event queue -->
+	<gateway-sender id="wan1-to-wan2-parallel"
+		remote-distributed-system-id="2" parallel="true"
+		dispatcher-threads="5" maximum-queue-memory="150"
+		order-policy="partition" disk-store-name="WanStore"
+		enable-persistence="true">
+	</gateway-sender>
+	<!-- Customers event queue -->
+	<gateway-sender id="wan1-to-wan2-customers"
+		remote-distributed-system-id="2" parallel="true"
+		dispatcher-threads="5" maximum-queue-memory="150"
+		order-policy="partition" disk-store-name="WanStore"
+		enable-persistence="true">
+	</gateway-sender>
+	<!-- Serial event queue -->
+	<gateway-sender id="wan1-to-wan2-serial"
+		remote-distributed-system-id="2" parallel="false"
+		dispatcher-threads="5" maximum-queue-memory="150" order-policy="key"
+		disk-store-name="WanStore" enable-persistence="true">
+	</gateway-sender>
+
+	<!-- Gateway receiver -->
+	<gateway-receiver start-port="50510" end-port="50520">
+	</gateway-receiver>
+
+
+	<async-event-queue id="PbmQueue"
+		disk-store-name="PbmStore" persistent="true" parallel="false"
+		dispatcher-threads="5" enable-batch-conflation="false"
+		batch-size="1000" batch-time-interval="1000">
+		<async-event-listener>
+			<class-name>org.apache.geode.addon.test.perf.impl.PbmQueueListenerImpl</class-name>
+		</async-event-listener>
+	</async-event-queue>
+	<async-event-queue id="NwQueue"
+		disk-store-name="NwStore" persistent="true" parallel="true"
+		dispatcher-threads="5" enable-batch-conflation="false"
+		batch-size="1000" batch-time-interval="1000">
+		<async-event-listener>
+			<class-name>org.apache.geode.addon.test.perf.impl.NwQueueListenerImpl</class-name>
+		</async-event-listener>
+	</async-event-queue>
+
+	<!-- cache-server port is assigned by padogrid at member startup. If you 
+		have a multi-homed machine then make sure to set the bind-address and hostname-for-clients 
+		attributes with the proper IP address. -->
+	<cache-server port="${geode-addon.server.port}"
+		max-connections="1000">
+		<group>${SERVER_GROUP}</group>
+	</cache-server>
+
+	<disk-store name="WanStore" max-oplog-size="5" segments="4">
+		<disk-dirs>
+			<disk-dir>${DISKSTORE}/wan/${SERVER_NAME}</disk-dir>
+		</disk-dirs>
+	</disk-store>
+	<disk-store name="PdxStore" max-oplog-size="1024"
+		segments="1">
+		<disk-dirs>
+			<disk-dir>${DISKSTORE}/pdx/${SERVER_NAME}</disk-dir>
+		</disk-dirs>
+	</disk-store>
+	<disk-store name="PbmStore" max-oplog-size="1024"
+		segments="5">
+		<disk-dirs>
+			<disk-dir>${DISKSTORE}/pbm/${SERVER_NAME}</disk-dir>
+		</disk-dirs>
+	</disk-store>
+	<disk-store name="NwStore" max-oplog-size="5" segments="6">
+		<disk-dirs>
+			<disk-dir>${DISKSTORE}/nw/${SERVER_NAME}</disk-dir>
+		</disk-dirs>
+	</disk-store>
+
+
+	<pdx persistent="true" read-serialized="false"
+		ignore-unread-fields="false" disk-store-name="PdxStore" />
+
+
+	<!-- PBM example regions accessed by the perf_test app's DataIngestionTest 
+		(bin_sh/test_ingestion) and TransactionTest (bin_sh/test_tx). -->
+	<region name="profile">
+		<region-attributes refid="PARTITION_PERSISTENT"
+			disk-store-name="PbmStore" disk-synchronous="false"
+			statistics-enabled="true" async-event-queue-ids="PbmQueue">
+			<partition-attributes local-max-memory="1"
+				redundant-copies="1" total-num-buckets="${BUCKETS}" />
+		</region-attributes>
+	</region>
+	<region name="eligibility">
+		<region-attributes refid="PARTITION_PERSISTENT"
+			disk-store-name="PbmStore" disk-synchronous="false"
+			statistics-enabled="true" async-event-queue-ids="PbmQueue">
+			<partition-attributes local-max-memory="1"
+				redundant-copies="1" total-num-buckets="${BUCKETS}" />
+		</region-attributes>
+	</region>
+	<region name="summary">
+		<region-attributes refid="PARTITION_PERSISTENT"
+			disk-store-name="PbmStore" disk-synchronous="false"
+			statistics-enabled="true" async-event-queue-ids="PbmQueue">
+			<partition-attributes local-max-memory="1"
+				redundant-copies="1" total-num-buckets="${BUCKETS}"
+				colocated-with="profile" />
+		</region-attributes>
+	</region>
+
+	<!-- Microsoft's Northwind data regions accessed by the perf_test app. -->
+	<region name="nw">
+		<region name="categories" refid="PARTITION_REDUNDANT"></region>
+		<region name="customers">
+			<region-attributes refid="PARTITION_PERSISTENT"
+				gateway-sender-ids="wan1-to-wan2-customers"
+				statistics-enabled="true">
+				<partition-attributes redundant-copies="1"
+					total-num-buckets="${BUCKETS}" />
+			</region-attributes>
+			<index name="pk">
+				<primary-key field="customerId" />
+			</index>
+			<index name="customerId">
+				<functional from-clause="/nw/customers c"
+					expression="c.customerId" />
+			</index>
+		</region>
+		<region name="employees" refid="PARTITION_REDUNDANT"></region>
+		<region name="employee_territories" refid="PARTITION_REDUNDANT"></region>
+		
+		<!-- Partition resolver for co-locating customers data. The key must be 
+			a string key with the second token set to the customer ID. For example, an 
+			order key, 'k123.000000-0001', shows '000000-0001' as a customer ID. The 
+			default delimiter is '.' -->
+		<region name="orders">
+			<region-attributes refid="PARTITION_PERSISTENT"
+				gateway-sender-ids="wan1-to-wan2-customers"
+				disk-store-name="NwStore" disk-synchronous="false"
+				statistics-enabled="true" async-event-queue-ids="NwQueue">
+				<partition-attributes local-max-memory="10"
+					redundant-copies="1" total-num-buckets="${BUCKETS}"
+					colocated-with="/nw/customers">
+					<partition-resolver>
+						<class-name>org.apache.geode.addon.cluster.cache.IdentityKeyPartitionResolver</class-name>
+						<parameter name="indexes">
+							<string>1</string>
+						</parameter>
+					</partition-resolver>
+				</partition-attributes>
+			</region-attributes>
+			<index name="pk">
+				<primary-key field="orderId" />
+			</index>
+			<index name="orderId">
+				<functional from-clause="/nw/orders o"
+					expression="o.orderId" />
+			</index>
+			<index name="customerId">
+				<functional from-clause="/nw/orders o"
+					expression="o.customerId" />
+			</index>
+			<index name="employeeId">
+				<functional from-clause="/nw/orders o"
+					expression="o.employeeId" />
+			</index>
+		</region>
+		<region name="order_details" refid="PARTITION_REDUNDANT"></region>
+		<region name="products" refid="PARTITION_REDUNDANT"></region>
+		<region name="regions" refid="PARTITION_REDUNDANT"></region>
+		<region name="shippers" refid="PARTITION_REDUNDANT"></region>
+		<region name="suppliers" refid="PARTITION_REDUNDANT"></region>
+		<region name="territories" refid="PARTITION_REDUNDANT"></region>
+	</region>
+
+	<!-- Example regions accessed by the perf_test app's GroupTest (bin_sh/test_group) -->
+	<region name="map1" refid="PARTITION_REDUNDANT"></region>
+	<region name="map2" refid="PARTITION_REDUNDANT"></region>
+	<region name="map3" refid="PARTITION_REDUNDANT"></region>
+	<region name="map4" refid="PARTITION_REDUNDANT"></region>
+	<region name="map5" refid="PARTITION_REDUNDANT"></region>
+	<region name="map6" refid="PARTITION_REDUNDANT"></region>
+	<region name="map7" refid="PARTITION_REDUNDANT"></region>
+	<region name="map8" refid="PARTITION_REDUNDANT"></region>
+	<region name="map9" refid="PARTITION_REDUNDANT"></region>
+	<region name="map10" refid="PARTITION_REDUNDANT"></region>
+	<region name="map11" refid="PARTITION_REDUNDANT"></region>
+	<region name="map12" refid="PARTITION_REDUNDANT"></region>
+	<region name="map13" refid="PARTITION_REDUNDANT"></region>
+	<region name="map14" refid="PARTITION_REDUNDANT"></region>
+	<region name="map15" refid="PARTITION_REDUNDANT"></region>
+	<region name="map16" refid="PARTITION_REDUNDANT"></region>
+	<region name="map17" refid="PARTITION_REDUNDANT"></region>
+	<region name="map18" refid="PARTITION_REDUNDANT"></region>
+	<region name="map19" refid="PARTITION_REDUNDANT"></region>
+	<region name="map20" refid="PARTITION_REDUNDANT"></region>
+	<region name="map21" refid="PARTITION_REDUNDANT"></region>
+	<region name="map22" refid="PARTITION_REDUNDANT"></region>
+
+	<region name="lru_entry_overflow">
+		<region-attributes refid="PARTITION">
+			<eviction-attributes>
+				<lru-entry-count action="overflow-to-disk"
+					maximum="100" />
+			</eviction-attributes>
+		</region-attributes>
+	</region>
+	<region name="lru_entry_destroy">
+		<region-attributes refid="PARTITION">
+			<eviction-attributes>
+				<lru-entry-count action="local-destroy"
+					maximum="100" />
+			</eviction-attributes>
+		</region-attributes>
+	</region>
+	<region name="lru_heap_destroy">
+		<region-attributes refid="PARTITION">
+			<eviction-attributes>
+				<lru-heap-percentage action="local-destroy"></lru-heap-percentage>
+			</eviction-attributes>
+		</region-attributes>
+	</region>
+	<region name="lru_memory_destroy">
+		<region-attributes refid="PARTITION">
+			<!-- maximum in MB -->
+			<eviction-attributes>
+				<lru-memory-size action="local-destroy" maximum="20"></lru-memory-size>
+			</eviction-attributes>
+		</region-attributes>
+	</region>
+	<region name="expiration">
+		<region-attributes refid="PARTITION">
+			<!-- timeout in seconds -->
+			<entry-time-to-live>
+				<expiration-attributes timeout="60"></expiration-attributes>
+			</entry-time-to-live>
+			<entry-idle-time>
+				<expiration-attributes timeout="30"></expiration-attributes>
+			</entry-idle-time>
+		</region-attributes>
+	</region>
+
+	<!-- Replicated Regions (rr) -->
+	<region name="rr_lru_entry_overflow">
+		<region-attributes refid="REPLICATE">
+			<eviction-attributes>
+				<lru-entry-count action="overflow-to-disk"
+					maximum="100" />
+			</eviction-attributes>
+		</region-attributes>
+	</region>
+	<region name="rr_lru_entry_destroy">
+		<region-attributes refid="REPLICATE">
+			<eviction-attributes>
+				<lru-entry-count action="local-destroy"
+					maximum="100" />
+			</eviction-attributes>
+		</region-attributes>
+	</region>
+	<region name="rr_lru_heap_destroy">
+		<region-attributes refid="REPLICATE">
+			<eviction-attributes>
+				<lru-heap-percentage action="local-destroy"></lru-heap-percentage>
+			</eviction-attributes>
+		</region-attributes>
+	</region>
+	<region name="rr_lru_memory_destroy">
+		<region-attributes refid="REPLICATE">
+			<!-- maximum in MB -->
+			<eviction-attributes>
+				<lru-memory-size action="local-destroy" maximum="20"></lru-memory-size>
+			</eviction-attributes>
+		</region-attributes>
+	</region>
+	<region name="rr_expiration">
+		<region-attributes refid="REPLICATE">
+			<!-- timeout in seconds -->
+			<entry-time-to-live>
+				<expiration-attributes timeout="60"></expiration-attributes>
+			</entry-time-to-live>
+			<entry-idle-time>
+				<expiration-attributes timeout="30"></expiration-attributes>
+			</entry-idle-time>
+		</region-attributes>
+	</region>
+
+	<!-- off-heap regions -->
+	<region name="off_heap_lru_entry_overflow">
+		<region-attributes refid="PARTITION" off-heap="true">
+			<eviction-attributes>
+				<lru-entry-count action="overflow-to-disk"
+					maximum="100" />
+			</eviction-attributes>
+		</region-attributes>
+	</region>
+	<region name="off_heap_lru_entry_destroy">
+		<region-attributes refid="PARTITION" off-heap="true">
+			<eviction-attributes>
+				<lru-entry-count action="local-destroy"
+					maximum="100" />
+			</eviction-attributes>
+		</region-attributes>
+	</region>
+	<region name="off_heap_lru_heap_destroy">
+		<region-attributes refid="PARTITION" off-heap="true">
+			<eviction-attributes>
+				<lru-heap-percentage action="local-destroy"></lru-heap-percentage>
+			</eviction-attributes>
+		</region-attributes>
+	</region>
+	<region name="off_heap_lru_memory_destroy">
+		<region-attributes refid="PARTITION" off-heap="true">
+			<!-- maximum in MB -->
+			<eviction-attributes>
+				<lru-memory-size action="local-destroy" maximum="20"></lru-memory-size>
+			</eviction-attributes>
+		</region-attributes>
+	</region>
+	<region name="off_heap_expiration">
+		<region-attributes refid="PARTITION" off-heap="true">
+			<!-- timeout in seconds -->
+			<entry-time-to-live>
+				<expiration-attributes timeout="60"></expiration-attributes>
+			</entry-time-to-live>
+			<entry-idle-time>
+				<expiration-attributes timeout="30"></expiration-attributes>
+			</entry-idle-time>
+		</region-attributes>
+	</region>
+
+	<function-service>
+		<!-- ClearFunction clears the specified region. -->
+		<function>
+			<class-name>org.apache.geode.addon.function.ClearFunction</class-name>
+		</function>
+		<!-- QueryFunction executes the specified OQL query and returns the results 
+			as a list. -->
+		<function>
+			<class-name>org.apache.geode.addon.function.QueryFunction</class-name>
+		</function>
+		<!-- EligFunction invoked by TransactionTest (bin_sh/test_tx). -->
+		<function>
+			<class-name>org.apache.geode.addon.test.perf.EligFunction</class-name>
+		</function>
+	</function-service>
+
+	<resource-manager critical-heap-percentage="99"
+		eviction-heap-percentage="96" critical-off-heap-percentage="99.9"
+		eviction-off-heap-percentage="85" />
+</cache>

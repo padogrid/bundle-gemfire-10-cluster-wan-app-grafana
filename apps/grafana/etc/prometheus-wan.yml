@@ -1,0 +1,23 @@
+global:
+  scrape_interval:     5s
+  external_labels:
+    monitor: 'gemfire'
+
+scrape_configs:
+  - job_name: 'locator-wan1'
+    file_sd_configs:
+      - files:
+        - locator-wan1-targets.yml
+  - job_name: 'wan1'
+    file_sd_configs:
+      - files:
+        - wan1-targets.yml
+
+  - job_name: 'locator-wan2'
+    file_sd_configs:
+      - files:
+        - locator-wan2-targets.yml
+  - job_name: 'wan2'
+    file_sd_configs:
+      - files:
+        - wan2-targets.yml

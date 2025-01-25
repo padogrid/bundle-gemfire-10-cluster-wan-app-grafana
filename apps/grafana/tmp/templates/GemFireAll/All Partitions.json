@@ -1,0 +1,3058 @@
+{
+  "dashboard": {
+    "annotations": {
+      "list": [
+        {
+          "builtIn": 1,
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DataSource}"
+          },
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "type": "dashboard"
+        }
+      ]
+    },
+    "editable": false,
+    "fiscalYearStartMonth": 0,
+    "graphTooltip": 0,
+    "links": [
+      {
+        "asDropdown": false,
+        "icon": "dashboard",
+        "includeVars": false,
+        "keepTime": true,
+        "tags": [],
+        "targetBlank": false,
+        "title": "Main",
+        "tooltip": "",
+        "type": "link",
+        "url": "/d/ed5d1905-d13d-446a-83d5-3d33d3aadddc/00main?var-DataSource=$DataSource&var-Cluster=$Cluster&${__url_time_range}"
+      },
+      {
+        "asDropdown": true,
+        "icon": "external link",
+        "includeVars": false,
+        "keepTime": true,
+        "tags": [
+          "gemfire"
+        ],
+        "targetBlank": false,
+        "title": "GemFire",
+        "tooltip": "",
+        "type": "dashboards",
+        "url": ""
+      },
+      {
+        "asDropdown": false,
+        "icon": "dashboard",
+        "includeVars": false,
+        "keepTime": true,
+        "tags": [],
+        "targetBlank": false,
+        "title": "Dual Main",
+        "tooltip": "",
+        "type": "link",
+        "url": "/d/2f6503d9-5b23-4af6-9a87-08f799229df5/00dual-main?var-DataSource=$DataSource&var-Cluster=$Cluster&var-Cluster2=$Cluster2&${__url_time_range}"
+      },
+      {
+        "asDropdown": true,
+        "icon": "external link",
+        "includeVars": false,
+        "keepTime": true,
+        "tags": [
+          "dual gemfire"
+        ],
+        "targetBlank": false,
+        "title": "Dual GemFire",
+        "tooltip": "",
+        "type": "dashboards",
+        "url": ""
+      },
+      {
+        "asDropdown": false,
+        "icon": "dashboard",
+        "includeVars": false,
+        "keepTime": true,
+        "tags": [],
+        "targetBlank": false,
+        "title": "All Main",
+        "tooltip": "",
+        "type": "link",
+        "url": "/d/5a076038-1d97-4c44-abe7-26020351d90b/00main-all?${__url_time_range}"
+      },
+      {
+        "asDropdown": true,
+        "icon": "external link",
+        "includeVars": false,
+        "keepTime": true,
+        "tags": [
+          "all gemfire"
+        ],
+        "targetBlank": false,
+        "title": "All GemFire",
+        "tooltip": "",
+        "type": "dashboards",
+        "url": ""
+      },
+      {
+        "asDropdown": false,
+        "icon": "dashboard",
+        "includeVars": false,
+        "keepTime": false,
+        "tags": [],
+        "targetBlank": false,
+        "title": "PadoGrid",
+        "tooltip": "About PadoGrid",
+        "type": "link",
+        "url": "/d/96e45270-7f77-4f87-89f3-1ab707a30808/padogrid${__url_time_range}"
+      }
+    ],
+    "liveNow": false,
+    "panels": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DataSource}"
+        },
+        "description": "Partition status across all members in all clusters",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "custom": {
+              "align": "auto",
+              "cellOptions": {
+                "type": "auto"
+              },
+              "inspect": false
+            },
+            "mappings": [
+              {
+                "options": {
+                  "pattern": "^.*(=)(\\w.*).*\"$",
+                  "result": {
+                    "index": 0,
+                    "text": "$2"
+                  }
+                },
+                "type": "regex"
+              }
+            ],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "locale"
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byRegexp",
+                "options": "/.*Time/"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "ns"
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Total Completed Migrations"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 228
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Member"
+              },
+              "properties": [
+                {
+                  "id": "links",
+                  "value": [
+                    {
+                      "title": "Member Link",
+                      "url": "/d/c5932a49-ac31-44d9-95fe-b3eeb7ac974f/member?orgId=1&refresh=5s&var-DataSource=$DataSource&var-Cluster=${__data.fields.Cluster}&var-Member=${__value.raw}&${__url_time_range}"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Cluster"
+              },
+              "properties": [
+                {
+                  "id": "links",
+                  "value": [
+                    {
+                      "title": "System Link",
+                      "url": "/d/57ea6a2e-88ae-43f3-9c79-6d1648aea214/system-resource?var-DataSource=$DataSource&var-Cluster=${__data.fields.Cluster}&${__url_time_range}"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 15,
+          "w": 24,
+          "x": 0,
+          "y": 0
+        },
+        "id": 9,
+        "options": {
+          "cellHeight": "sm",
+          "footer": {
+            "countRows": false,
+            "fields": "",
+            "reducer": [
+              "sum"
+            ],
+            "show": false
+          },
+          "showHeader": true,
+          "sortBy": []
+        },
+        "pluginVersion": "10.2.2",
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "${DataSource}"
+            },
+            "editorMode": "code",
+            "exemplar": false,
+            "expr": "com_gemfire_Metrics_localPartitionCount{$ClusterFilterLabel=~\"$ClusterList\", prefix=\"partitions\"}",
+            "format": "table",
+            "hide": false,
+            "instant": true,
+            "legendFormat": "__auto",
+            "range": false,
+            "refId": "Local Partitions"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "${DataSource}"
+            },
+            "editorMode": "code",
+            "exemplar": false,
+            "expr": "com_gemfire_Metrics_completedMigrations{$ClusterFilterLabel=~\"$ClusterList\", prefix=\"partitions\"}",
+            "format": "table",
+            "hide": false,
+            "instant": true,
+            "legendFormat": "__auto",
+            "range": false,
+            "refId": "Completed Migrations"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "${DataSource}"
+            },
+            "editorMode": "code",
+            "exemplar": false,
+            "expr": "com_gemfire_Metrics_activePartitionCount{$ClusterFilterLabel=~\"$ClusterList\", prefix=\"partitions\"}",
+            "format": "table",
+            "hide": false,
+            "instant": true,
+            "legendFormat": "__auto",
+            "range": false,
+            "refId": "Active Partitions"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "${DataSource}"
+            },
+            "editorMode": "code",
+            "exemplar": false,
+            "expr": "com_gemfire_Metrics_replicaSyncRequestsCounter{$ClusterFilterLabel=~\"$ClusterList\", prefix=\"partitions\"}",
+            "format": "table",
+            "hide": false,
+            "instant": true,
+            "legendFormat": "__auto",
+            "range": false,
+            "refId": "Replica Sync Requests"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "${DataSource}"
+            },
+            "editorMode": "code",
+            "exemplar": false,
+            "expr": "com_gemfire_Metrics_replicaSyncSemaphore{$ClusterFilterLabel=~\"$ClusterList\", prefix=\"partitions\"}",
+            "format": "table",
+            "hide": false,
+            "instant": true,
+            "legendFormat": "__auto",
+            "range": false,
+            "refId": "Replica Sync Semaphores"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "${DataSource}"
+            },
+            "editorMode": "code",
+            "exemplar": false,
+            "expr": "com_gemfire_Metrics_stateStamp{$ClusterFilterLabel=~\"$ClusterList\", prefix=\"partitions\"}",
+            "format": "table",
+            "hide": false,
+            "instant": true,
+            "legendFormat": "__auto",
+            "range": false,
+            "refId": "State Stamp"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "${DataSource}"
+            },
+            "editorMode": "code",
+            "exemplar": false,
+            "expr": "com_gemfire_Metrics_totalCompletedMigrations{$ClusterFilterLabel=~\"$ClusterList\", prefix=\"partitions\"}",
+            "format": "table",
+            "hide": false,
+            "instant": true,
+            "legendFormat": "__auto",
+            "range": false,
+            "refId": "Total Completed Migrations"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "${DataSource}"
+            },
+            "editorMode": "code",
+            "exemplar": false,
+            "expr": "com_gemfire_Metrics_totalElapsedDestinationCommitTime{$ClusterFilterLabel=~\"$Cluster\", prefix=\"partitions\"}",
+            "format": "table",
+            "hide": false,
+            "instant": true,
+            "legendFormat": "__auto",
+            "range": false,
+            "refId": "Total Elapsed Destination Commit Time"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "${DataSource}"
+            },
+            "editorMode": "code",
+            "exemplar": false,
+            "expr": "com_gemfire_Metrics_totalElapsedMigrationOperationTime{$ClusterFilterLabel=~\"$ClusterList\", prefix=\"partitions\"}",
+            "format": "table",
+            "hide": false,
+            "instant": true,
+            "legendFormat": "__auto",
+            "range": false,
+            "refId": "Total Elapsed Migration Operation Time"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "${DataSource}"
+            },
+            "editorMode": "code",
+            "exemplar": false,
+            "expr": "com_gemfire_Metrics_totalElapsedMigrationTime{$ClusterFilterLabel=~\"$ClusterList\", prefix=\"partitions\"}",
+            "format": "table",
+            "hide": false,
+            "instant": true,
+            "legendFormat": "__auto",
+            "range": false,
+            "refId": "Total Elapsed Migration Time"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "${DataSource}"
+            },
+            "editorMode": "code",
+            "exemplar": false,
+            "expr": "com_gemfire_Metrics_runningPartitionCount{$ClusterFilterLabel=~\"$ClusterList\", prefix=\"operation\"}",
+            "format": "table",
+            "hide": false,
+            "instant": true,
+            "legendFormat": "__auto",
+            "range": false,
+            "refId": "Running Partitions"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "${DataSource}"
+            },
+            "editorMode": "code",
+            "exemplar": false,
+            "expr": "com_gemfire_Metrics_publicationCount{$ClusterFilterLabel=~\"$ClusterList\", prefix=\"event\",tag0=\"\\\"job=hz:core:partitionService\\\"\"}",
+            "format": "table",
+            "hide": false,
+            "instant": true,
+            "legendFormat": "__auto",
+            "range": false,
+            "refId": "Publication Events"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "${DataSource}"
+            },
+            "editorMode": "code",
+            "exemplar": false,
+            "expr": "com_gemfire_Metrics_executedOperationsCount{$ClusterFilterLabel=~\"$ClusterList\", prefix=\"operation.partition\",tag0=~\".*partitionId=.*\"}",
+            "format": "table",
+            "hide": false,
+            "instant": true,
+            "legendFormat": "__auto",
+            "range": false,
+            "refId": "Executed Operations"
+          }
+        ],
+        "title": "Member Partitions",
+        "transformations": [
+          {
+            "id": "sortBy",
+            "options": {
+              "fields": {},
+              "sort": [
+                {
+                  "field": "instance"
+                }
+              ]
+            }
+          },
+          {
+            "id": "joinByField",
+            "options": {
+              "byField": "instance",
+              "mode": "outer"
+            }
+          },
+          {
+            "id": "filterFieldsByName",
+            "options": {
+              "include": {
+                "pattern": "job|^instance$|^Value.*"
+              }
+            }
+          },
+          {
+            "disabled": true,
+            "id": "renameByRegex",
+            "options": {
+              "regex": "job",
+              "renamePattern": "Cluster"
+            }
+          },
+          {
+            "id": "organize",
+            "options": {
+              "excludeByName": {
+                "job 10": true,
+                "job 11": true,
+                "job 12": true,
+                "job 2": true,
+                "job 3": true,
+                "job 4": true,
+                "job 5": true,
+                "job 6": true,
+                "job 7": true,
+                "job 8": true,
+                "job 9": true
+              },
+              "indexByName": {
+                "Value #Active Partitions": 4,
+                "Value #Completed Migrations": 3,
+                "Value #Executed Operations": 13,
+                "Value #Local Partitions": 2,
+                "Value #Replica Sync Requests": 5,
+                "Value #Replica Sync Semaphores": 6,
+                "Value #Running Partitions": 12,
+                "Value #State Stamp": 7,
+                "Value #Total Completed Migrations": 8,
+                "Value #Total Elapsed Destination Commit Time": 9,
+                "Value #Total Elapsed Migration Operation Time": 10,
+                "Value #Total Elapsed Migration Time": 11,
+                "instance": 1,
+                "job 1": 0,
+                "job 10": 22,
+                "job 11": 23,
+                "job 12": 24,
+                "job 2": 14,
+                "job 3": 15,
+                "job 4": 16,
+                "job 5": 17,
+                "job 6": 18,
+                "job 7": 19,
+                "job 8": 20,
+                "job 9": 21
+              },
+              "renameByName": {
+                "Value": "Local Partitions",
+                "Value #Active Partitions": "Active Partitions",
+                "Value #CPU": "CPU",
+                "Value #Committed Native Memory": "Committed Native Memory",
+                "Value #Completed Migrations": "Completed Migrations",
+                "Value #Executed Operations": "Executed Operations",
+                "Value #GC Major Count": "GC Major Count",
+                "Value #GC Major Time": "GC Major Time",
+                "Value #GC Minor Count": "GC Minor Count",
+                "Value #GC Minor Time": "GC Minor Time",
+                "Value #Heap Usage": "Heap Usage",
+                "Value #Local Partitions": "Local Partitions",
+                "Value #Publication Events": "Publication Events",
+                "Value #Replica Sync Requests": "Replica Sync Requests",
+                "Value #Replica Sync Semaphores": "Replica Sync Semaphores",
+                "Value #Running Partitions": "Running Partitions",
+                "Value #State Stamp": "State Stamp",
+                "Value #Total Completed Migrations": "Total Completed Migrations",
+                "Value #Total Elapsed Destination Commit Time": "Total Elapsed Destination Commit Time",
+                "Value #Total Elapsed Migration Operation Time": "Total Elapsed Migration Operation Time",
+                "Value #Total Elapsed Migration Time": "Total Elapsed Migration Time",
+                "Value #Total Heap": "Total Heap",
+                "Value #Used Heap": "Used Heap",
+                "Value #Used Native Memory": "Used Native Memory",
+                "instance": "Member",
+                "job": "Cluster",
+                "job 1": "Cluster"
+              }
+            }
+          },
+          {
+            "id": "sortBy",
+            "options": {
+              "fields": {},
+              "sort": [
+                {
+                  "field": "Cluster"
+                }
+              ]
+            }
+          }
+        ],
+        "type": "table"
+      },
+      {
+        "collapsed": true,
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DataSource}"
+        },
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 15
+        },
+        "id": 10,
+        "panels": [],
+        "title": "Partition Threads",
+        "type": "row"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DataSource}"
+        },
+        "description": "Total number of tasks (Operation + PartitionSpecificRunnable + Runnable + TaskBatch) completed on this operation thread",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "custom": {
+              "align": "auto",
+              "cellOptions": {
+                "type": "auto"
+              },
+              "inspect": false
+            },
+            "mappings": [
+              {
+                "options": {
+                  "pattern": "^.*(=)(\\w.*).*\"$",
+                  "result": {
+                    "index": 0,
+                    "text": "$2"
+                  }
+                },
+                "type": "regex"
+              }
+            ],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "locale"
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Member"
+              },
+              "properties": [
+                {
+                  "id": "links",
+                  "value": [
+                    {
+                      "title": "Member Link",
+                      "url": "/d/c5932a49-ac31-44d9-95fe-b3eeb7ac974f/member?orgId=1&refresh=5s&var-DataSource=$DataSource&var-Cluster=${__data.fields.Cluster}&var-Member=${__value.raw}&${__url_time_range}"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Error Count (sum)"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "red",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Cluster"
+              },
+              "properties": [
+                {
+                  "id": "links",
+                  "value": [
+                    {
+                      "title": "System Link",
+                      "url": "/d/57ea6a2e-88ae-43f3-9c79-6d1648aea214/system-resource?var-DataSource=$DataSource&var-Cluster=${__data.fields.Cluster}&${__url_time_range}"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 11,
+          "w": 8,
+          "x": 0,
+          "y": 16
+        },
+        "id": 15,
+        "options": {
+          "cellHeight": "sm",
+          "footer": {
+            "countRows": false,
+            "fields": "",
+            "reducer": [
+              "sum"
+            ],
+            "show": true
+          },
+          "showHeader": true,
+          "sortBy": []
+        },
+        "pluginVersion": "10.2.2",
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "${DataSource}"
+            },
+            "editorMode": "code",
+            "exemplar": false,
+            "expr": "com_gemfire_Metrics_errorCount{$ClusterFilterLabel=~\"$ClusterList\", prefix=\"operation.thread\",tag0=~\".*partition-operation.thread.*\"}",
+            "format": "table",
+            "hide": false,
+            "instant": true,
+            "legendFormat": "__auto",
+            "range": false,
+            "refId": "Completed Operation Batch Count"
+          }
+        ],
+        "title": "Partition Threads: Error Count",
+        "transformations": [
+          {
+            "id": "sortBy",
+            "options": {
+              "fields": {},
+              "sort": [
+                {
+                  "field": "instance"
+                }
+              ]
+            }
+          },
+          {
+            "id": "joinByField",
+            "options": {
+              "byField": "instance",
+              "mode": "outer"
+            }
+          },
+          {
+            "id": "filterFieldsByName",
+            "options": {
+              "include": {
+                "pattern": "$ClusterFilterLabel|^instance$|Value.*"
+              }
+            }
+          },
+          {
+            "id": "organize",
+            "options": {
+              "excludeByName": {},
+              "indexByName": {
+                "Value": 3,
+                "instance": 1,
+                "job": 0,
+                "tag0": 2
+              },
+              "renameByName": {
+                "Value": "Error Count",
+                "Value #CPU": "CPU",
+                "Value #Committed Native Memory": "Committed Native Memory",
+                "Value #Completed Operation Batch Count": "Complated Operation Batch Count",
+                "Value #Completed Packet Count": "Completed Packet Count",
+                "Value #GC Major Count": "GC Major Count",
+                "Value #GC Major Time": "GC Major Time",
+                "Value #GC Minor Count": "GC Minor Count",
+                "Value #GC Minor Time": "GC Minor Time",
+                "Value #Heap Usage": "Heap Usage",
+                "Value #Total Heap": "Total Heap",
+                "Value #Used Heap": "Used Heap",
+                "Value #Used Native Memory": "Used Native Memory",
+                "instance": "Member",
+                "job": "Cluster",
+                "tag0": "Thread",
+                "tag0 2": ""
+              }
+            }
+          },
+          {
+            "id": "groupBy",
+            "options": {
+              "fields": {
+                "Cluster": {
+                  "aggregations": [],
+                  "operation": "groupby"
+                },
+                "Complated Operation Batch Count": {
+                  "aggregations": [
+                    "sum"
+                  ],
+                  "operation": "groupby"
+                },
+                "Completed Operation Batch Count": {
+                  "aggregations": [
+                    "sum"
+                  ],
+                  "operation": "aggregate"
+                },
+                "Completed Operation Count": {
+                  "aggregations": [
+                    "sum"
+                  ],
+                  "operation": "aggregate"
+                },
+                "Completed Packet Count": {
+                  "aggregations": [
+                    "sum"
+                  ]
+                },
+                "Error Count": {
+                  "aggregations": [
+                    "sum"
+                  ],
+                  "operation": "aggregate"
+                },
+                "Member": {
+                  "aggregations": [],
+                  "operation": "groupby"
+                },
+                "Thread": {
+                  "aggregations": []
+                },
+                "tag0 2": {
+                  "aggregations": []
+                }
+              }
+            }
+          },
+          {
+            "id": "sortBy",
+            "options": {
+              "fields": {},
+              "sort": [
+                {
+                  "field": "Cluster"
+                }
+              ]
+            }
+          }
+        ],
+        "type": "table"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DataSource}"
+        },
+        "description": "Number of normal pending operations (tasks)",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "custom": {
+              "align": "auto",
+              "cellOptions": {
+                "type": "auto"
+              },
+              "inspect": false
+            },
+            "mappings": [
+              {
+                "options": {
+                  "pattern": "^.*(=)(\\w.*).*\"$",
+                  "result": {
+                    "index": 0,
+                    "text": "$2"
+                  }
+                },
+                "type": "regex"
+              }
+            ],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "locale"
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Member"
+              },
+              "properties": [
+                {
+                  "id": "links",
+                  "value": [
+                    {
+                      "title": "Member Link",
+                      "url": "/d/c5932a49-ac31-44d9-95fe-b3eeb7ac974f/member?orgId=1&refresh=5s&var-DataSource=$DataSource&var-Cluster=${__data.fields.Cluster}&var-Member=${__value.raw}&${__url_time_range}"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Thread"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 372
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Cluster"
+              },
+              "properties": [
+                {
+                  "id": "links",
+                  "value": [
+                    {
+                      "title": "System Link",
+                      "url": "/d/57ea6a2e-88ae-43f3-9c79-6d1648aea214/system-resource?var-DataSource=$DataSource&var-Cluster=${__data.fields.Cluster}&${__url_time_range}"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 11,
+          "w": 8,
+          "x": 8,
+          "y": 16
+        },
+        "id": 17,
+        "options": {
+          "cellHeight": "sm",
+          "footer": {
+            "countRows": false,
+            "fields": "",
+            "reducer": [
+              "sum"
+            ],
+            "show": true
+          },
+          "showHeader": true,
+          "sortBy": []
+        },
+        "pluginVersion": "10.2.2",
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "${DataSource}"
+            },
+            "editorMode": "code",
+            "exemplar": false,
+            "expr": "com_gemfire_Metrics_normalPendingCount{$ClusterFilterLabel=~\"$ClusterList\", prefix=\"operation.thread\",tag0=~\".*partition-operation.thread.*\"}",
+            "format": "table",
+            "hide": false,
+            "instant": true,
+            "legendFormat": "__auto",
+            "range": false,
+            "refId": "Completed Operation Batch Count"
+          }
+        ],
+        "title": "Partition Threads: Normal Pending Count",
+        "transformations": [
+          {
+            "id": "sortBy",
+            "options": {
+              "fields": {},
+              "sort": [
+                {
+                  "field": "instance"
+                }
+              ]
+            }
+          },
+          {
+            "id": "joinByField",
+            "options": {
+              "byField": "instance",
+              "mode": "outer"
+            }
+          },
+          {
+            "id": "filterFieldsByName",
+            "options": {
+              "include": {
+                "pattern": "$ClusterFilterLabel|^instance$|Value.*"
+              }
+            }
+          },
+          {
+            "id": "organize",
+            "options": {
+              "excludeByName": {},
+              "indexByName": {
+                "Value": 3,
+                "instance": 1,
+                "job": 0,
+                "tag0": 2
+              },
+              "renameByName": {
+                "Value": "Normal Pending Count",
+                "Value #CPU": "CPU",
+                "Value #Committed Native Memory": "Committed Native Memory",
+                "Value #Completed Operation Batch Count": "Complated Operation Batch Count",
+                "Value #Completed Packet Count": "Completed Packet Count",
+                "Value #GC Major Count": "GC Major Count",
+                "Value #GC Major Time": "GC Major Time",
+                "Value #GC Minor Count": "GC Minor Count",
+                "Value #GC Minor Time": "GC Minor Time",
+                "Value #Heap Usage": "Heap Usage",
+                "Value #Total Heap": "Total Heap",
+                "Value #Used Heap": "Used Heap",
+                "Value #Used Native Memory": "Used Native Memory",
+                "instance": "Member",
+                "job": "Cluster",
+                "tag0": "Thread",
+                "tag0 2": ""
+              }
+            }
+          },
+          {
+            "id": "groupBy",
+            "options": {
+              "fields": {
+                "Cluster": {
+                  "aggregations": [],
+                  "operation": "groupby"
+                },
+                "Complated Operation Batch Count": {
+                  "aggregations": [
+                    "sum"
+                  ],
+                  "operation": "groupby"
+                },
+                "Completed Operation Batch Count": {
+                  "aggregations": [
+                    "sum"
+                  ],
+                  "operation": "aggregate"
+                },
+                "Completed Operation Count": {
+                  "aggregations": [
+                    "sum"
+                  ],
+                  "operation": "aggregate"
+                },
+                "Completed Packet Count": {
+                  "aggregations": [
+                    "sum"
+                  ]
+                },
+                "Error Count": {
+                  "aggregations": [
+                    "sum"
+                  ],
+                  "operation": "aggregate"
+                },
+                "Member": {
+                  "aggregations": [],
+                  "operation": "groupby"
+                },
+                "Normal Pending Count": {
+                  "aggregations": [
+                    "sum"
+                  ],
+                  "operation": "aggregate"
+                },
+                "Thread": {
+                  "aggregations": []
+                },
+                "tag0 2": {
+                  "aggregations": []
+                }
+              }
+            }
+          },
+          {
+            "id": "sortBy",
+            "options": {
+              "fields": {},
+              "sort": [
+                {
+                  "field": "Cluster"
+                }
+              ]
+            }
+          }
+        ],
+        "type": "table"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DataSource}"
+        },
+        "description": "Number of priority pending operations (tasks)",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "custom": {
+              "align": "auto",
+              "cellOptions": {
+                "type": "auto"
+              },
+              "inspect": false
+            },
+            "mappings": [
+              {
+                "options": {
+                  "pattern": "^.*(=)(\\w.*).*\"$",
+                  "result": {
+                    "index": 0,
+                    "text": "$2"
+                  }
+                },
+                "type": "regex"
+              }
+            ],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "locale"
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Member"
+              },
+              "properties": [
+                {
+                  "id": "links",
+                  "value": [
+                    {
+                      "title": "Member Link",
+                      "url": "/d/c5932a49-ac31-44d9-95fe-b3eeb7ac974f/member?orgId=1&refresh=5s&var-DataSource=$DataSource&var-Cluster=${__data.fields.Cluster}&var-Member=${__value.raw}&${__url_time_range}"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Thread"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 372
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Cluster"
+              },
+              "properties": [
+                {
+                  "id": "links",
+                  "value": [
+                    {
+                      "title": "System Link",
+                      "url": "/d/57ea6a2e-88ae-43f3-9c79-6d1648aea214/system-resource?var-DataSource=$DataSource&var-Cluster=${__data.fields.Cluster}&${__url_time_range}"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 11,
+          "w": 8,
+          "x": 16,
+          "y": 16
+        },
+        "id": 18,
+        "options": {
+          "cellHeight": "sm",
+          "footer": {
+            "countRows": false,
+            "fields": "",
+            "reducer": [
+              "sum"
+            ],
+            "show": true
+          },
+          "showHeader": true,
+          "sortBy": []
+        },
+        "pluginVersion": "10.2.2",
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "${DataSource}"
+            },
+            "editorMode": "code",
+            "exemplar": false,
+            "expr": "com_gemfire_Metrics_priorityPendingCount{$ClusterFilterLabel=~\"$ClusterList\", prefix=\"operation.thread\",tag0=~\".*partition-operation.thread.*\"}",
+            "format": "table",
+            "hide": false,
+            "instant": true,
+            "legendFormat": "__auto",
+            "range": false,
+            "refId": "Completed Operation Batch Count"
+          }
+        ],
+        "title": "Partition Threads: Priority Pending Count",
+        "transformations": [
+          {
+            "id": "sortBy",
+            "options": {
+              "fields": {},
+              "sort": [
+                {
+                  "field": "instance"
+                }
+              ]
+            }
+          },
+          {
+            "id": "joinByField",
+            "options": {
+              "byField": "instance",
+              "mode": "outer"
+            }
+          },
+          {
+            "id": "filterFieldsByName",
+            "options": {
+              "include": {
+                "pattern": "$ClusterFilterLabel|^instance$|Value.*"
+              }
+            }
+          },
+          {
+            "id": "organize",
+            "options": {
+              "excludeByName": {},
+              "indexByName": {
+                "Value": 3,
+                "instance": 1,
+                "job": 0,
+                "tag0": 2
+              },
+              "renameByName": {
+                "Value": "Priority Pending Count",
+                "Value #CPU": "CPU",
+                "Value #Committed Native Memory": "Committed Native Memory",
+                "Value #Completed Operation Batch Count": "Complated Operation Batch Count",
+                "Value #Completed Packet Count": "Completed Packet Count",
+                "Value #GC Major Count": "GC Major Count",
+                "Value #GC Major Time": "GC Major Time",
+                "Value #GC Minor Count": "GC Minor Count",
+                "Value #GC Minor Time": "GC Minor Time",
+                "Value #Heap Usage": "Heap Usage",
+                "Value #Total Heap": "Total Heap",
+                "Value #Used Heap": "Used Heap",
+                "Value #Used Native Memory": "Used Native Memory",
+                "instance": "Member",
+                "job": "Cluster",
+                "tag0": "Thread",
+                "tag0 2": ""
+              }
+            }
+          },
+          {
+            "id": "groupBy",
+            "options": {
+              "fields": {
+                "Cluster": {
+                  "aggregations": [],
+                  "operation": "groupby"
+                },
+                "Complated Operation Batch Count": {
+                  "aggregations": [
+                    "sum"
+                  ],
+                  "operation": "groupby"
+                },
+                "Completed Operation Batch Count": {
+                  "aggregations": [
+                    "sum"
+                  ],
+                  "operation": "aggregate"
+                },
+                "Completed Operation Count": {
+                  "aggregations": [
+                    "sum"
+                  ],
+                  "operation": "aggregate"
+                },
+                "Completed Packet Count": {
+                  "aggregations": [
+                    "sum"
+                  ]
+                },
+                "Error Count": {
+                  "aggregations": [
+                    "sum"
+                  ],
+                  "operation": "aggregate"
+                },
+                "Member": {
+                  "aggregations": [],
+                  "operation": "groupby"
+                },
+                "Priority Pending Count": {
+                  "aggregations": [
+                    "sum"
+                  ],
+                  "operation": "aggregate"
+                },
+                "Thread": {
+                  "aggregations": []
+                },
+                "tag0 2": {
+                  "aggregations": []
+                }
+              }
+            }
+          },
+          {
+            "id": "sortBy",
+            "options": {
+              "fields": {},
+              "sort": [
+                {
+                  "field": "Cluster"
+                }
+              ]
+            }
+          }
+        ],
+        "type": "table"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DataSource}"
+        },
+        "description": "Total number of tasks (Operation + PartitionSpecificRunnable + Runnable + TaskBatch) completed on this operation thread",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "custom": {
+              "align": "auto",
+              "cellOptions": {
+                "type": "auto"
+              },
+              "inspect": false
+            },
+            "mappings": [
+              {
+                "options": {
+                  "pattern": "^.*(=)(\\w.*).*\"$",
+                  "result": {
+                    "index": 0,
+                    "text": "$2"
+                  }
+                },
+                "type": "regex"
+              }
+            ],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "locale"
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Member"
+              },
+              "properties": [
+                {
+                  "id": "links",
+                  "value": [
+                    {
+                      "title": "Member Link",
+                      "url": "/d/c5932a49-ac31-44d9-95fe-b3eeb7ac974f/member?orgId=1&refresh=5s&var-DataSource=$DataSource&var-Cluster=${__data.fields.Cluster}&var-Member=${__value.raw}&${__url_time_range}"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Thread"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 372
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Cluster"
+              },
+              "properties": [
+                {
+                  "id": "links",
+                  "value": [
+                    {
+                      "title": "System Link",
+                      "url": "/d/57ea6a2e-88ae-43f3-9c79-6d1648aea214/system-resource?var-DataSource=$DataSource&var-Cluster=${__data.fields.Cluster}&${__url_time_range}"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 11,
+          "w": 8,
+          "x": 0,
+          "y": 27
+        },
+        "id": 19,
+        "options": {
+          "cellHeight": "sm",
+          "footer": {
+            "countRows": false,
+            "fields": "",
+            "reducer": [
+              "sum"
+            ],
+            "show": true
+          },
+          "showHeader": true,
+          "sortBy": []
+        },
+        "pluginVersion": "10.2.2",
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "${DataSource}"
+            },
+            "editorMode": "code",
+            "exemplar": false,
+            "expr": "com_gemfire_Metrics_completedTotalCount{$ClusterFilterLabel=~\"$ClusterList\", prefix=\"operation.thread\",tag0=~\".*partition-operation.thread.*\"}",
+            "format": "table",
+            "hide": false,
+            "instant": true,
+            "legendFormat": "__auto",
+            "range": false,
+            "refId": "Completed Operation Batch Count"
+          }
+        ],
+        "title": "Partition Threads: Completed Total Count",
+        "transformations": [
+          {
+            "id": "sortBy",
+            "options": {
+              "fields": {},
+              "sort": [
+                {
+                  "field": "instance"
+                }
+              ]
+            }
+          },
+          {
+            "id": "joinByField",
+            "options": {
+              "byField": "instance",
+              "mode": "outer"
+            }
+          },
+          {
+            "id": "filterFieldsByName",
+            "options": {
+              "include": {
+                "pattern": "$ClusterFilterLabel|^instance$|Value.*"
+              }
+            }
+          },
+          {
+            "id": "organize",
+            "options": {
+              "excludeByName": {},
+              "indexByName": {
+                "Value": 3,
+                "instance": 1,
+                "job": 0,
+                "tag0": 2
+              },
+              "renameByName": {
+                "Value": "Completed Total Count",
+                "Value #CPU": "CPU",
+                "Value #Committed Native Memory": "Committed Native Memory",
+                "Value #Completed Operation Batch Count": "Complated Operation Batch Count",
+                "Value #Completed Packet Count": "Completed Packet Count",
+                "Value #GC Major Count": "GC Major Count",
+                "Value #GC Major Time": "GC Major Time",
+                "Value #GC Minor Count": "GC Minor Count",
+                "Value #GC Minor Time": "GC Minor Time",
+                "Value #Heap Usage": "Heap Usage",
+                "Value #Total Heap": "Total Heap",
+                "Value #Used Heap": "Used Heap",
+                "Value #Used Native Memory": "Used Native Memory",
+                "instance": "Member",
+                "job": "Cluster",
+                "tag0": "Thread",
+                "tag0 2": ""
+              }
+            }
+          },
+          {
+            "id": "groupBy",
+            "options": {
+              "fields": {
+                "Cluster": {
+                  "aggregations": [],
+                  "operation": "groupby"
+                },
+                "Complated Operation Batch Count": {
+                  "aggregations": [
+                    "sum"
+                  ],
+                  "operation": "groupby"
+                },
+                "Completed Operation Batch Count": {
+                  "aggregations": [
+                    "sum"
+                  ],
+                  "operation": "aggregate"
+                },
+                "Completed Operation Count": {
+                  "aggregations": [
+                    "sum"
+                  ],
+                  "operation": "aggregate"
+                },
+                "Completed Packet Count": {
+                  "aggregations": [
+                    "sum"
+                  ]
+                },
+                "Completed Total Count": {
+                  "aggregations": [
+                    "sum"
+                  ],
+                  "operation": "aggregate"
+                },
+                "Error Count": {
+                  "aggregations": [
+                    "sum"
+                  ],
+                  "operation": "aggregate"
+                },
+                "Member": {
+                  "aggregations": [],
+                  "operation": "groupby"
+                },
+                "Priority Pending Count": {
+                  "aggregations": [
+                    "sum"
+                  ],
+                  "operation": "aggregate"
+                },
+                "Thread": {
+                  "aggregations": []
+                },
+                "tag0 2": {
+                  "aggregations": []
+                }
+              }
+            }
+          },
+          {
+            "id": "sortBy",
+            "options": {
+              "fields": {},
+              "sort": [
+                {
+                  "field": "Cluster"
+                }
+              ]
+            }
+          }
+        ],
+        "type": "table"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DataSource}"
+        },
+        "description": "Number of completed operations by this operation thread",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "custom": {
+              "align": "auto",
+              "cellOptions": {
+                "type": "auto"
+              },
+              "inspect": false
+            },
+            "mappings": [
+              {
+                "options": {
+                  "pattern": "^.*(=)(\\w.*).*\"$",
+                  "result": {
+                    "index": 0,
+                    "text": "$2"
+                  }
+                },
+                "type": "regex"
+              }
+            ],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "locale"
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Member"
+              },
+              "properties": [
+                {
+                  "id": "links",
+                  "value": [
+                    {
+                      "title": "Member Link",
+                      "url": "/d/c5932a49-ac31-44d9-95fe-b3eeb7ac974f/member?orgId=1&refresh=5s&var-DataSource=$DataSource&var-Cluster=${__data.fields.Cluster}&var-Member=${__value.raw}&${__url_time_range}"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Thread"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 372
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Cluster"
+              },
+              "properties": [
+                {
+                  "id": "links",
+                  "value": [
+                    {
+                      "title": "System Link",
+                      "url": "/d/57ea6a2e-88ae-43f3-9c79-6d1648aea214/system-resource?var-DataSource=$DataSource&var-Cluster=${__data.fields.Cluster}&${__url_time_range}"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 11,
+          "w": 8,
+          "x": 8,
+          "y": 27
+        },
+        "id": 11,
+        "options": {
+          "cellHeight": "sm",
+          "footer": {
+            "countRows": false,
+            "fields": "",
+            "reducer": [
+              "sum"
+            ],
+            "show": true
+          },
+          "showHeader": true,
+          "sortBy": []
+        },
+        "pluginVersion": "10.2.2",
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "${DataSource}"
+            },
+            "editorMode": "code",
+            "exemplar": false,
+            "expr": "com_gemfire_Metrics_completedOperationCount{$ClusterFilterLabel=~\"$ClusterList\", prefix=\"operation.thread\",tag0=~\".*partition-operation.thread.*\"}",
+            "format": "table",
+            "hide": false,
+            "instant": true,
+            "legendFormat": "__auto",
+            "range": false,
+            "refId": "Completed Operation Batch Count"
+          }
+        ],
+        "title": "Partition Threads: Completed Operation Count",
+        "transformations": [
+          {
+            "id": "sortBy",
+            "options": {
+              "fields": {},
+              "sort": [
+                {
+                  "field": "instance"
+                }
+              ]
+            }
+          },
+          {
+            "id": "joinByField",
+            "options": {
+              "byField": "instance",
+              "mode": "outer"
+            }
+          },
+          {
+            "id": "filterFieldsByName",
+            "options": {
+              "include": {
+                "pattern": "$ClusterFilterLabel|^instance$|Value.*"
+              }
+            }
+          },
+          {
+            "id": "organize",
+            "options": {
+              "excludeByName": {},
+              "indexByName": {
+                "Value": 3,
+                "instance": 1,
+                "job": 0,
+                "tag0": 2
+              },
+              "renameByName": {
+                "Value": "Completed Operation Count",
+                "Value #CPU": "CPU",
+                "Value #Committed Native Memory": "Committed Native Memory",
+                "Value #Completed Operation Batch Count": "Complated Operation Batch Count",
+                "Value #Completed Packet Count": "Completed Packet Count",
+                "Value #GC Major Count": "GC Major Count",
+                "Value #GC Major Time": "GC Major Time",
+                "Value #GC Minor Count": "GC Minor Count",
+                "Value #GC Minor Time": "GC Minor Time",
+                "Value #Heap Usage": "Heap Usage",
+                "Value #Total Heap": "Total Heap",
+                "Value #Used Heap": "Used Heap",
+                "Value #Used Native Memory": "Used Native Memory",
+                "instance": "Member",
+                "job": "Cluster",
+                "tag0": "Thread",
+                "tag0 2": ""
+              }
+            }
+          },
+          {
+            "id": "groupBy",
+            "options": {
+              "fields": {
+                "Cluster": {
+                  "aggregations": [],
+                  "operation": "groupby"
+                },
+                "Complated Operation Batch Count": {
+                  "aggregations": [
+                    "sum"
+                  ],
+                  "operation": "groupby"
+                },
+                "Completed Operation Batch Count": {
+                  "aggregations": [
+                    "sum"
+                  ],
+                  "operation": "aggregate"
+                },
+                "Completed Operation Count": {
+                  "aggregations": [
+                    "sum"
+                  ],
+                  "operation": "aggregate"
+                },
+                "Completed Packet Count": {
+                  "aggregations": [
+                    "sum"
+                  ]
+                },
+                "Member": {
+                  "aggregations": [],
+                  "operation": "groupby"
+                },
+                "Thread": {
+                  "aggregations": []
+                },
+                "tag0 2": {
+                  "aggregations": []
+                }
+              }
+            }
+          },
+          {
+            "id": "sortBy",
+            "options": {
+              "fields": {},
+              "sort": [
+                {
+                  "field": "Cluster"
+                }
+              ]
+            }
+          }
+        ],
+        "type": "table"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DataSource}"
+        },
+        "description": "Number of completed TaskBatch (a batch of tasks) by this operation thread",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "custom": {
+              "align": "auto",
+              "cellOptions": {
+                "type": "auto"
+              },
+              "inspect": false
+            },
+            "mappings": [
+              {
+                "options": {
+                  "pattern": "^.*(=)(\\w.*).*\"$",
+                  "result": {
+                    "index": 0,
+                    "text": "$2"
+                  }
+                },
+                "type": "regex"
+              }
+            ],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "locale"
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Member"
+              },
+              "properties": [
+                {
+                  "id": "links",
+                  "value": [
+                    {
+                      "title": "Member Link",
+                      "url": "/d/c5932a49-ac31-44d9-95fe-b3eeb7ac974f/member?orgId=1&refresh=5s&var-DataSource=$DataSource&var-Cluster=${__data.fields.Cluster}&var-Member=${__value.raw}&${__url_time_range}"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Thread"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 372
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Cluster"
+              },
+              "properties": [
+                {
+                  "id": "links",
+                  "value": [
+                    {
+                      "title": "System Link",
+                      "url": "/d/57ea6a2e-88ae-43f3-9c79-6d1648aea214/system-resource?var-DataSource=$DataSource&var-Cluster=${__data.fields.Cluster}&${__url_time_range}"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 11,
+          "w": 8,
+          "x": 16,
+          "y": 27
+        },
+        "id": 12,
+        "options": {
+          "cellHeight": "sm",
+          "footer": {
+            "countRows": false,
+            "fields": "",
+            "reducer": [
+              "sum"
+            ],
+            "show": true
+          },
+          "showHeader": true,
+          "sortBy": []
+        },
+        "pluginVersion": "10.2.2",
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "${DataSource}"
+            },
+            "editorMode": "code",
+            "exemplar": false,
+            "expr": "com_gemfire_Metrics_completedOperationBatchCount{$ClusterFilterLabel=~\"$ClusterList\", prefix=\"operation.thread\",tag0=~\".*partition-operation.thread.*\"}",
+            "format": "table",
+            "hide": false,
+            "instant": true,
+            "legendFormat": "__auto",
+            "range": false,
+            "refId": "Completed Operation Batch Count"
+          }
+        ],
+        "title": "Partition Threads: Completed Operation Batch Count",
+        "transformations": [
+          {
+            "id": "sortBy",
+            "options": {
+              "fields": {},
+              "sort": [
+                {
+                  "field": "instance"
+                }
+              ]
+            }
+          },
+          {
+            "id": "joinByField",
+            "options": {
+              "byField": "instance",
+              "mode": "outer"
+            }
+          },
+          {
+            "id": "filterFieldsByName",
+            "options": {
+              "include": {
+                "pattern": "$ClusterFilterLabel|^instance$|Value.*"
+              }
+            }
+          },
+          {
+            "id": "organize",
+            "options": {
+              "excludeByName": {},
+              "indexByName": {
+                "Value": 3,
+                "instance": 1,
+                "job": 0,
+                "tag0": 2
+              },
+              "renameByName": {
+                "Value": "Completed Operation Batch Count",
+                "Value #CPU": "CPU",
+                "Value #Committed Native Memory": "Committed Native Memory",
+                "Value #Completed Operation Batch Count": "Complated Operation Batch Count",
+                "Value #Completed Packet Count": "Completed Packet Count",
+                "Value #GC Major Count": "GC Major Count",
+                "Value #GC Major Time": "GC Major Time",
+                "Value #GC Minor Count": "GC Minor Count",
+                "Value #GC Minor Time": "GC Minor Time",
+                "Value #Heap Usage": "Heap Usage",
+                "Value #Total Heap": "Total Heap",
+                "Value #Used Heap": "Used Heap",
+                "Value #Used Native Memory": "Used Native Memory",
+                "instance": "Member",
+                "job": "Cluster",
+                "tag0": "Thread",
+                "tag0 2": ""
+              }
+            }
+          },
+          {
+            "id": "groupBy",
+            "options": {
+              "fields": {
+                "Cluster": {
+                  "aggregations": [],
+                  "operation": "groupby"
+                },
+                "Complated Operation Batch Count": {
+                  "aggregations": [
+                    "sum"
+                  ],
+                  "operation": "groupby"
+                },
+                "Completed Operation Batch Count": {
+                  "aggregations": [
+                    "sum"
+                  ],
+                  "operation": "aggregate"
+                },
+                "Completed Operation Count": {
+                  "aggregations": [
+                    "sum"
+                  ],
+                  "operation": "aggregate"
+                },
+                "Completed Packet Count": {
+                  "aggregations": [
+                    "sum"
+                  ]
+                },
+                "Member": {
+                  "aggregations": [],
+                  "operation": "groupby"
+                },
+                "Thread": {
+                  "aggregations": []
+                },
+                "tag0 2": {
+                  "aggregations": []
+                }
+              }
+            }
+          },
+          {
+            "id": "sortBy",
+            "options": {
+              "fields": {},
+              "sort": [
+                {
+                  "field": "Cluster"
+                }
+              ]
+            }
+          }
+        ],
+        "type": "table"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DataSource}"
+        },
+        "description": "Total number of runnables executed by this operation thread",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "custom": {
+              "align": "auto",
+              "cellOptions": {
+                "type": "auto"
+              },
+              "inspect": false
+            },
+            "mappings": [
+              {
+                "options": {
+                  "pattern": "^.*(=)(\\w.*).*\"$",
+                  "result": {
+                    "index": 0,
+                    "text": "$2"
+                  }
+                },
+                "type": "regex"
+              }
+            ],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "locale"
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Member"
+              },
+              "properties": [
+                {
+                  "id": "links",
+                  "value": [
+                    {
+                      "title": "Member Link",
+                      "url": "/d/c5932a49-ac31-44d9-95fe-b3eeb7ac974f/member?orgId=1&refresh=5s&var-DataSource=$DataSource&var-Cluster=${__data.fields.Cluster}&var-Member=${__value.raw}&${__url_time_range}"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Thread"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 372
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Cluster"
+              },
+              "properties": [
+                {
+                  "id": "links",
+                  "value": [
+                    {
+                      "title": "System Link",
+                      "url": "/d/57ea6a2e-88ae-43f3-9c79-6d1648aea214/system-resource?var-DataSource=$DataSource&var-Cluster=${__data.fields.Cluster}&${__url_time_range}"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 11,
+          "w": 8,
+          "x": 0,
+          "y": 38
+        },
+        "id": 13,
+        "options": {
+          "cellHeight": "sm",
+          "footer": {
+            "countRows": false,
+            "fields": "",
+            "reducer": [
+              "sum"
+            ],
+            "show": true
+          },
+          "showHeader": true,
+          "sortBy": []
+        },
+        "pluginVersion": "10.2.2",
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "${DataSource}"
+            },
+            "editorMode": "code",
+            "exemplar": false,
+            "expr": "com_gemfire_Metrics_completedRunnableCount{$ClusterFilterLabel=~\"$ClusterList\", prefix=\"operation.thread\",tag0=~\".*partition-operation.thread.*\"}",
+            "format": "table",
+            "hide": false,
+            "instant": true,
+            "legendFormat": "__auto",
+            "range": false,
+            "refId": "Completed Operation Batch Count"
+          }
+        ],
+        "title": "Partition Threads: Completed Runnable Count",
+        "transformations": [
+          {
+            "id": "sortBy",
+            "options": {
+              "fields": {},
+              "sort": [
+                {
+                  "field": "instance"
+                }
+              ]
+            }
+          },
+          {
+            "id": "joinByField",
+            "options": {
+              "byField": "instance",
+              "mode": "outer"
+            }
+          },
+          {
+            "id": "filterFieldsByName",
+            "options": {
+              "include": {
+                "pattern": "$ClusterFilterLabel|^instance$|Value.*"
+              }
+            }
+          },
+          {
+            "id": "organize",
+            "options": {
+              "excludeByName": {},
+              "indexByName": {
+                "Value": 3,
+                "instance": 1,
+                "job": 0,
+                "tag0": 2
+              },
+              "renameByName": {
+                "Value": "Completed Runnable Count",
+                "Value #CPU": "CPU",
+                "Value #Committed Native Memory": "Committed Native Memory",
+                "Value #Completed Operation Batch Count": "Complated Operation Batch Count",
+                "Value #Completed Packet Count": "Completed Packet Count",
+                "Value #GC Major Count": "GC Major Count",
+                "Value #GC Major Time": "GC Major Time",
+                "Value #GC Minor Count": "GC Minor Count",
+                "Value #GC Minor Time": "GC Minor Time",
+                "Value #Heap Usage": "Heap Usage",
+                "Value #Total Heap": "Total Heap",
+                "Value #Used Heap": "Used Heap",
+                "Value #Used Native Memory": "Used Native Memory",
+                "instance": "Member",
+                "job": "Cluster",
+                "tag0": "Thread",
+                "tag0 2": ""
+              }
+            }
+          },
+          {
+            "id": "groupBy",
+            "options": {
+              "fields": {
+                "Cluster": {
+                  "aggregations": [],
+                  "operation": "groupby"
+                },
+                "Complated Operation Batch Count": {
+                  "aggregations": [
+                    "sum"
+                  ],
+                  "operation": "groupby"
+                },
+                "Completed Operation Batch Count": {
+                  "aggregations": [
+                    "sum"
+                  ],
+                  "operation": "aggregate"
+                },
+                "Completed Operation Count": {
+                  "aggregations": [
+                    "sum"
+                  ],
+                  "operation": "aggregate"
+                },
+                "Completed Packet Count": {
+                  "aggregations": [
+                    "sum"
+                  ]
+                },
+                "Completed Runnable Count": {
+                  "aggregations": [
+                    "sum"
+                  ],
+                  "operation": "aggregate"
+                },
+                "Member": {
+                  "aggregations": [],
+                  "operation": "groupby"
+                },
+                "Thread": {
+                  "aggregations": []
+                },
+                "tag0 2": {
+                  "aggregations": []
+                }
+              }
+            }
+          },
+          {
+            "id": "sortBy",
+            "options": {
+              "fields": {},
+              "sort": [
+                {
+                  "field": "Cluster"
+                }
+              ]
+            }
+          }
+        ],
+        "type": "table"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DataSource}"
+        },
+        "description": "Number of PartitionSpecificRunnable tasks executed by this operation thread",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "custom": {
+              "align": "auto",
+              "cellOptions": {
+                "type": "auto"
+              },
+              "inspect": false
+            },
+            "mappings": [
+              {
+                "options": {
+                  "pattern": "^.*(=)(\\w.*).*\"$",
+                  "result": {
+                    "index": 0,
+                    "text": "$2"
+                  }
+                },
+                "type": "regex"
+              }
+            ],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "locale"
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Member"
+              },
+              "properties": [
+                {
+                  "id": "links",
+                  "value": [
+                    {
+                      "title": "Member Link",
+                      "url": "/d/c5932a49-ac31-44d9-95fe-b3eeb7ac974f/member?orgId=1&refresh=5s&var-DataSource=$DataSource&var-Cluster=${__data.fields.Cluster}&var-Member=${__value.raw}&${__url_time_range}"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Thread"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 372
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Cluster"
+              },
+              "properties": [
+                {
+                  "id": "links",
+                  "value": [
+                    {
+                      "title": "System Link",
+                      "url": "/d/57ea6a2e-88ae-43f3-9c79-6d1648aea214/system-resource?var-DataSource=$DataSource&var-Cluster=${__data.fields.Cluster}&${__url_time_range}"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 11,
+          "w": 8,
+          "x": 8,
+          "y": 38
+        },
+        "id": 14,
+        "options": {
+          "cellHeight": "sm",
+          "footer": {
+            "countRows": false,
+            "fields": "",
+            "reducer": [
+              "sum"
+            ],
+            "show": true
+          },
+          "showHeader": true,
+          "sortBy": []
+        },
+        "pluginVersion": "10.2.2",
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "${DataSource}"
+            },
+            "editorMode": "code",
+            "exemplar": false,
+            "expr": "com_gemfire_Metrics_completedPartitionSpecificRunnableCount{$ClusterFilterLabel=~\"$ClusterList\", prefix=\"operation.thread\",tag0=~\".*partition-operation.thread.*\"}",
+            "format": "table",
+            "hide": false,
+            "instant": true,
+            "legendFormat": "__auto",
+            "range": false,
+            "refId": "Completed Operation Batch Count"
+          }
+        ],
+        "title": "Partition Threads: Completed Partition Specific Runnable Count",
+        "transformations": [
+          {
+            "id": "sortBy",
+            "options": {
+              "fields": {},
+              "sort": [
+                {
+                  "field": "instance"
+                }
+              ]
+            }
+          },
+          {
+            "id": "joinByField",
+            "options": {
+              "byField": "instance",
+              "mode": "outer"
+            }
+          },
+          {
+            "id": "filterFieldsByName",
+            "options": {
+              "include": {
+                "pattern": "$ClusterFilterLabel|^instance$|Value.*"
+              }
+            }
+          },
+          {
+            "id": "organize",
+            "options": {
+              "excludeByName": {},
+              "indexByName": {
+                "Value": 3,
+                "instance": 1,
+                "job": 0,
+                "tag0": 2
+              },
+              "renameByName": {
+                "Value": "Completed Partition Specific Runnable Count",
+                "Value #CPU": "CPU",
+                "Value #Committed Native Memory": "Committed Native Memory",
+                "Value #Completed Operation Batch Count": "Complated Operation Batch Count",
+                "Value #Completed Packet Count": "Completed Packet Count",
+                "Value #GC Major Count": "GC Major Count",
+                "Value #GC Major Time": "GC Major Time",
+                "Value #GC Minor Count": "GC Minor Count",
+                "Value #GC Minor Time": "GC Minor Time",
+                "Value #Heap Usage": "Heap Usage",
+                "Value #Total Heap": "Total Heap",
+                "Value #Used Heap": "Used Heap",
+                "Value #Used Native Memory": "Used Native Memory",
+                "instance": "Member",
+                "job": "Cluster",
+                "tag0": "Thread",
+                "tag0 2": ""
+              }
+            }
+          },
+          {
+            "id": "groupBy",
+            "options": {
+              "fields": {
+                "Cluster": {
+                  "aggregations": [],
+                  "operation": "groupby"
+                },
+                "Complated Operation Batch Count": {
+                  "aggregations": [
+                    "sum"
+                  ],
+                  "operation": "groupby"
+                },
+                "Completed Operation Batch Count": {
+                  "aggregations": [
+                    "sum"
+                  ],
+                  "operation": "aggregate"
+                },
+                "Completed Operation Count": {
+                  "aggregations": [
+                    "sum"
+                  ],
+                  "operation": "aggregate"
+                },
+                "Completed Packet Count": {
+                  "aggregations": [
+                    "sum"
+                  ]
+                },
+                "Completed Partition Specific Runnable Count": {
+                  "aggregations": [
+                    "sum"
+                  ],
+                  "operation": "aggregate"
+                },
+                "Member": {
+                  "aggregations": [],
+                  "operation": "groupby"
+                },
+                "Thread": {
+                  "aggregations": []
+                },
+                "tag0 2": {
+                  "aggregations": []
+                }
+              }
+            }
+          },
+          {
+            "id": "sortBy",
+            "options": {
+              "fields": {},
+              "sort": [
+                {
+                  "field": "Cluster"
+                }
+              ]
+            }
+          }
+        ],
+        "type": "table"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DataSource}"
+        },
+        "description": "Number of packets that executed by this operation thread",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "custom": {
+              "align": "auto",
+              "cellOptions": {
+                "type": "auto"
+              },
+              "inspect": false
+            },
+            "mappings": [
+              {
+                "options": {
+                  "pattern": "^.*(=)(\\w.*).*\"$",
+                  "result": {
+                    "index": 0,
+                    "text": "$2"
+                  }
+                },
+                "type": "regex"
+              }
+            ],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "locale"
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Member"
+              },
+              "properties": [
+                {
+                  "id": "links",
+                  "value": [
+                    {
+                      "title": "Member Link",
+                      "url": "/d/c5932a49-ac31-44d9-95fe-b3eeb7ac974f/member?orgId=1&refresh=5s&var-DataSource=$DataSource&var-Cluster=${__data.fields.Cluster}&var-Member=${__value.raw}&${__url_time_range}"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Thread"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 372
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Cluster"
+              },
+              "properties": [
+                {
+                  "id": "links",
+                  "value": [
+                    {
+                      "title": "System Link",
+                      "url": "/d/57ea6a2e-88ae-43f3-9c79-6d1648aea214/system-resource?var-DataSource=$DataSource&var-Cluster=${__data.fields.Cluster}&${__url_time_range}"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 11,
+          "w": 8,
+          "x": 16,
+          "y": 38
+        },
+        "id": 16,
+        "options": {
+          "cellHeight": "sm",
+          "footer": {
+            "countRows": false,
+            "fields": "",
+            "reducer": [
+              "sum"
+            ],
+            "show": true
+          },
+          "showHeader": true,
+          "sortBy": []
+        },
+        "pluginVersion": "10.2.2",
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "${DataSource}"
+            },
+            "editorMode": "code",
+            "exemplar": false,
+            "expr": "com_gemfire_Metrics_completedPacketCount{$ClusterFilterLabel=~\"$ClusterList\", prefix=\"operation.thread\",tag0=~\".*partition-operation.thread.*\"}",
+            "format": "table",
+            "hide": false,
+            "instant": true,
+            "legendFormat": "__auto",
+            "range": false,
+            "refId": "Completed Operation Batch Count"
+          }
+        ],
+        "title": "Partition Threads: Completed Packet Count",
+        "transformations": [
+          {
+            "id": "sortBy",
+            "options": {
+              "fields": {},
+              "sort": [
+                {
+                  "field": "instance"
+                }
+              ]
+            }
+          },
+          {
+            "id": "joinByField",
+            "options": {
+              "byField": "instance",
+              "mode": "outer"
+            }
+          },
+          {
+            "id": "filterFieldsByName",
+            "options": {
+              "include": {
+                "pattern": "$ClusterFilterLabel|^instance$|Value.*"
+              }
+            }
+          },
+          {
+            "id": "organize",
+            "options": {
+              "excludeByName": {},
+              "indexByName": {
+                "Value": 3,
+                "instance": 1,
+                "job": 0,
+                "tag0": 2
+              },
+              "renameByName": {
+                "Value": "Completed Packet Count",
+                "Value #CPU": "CPU",
+                "Value #Committed Native Memory": "Committed Native Memory",
+                "Value #Completed Operation Batch Count": "Complated Operation Batch Count",
+                "Value #Completed Packet Count": "Completed Packet Count",
+                "Value #GC Major Count": "GC Major Count",
+                "Value #GC Major Time": "GC Major Time",
+                "Value #GC Minor Count": "GC Minor Count",
+                "Value #GC Minor Time": "GC Minor Time",
+                "Value #Heap Usage": "Heap Usage",
+                "Value #Total Heap": "Total Heap",
+                "Value #Used Heap": "Used Heap",
+                "Value #Used Native Memory": "Used Native Memory",
+                "instance": "Member",
+                "job": "Cluster",
+                "tag0": "Thread",
+                "tag0 2": ""
+              }
+            }
+          },
+          {
+            "id": "groupBy",
+            "options": {
+              "fields": {
+                "Cluster": {
+                  "aggregations": [],
+                  "operation": "groupby"
+                },
+                "Complated Operation Batch Count": {
+                  "aggregations": [
+                    "sum"
+                  ],
+                  "operation": "groupby"
+                },
+                "Completed Operation Batch Count": {
+                  "aggregations": [
+                    "sum"
+                  ],
+                  "operation": "aggregate"
+                },
+                "Completed Operation Count": {
+                  "aggregations": [
+                    "sum"
+                  ],
+                  "operation": "aggregate"
+                },
+                "Completed Packet Count": {
+                  "aggregations": [
+                    "sum"
+                  ],
+                  "operation": "aggregate"
+                },
+                "Error Count": {
+                  "aggregations": [
+                    "sum"
+                  ],
+                  "operation": "aggregate"
+                },
+                "Member": {
+                  "aggregations": [],
+                  "operation": "groupby"
+                },
+                "Thread": {
+                  "aggregations": []
+                },
+                "tag0 2": {
+                  "aggregations": []
+                }
+              }
+            }
+          },
+          {
+            "id": "sortBy",
+            "options": {
+              "fields": {},
+              "sort": [
+                {
+                  "field": "Cluster"
+                }
+              ]
+            }
+          }
+        ],
+        "type": "table"
+      }
+    ],
+    "refresh": "5s",
+    "schemaVersion": 38,
+    "tags": [
+      "all gemfire",
+      "partition"
+    ],
+    "templating": {
+      "list": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DataSource}"
+          },
+          "hide": 2,
+          "name": "ClusterFilterLabel",
+          "query": "job",
+          "skipUrlSync": false,
+          "type": "constant"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DataSource}"
+          },
+          "hide": 0,
+          "includeAll": false,
+          "label": "Source",
+          "multi": false,
+          "name": "DataSource",
+          "options": [],
+          "query": "prometheus",
+          "queryValue": "",
+          "refresh": 1,
+          "regex": "",
+          "skipUrlSync": false,
+          "type": "datasource"
+        },
+        {
+          "current": {
+            "selected": true,
+            "text": [
+              ""
+            ],
+            "value": [
+              ""
+            ]
+          },
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DataSource}"
+          },
+          "definition": "label_values($ClusterFilterLabel)",
+          "hide": 2,
+          "includeAll": false,
+          "label": "Cluster",
+          "multi": false,
+          "name": "Cluster",
+          "options": [],
+          "query": {
+            "qryType": 1,
+            "query": "label_values($ClusterFilterLabel)",
+            "refId": "PrometheusVariableQueryEditor-VariableQuery"
+          },
+          "refresh": 1,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 0,
+          "type": "query"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DataSource}"
+          },
+          "hide": 2,
+          "includeAll": false,
+          "label": "Source2",
+          "multi": false,
+          "name": "DataSource2",
+          "options": [],
+          "query": "prometheus",
+          "queryValue": "",
+          "refresh": 1,
+          "regex": "",
+          "skipUrlSync": false,
+          "type": "datasource"
+        },
+        {
+          "current": {
+            "selected": true,
+            "text": [
+              ""
+            ],
+            "value": [
+              ""
+            ]
+          },
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DataSource}"
+          },
+          "definition": "label_values($ClusterFilterLabel)",
+          "hide": 2,
+          "includeAll": false,
+          "label": "Cluster2",
+          "multi": false,
+          "name": "Cluster2",
+          "options": [],
+          "query": {
+            "qryType": 1,
+            "query": "label_values($ClusterFilterLabel)",
+            "refId": "PrometheusVariableQueryEditor-VariableQuery"
+          },
+          "refresh": 1,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 0,
+          "type": "query"
+        },
+        {
+          "current": {
+            "selected": true,
+            "text": [
+              "All"
+            ],
+            "value": [
+              ""
+            ]
+          },
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DataSource}"
+          },
+          "definition": "label_values($ClusterFilterLabel)",
+          "hide": 0,
+          "includeAll": true,
+          "label": "Clusters",
+          "multi": true,
+          "name": "ClusterList",
+          "options": [],
+          "query": {
+            "qryType": 1,
+            "query": "label_values($ClusterFilterLabel)",
+            "refId": "PrometheusVariableQueryEditor-VariableQuery"
+          },
+          "refresh": 1,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 0,
+          "type": "query"
+        }
+      ]
+    },
+    "time": {
+      "from": "now-5m",
+      "to": "now"
+    },
+    "timepicker": {},
+    "timezone": "",
+    "title": "All Partitions",
+    "uid": "856cd07b-7fb9-4d1f-a4a7-e311d1dad051",
+    "weekStart": ""
+  },
+  "folderId": "${FOLDER_ID}",
+  "overWrite": false
+}

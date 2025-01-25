@@ -5,103 +5,403 @@
 <!-- Platforms -->
 [![Host OS](https://github.com/padogrid/padogrid/wiki/images/padogrid-host-os.drawio.svg)](https://github.com/padogrid/padogrid/wiki/Platform-Host-OS) [![VM](https://github.com/padogrid/padogrid/wiki/images/padogrid-vm.drawio.svg)](https://github.com/padogrid/padogrid/wiki/Platform-VM) [![Docker](https://github.com/padogrid/padogrid/wiki/images/padogrid-docker.drawio.svg)](https://github.com/padogrid/padogrid/wiki/Platform-Docker) [![Kubernetes](https://github.com/padogrid/padogrid/wiki/images/padogrid-kubernetes.drawio.svg)](https://github.com/padogrid/padogrid/wiki/Platform-Kubernetes)
 
-# GemFire Bundle Template
+# GemFire Multi-Cluster Grafana Demo
 
-This bundle serves as a template for creating a new GemFire onlne bundle.
+This bundle includes a set of PadoGrid Grafana templates for building product-specific dashboards along with all the scripts extracted from the PadoGrid's `grafana` app. In addition to Grafana, this demo also includes GemFire Management Console (GFMC) for monitoring the same GemFire clusters as Grafana.
+
+Please see [Release Notes](RELEASE_NOTES.md) for change logs.
 
 ## Installing Bundle
 
 ```bash
-install_bundle -download bundle-gemfire-template
+install_bundle -init -checkout bundle-gemfire-grafana
 ```
 
 ## Use Case
 
-If you are creating a new online bundle, then you can use this template to create your bundle repo. It includes all the required files with marked annotations for you to quickly start developing a new online bundle. Please follow the steps shown below.
+This demo bundle configures five (5) GemFire clusters, one (1) `grafana` app, and two(2) `perf_test` apps as shown below. The `perf_test` app is used to ingest data into all the clusters.
 
-## 1. Create Repo
+![GemFire Grafana Demo](images/gemfire-grafana-demo.drawio.png)
 
-Select **Use this template** button in the upper right coner to create your repo. Make sure to follow the bundle naming conventions described in the following link.
+## Screenshots
 
-## 2. Checkout Repo in Workspace
+![GemFire All Screenshot](images/gemfire-all-screenshot.png)
 
-```bash
-# PadoGrid 0.9.7+
-install_bundle -checkout <bundle-repo-name>
+![System Screenshot](images/system-screenshot.png)
 
-# PadoGrid 0.9.6 and older
-install_bundle -download -workspace <bundle-repo-name>
+![Partitioned Regions Rows Total Charts Screenshot](images/partitioned-regions-rows-total-charts.png)
 
-# Switch into the checked out bundle workspace
-switch_workspace <bundle-repo-name>
-```
+## Required Software
 
-## 3. Update Files
+- PadoGrid 1.0.2+
+- GemFire 10.x
+- GemFire Management Console 1.3+
+- Grafana 11.x, 10.x
+- Prometheus 2.x
+- Maven 3.x
+- jq 1.x
 
-Update the files came with the template repo.
+## Required Hardware
 
-- `pom.xml`
-- `assembly-descriptor.xml`
-- `.gitignore`
-- `README_HEADER.md` (Optional)
-- `README.md` (This file)
-- `README.TEMPLATE` (Remove it when done. See instructions below.)
-- `required_products.txt`
+- Linux OS
+- \>10 GB RAM
+- \>30 GB Disk Space
 
-### 3.1. pom.xml
-
-The `pom.xml` file contains instructions annotated with **@template**. Search **@template** and add your bundle specifics there.
-
-### 3.2 assembly-descriptor.xml
-
-This file creates a tarball that will be deployed when the user executes the `install_bundle -download` command. Search **@template** and add your bundle specifics there.
-
-### 3.3 .gitignore
-
-The `.gitignore` file lists workspace specific files to be excluded from getting checked in. Edit `.gitignore` and add new exludes or remove existing excludes.
-
-```bash
-vi .gitignore
-```
-
-Make sure to comment out your workspace directories (components) so that they can be included by `git`.
+## Bundle Contents
 
 ```console
-...
-# PadoGrid workspace directories
-apps
-clusters
-docker
-k8s
-pods
-...
+bundle-gemfire-grafana
+├── apps
+│   ├── grafana
+│   │   ├── bin_sh
+│   │   └── etc
+│   ├── perf_test1
+│   │   ├── bin_sh
+│   │   └── etc
+│   ├── perf_test2
+│   │   ├── bin_sh
+│   │   └── etc
+│   └── prometheus_gfmc
+│       ├── bin_sh
+│       └── etc
+└── clusters
+    ├── wan1
+    │   ├── bin_sh
+    │   ├── etc
+    │   ├── pom.xml
+    │   ├── run
+    │   └── src
+    └── wan2
+        ├── bin_sh
+        ├── etc
+        ├── lib
+        └── pom.xml
 ```
 
-## 3.4. README_HEADER.md
+## Used Ports
+The following ports are used by this demo.
 
-Enter a short description of your bundle in the `README_HEADER.md` file. This file content is displayed when you execute the `show_bundle -header` command. **Note that this file is optional.** If it does not exist, then the first paragraph of the `README.md` file is used instead.
+- Grafana: 3000
+- Prometheus: 9090, 9091
+- GemFire
 
-## 3.5. READEME.md (this file)
+| Cluster      | Locators      | Servers       | Locator Prometheus | Server Prometheus | HTTP Service  | Server HTTP |
+| ------------ | ------------- | ------------- | ------------------ | ----------------- | ------------- | ----------- |
+| `mygemfire1` | [10434-10436] | [40404-40413] | **[8481-8483]**    | **[8491-8499]**   | [7470]        | [7480-7488] |
+| `mygemfire2` | [10534-10536] | [40504-40513] | **[8581-8583]**    | **[8591-8599]**   | [7570]        | [7580-7588] |
+| `mygemfire3` | [10634-10636] | [40604-40513] | **[8681-8683]**    | **[8691-8699]**   | [7670]        | [7680-7688] |
+| `wan1`       | [10734-10736] | [40704-40713] | **[8781-8783]**    | **[8791-8799]**   | [7770]        | [7780-7788] |
+| `wan2`       | [10834-10836] | [40804-40813] | **[8881-8883]**    | **[8891-8899]**   | [7870]        | [7880-7888] |
 
-Replace `README.md` with the README_TEMPLATE.md file. Make sure to remove `README_TEMPLATE.md` after you have replaced `READEME.md` with it.
+## Apps
+
+### grafana
+
+The `grafana` app contains scripts for starting and stopping Grafana and Prometheus. This app has been configured to scrape metrics from the GemFire clusters `mygemfire1`, `mygemfire2`, `mygemfire3`, `wan1` and `wan2`. Grafana and Prometheus are accessible as follows.
+
+- Grafana: [http://0.0.0.0:3000](http://0.0.0.0:3000)
+- Prometheus for Grafana: [http://0.0.0.0:9090](http://0.0.0.0:9090)
+- 
+### grafana_wan
+
+The `grafana_wan` app contains scripts for starting and stopping Prometheus for monitoring the `wan1` and `wan2` clusters. Grafana and Prometheus are accessible as follows.
+
+- Grafana: [http://0.0.0.0:3001](http://0.0.0.0:3001)
+- Prometheus for Grafana: [http://0.0.0.0:9091](http://0.0.0.0:9091)
+
+### perf_test
+
+The `perf_test` app is for ingesting test data into clusters. It allows you to read and write mock data to individual clusters. We will be using the app to simulate workflows that actively interact with the clusters.
+
+## Clusters
+
+### mygemfire1, mygemfire2, mygemfire3
+
+The `mygemfire1`, `mygemfire2`, `mygemfire3` clusters run independently without WAN replication configured.
+
+### wan1
+
+The `wan1` cluster defines `wan1-to-wan2` gateway senders for replication data over the WAN to the `wan2` cluster.
+
+### wan2
+
+The `wan2` cluster defines `wan2-to-wan1` gateway senders for replication data over the WAN to the `wan1` cluster.
+
+## Updating Prometheus Configuration Files
+
+✏️  *This section is for your information only. The steps shown below are automatically done by PadoGrid when you installed the bundle.*
+
+Because GemFire binds the host address to the Prometheus endpoint, `localhost` cannot be used in the Prometheus configuration files. To resolve this issue, the `etc/config_templates` directory has been created to isolate the working configuration files so that you can make changes without impacting `git`. Copy the configuration templates into the `etc` directory and update the host address as shown below.
 
 ```bash
-cp README_TEMPLATE.md README.md
-git rm README_TEMPLATE.md
+# Change directory
+cd_app grafana/etc
+
+# Copy all configuration files to etc.
+cp config_templates/* .
+
+# Update the EIB address
+sed -i "s/HOST-ADDRESS/`hostname -i`/g" *.yml
 ```
 
-Update the `READEME.md` file by following the instructions in that file.
+## Adding Members to Clusters
 
-## 3.6. required_products.txt
+✏️  *This bundle automcatically configures the clusters with two (2) members each.* 
 
-The `required_products.txt` file must include a list of required products and their versions. Its format is described in the following link.
+To view the member counts, run the following:
 
-[Relaxed Bundle Naming Conventions](https://github.com/padogrid/padogrid/wiki/User-Bundle-Repos#relaxed-conventions)
+```bash
+show_cluster -all
+```
 
-## 4. Develop and Test Bundle
+To add more locators or members to a cluster, run `add_locator` or `add_member`. For example, the following adds one locator and one member to the `wan1` cluster.
 
-You can freely make changes and test the bundle in the workspace. When you are ready to check in, you simply commit the changes using the `git commit` command. For new files, you will need to select only the ones that you want to check in using the `git status -u` and `git diff` commands. For those files that you do not want to check in, you can list them in the `.gitignore` file so that they do not get checked in accidentally.
+```bash
+add_locator -cluster wan1
+add_member -cluster wan1
+```
 
+To start the added locators and members, run the `start_cluster` command, which starts only the locators and members that are not currently running.
+
+```bash
+start_cluster -cluster wan1
+```
+
+To remove locators or members, run the following (Note that these commands will fail if they are still running):
+
+```bash
+remove_locator -cluster wan1
+remove_member -cluster wan1
+```
+
+## Generating GemFire Dashboard Templates (Optional)
+
+✏️  *This bundle includes the default set of generated dashboards, which may not include some stats that were not captured during development. The missing stats can be captured by running the scripts described in this section.*
+
+You can generate dashboards including a complete list of GemFire statistics as shown below. The generated dashboards are useful for quickly navigating through individual stats to determine the ones that are suited for your needs.
+
+```bash
+# Change directory to the grafana app's bin_sh directory
+cd_app grafana/bin_sh
+
+# First, export the template folder from Grafana
+./export_folder -folder GemFireTemplates
+
+# Convert all the exported dashboards in the folder to templates
+./export_to_template
+
+# Generate templates. This command invokes all generate_* commands.
+./generate_all
+```
+
+Once the templates are generated, place them in the `etc/dashboards/` directory and execute the following commands to import them back to Grafana.
+
+```bash
+# Copy the entire directory of the generated templates
+cp -r ../templates/GemFireTemplates ../etc/dashboards/
+
+# Delete the existing folder in Grafana
+./delete_folder -folder GemFireTemplates
+
+# Import the generated templates into Grafana
+./import_folder -folder GemFireTemplates
+```
+
+Now, go to the browser and select *Home/Dashboards/GemFireTemplates*.
+
+✏️  *The dashboards in the GemFireTemplates folder are also selectable from the *Others* left-pane menu in the **Main** dashboard.*
+
+## Startup Sequence
+
+### 1. Start clusters
+
+The following starts both clusters, `wan1` and `wan2`.
+
+```bash
+# Start wan1, wan2
+start_group -group wan
+```
+
+The following starts both clusters, `mygemfire1`, `mygemfire2, and `mygemfire2`.
+
+```bash
+# Start mygemfire1, mygemfire2, mygemfire3
+start_group -group mygemfire
+```
+
+### 2. Start Prometheus and Grafana
+
+- Start Promtheus for the `mygemfire` group of clusters. Also, start Grafana for monitoring both `mygemfire` and `wan` groups of clusters.
+
+```bash
+cd_app grafana/bin_sh
+./start_prometheus
+./start_grafana
+```
+
+To view Prometheus and Grafana statuses:
+
+```bash
+./show_prometheus
+./show_grafana
+```
+
+- Start Prometheus for the `wan` group of clusters.
+
+```bash
+./start_promtheus_wan
+```
+
+### 3. Set user and password from Grafana
+
+URL: [http://0.0.0.0:3000](http://0.0.0.0:3000)
+
+From the Grafana login prompt, set the user name and password. This bundle uses the following user name and password.
+
+```console
+user: admin
+password: padogrid
+```
+
+If you want to use a different user and password, then you can change them in the following file.
+
+```bash
+cd_app grafana/bin_sh
+vi setenv.sh
+```
+
+### 4. Import all dashboards into Grafana
+
+```bash
+cd_app grafana/bin_sh
+./import_folder -all
+```
+
+### 5. Open Grafana in the browser
+
+ *Connections/Add new connection* from the left pull-out menu.
+- Search and add `Promtheus` from the *Add new connection* page.
+- Enter the following
+
+  Prometheus server URL: <http://localhost:9090>
+- Select *Save & test* at the bottom.
+- If you have the `wan` clusters running, then add another Prometheus datasource with the following URL. You can use any name.
+  
+  Prometheus server URL: <http://localhost:9091>
+
+	Alternatively, if you are using PadoGrid v0.9.33+, then you can add a new Prometheus datasource as follows.
+
+	```bash
+	cd_app grafana/bin_sh
+	./create_datasource_prometheus -datasource Prometheus-WAN -url http://localhost:9091
+	```
+
+Open the **00Main** dashboard.
+
+- Select *Dashboards* from the left pull-out menu.
+- Select *GemFire*.
+- Select **00Main**.
+
+The **00Main** dashboard is the main (home) dashboard that provides a menu of all available dashaboards for displaying a single cluster at a time. From there, you can navigate to **00MainDual** for monitoring two (2) clusters side-by-side and **00MainAll** for monitoring all clusters in federated views. See [Navigating GemFire Dashboards](#navigating-gemfire-dashboards) for dashboard instructions.
+
+### 5. Ingest data with `perf_test`
+
+#### 5.1. Ingest Northwind (nw) mock data
+
+The `group-factory-er.properties` file is configured to write and read objects that are modeled after the Microsoft's Northwind (nw) database. The `wan` clusters are configured to replicate the `nw` data over the WAN.
+
+First, we need to download the `javafaker` package for generating mock data by building the `perf_test` app.
+
+```bash
+cd_app perf_test1/bin_sh
+./build_app
+```
+
+Now, execute the following commands to ingest `nw` data any of the clusters. For example, the following ingests `nw` data to `mygemfire1` and `wan1`
+
+```bash
+cd_app perf_test1/bin_sh
+./test_group -run -prop ../etc/group-factory-er.properties -cluster mygemfire1
+./test_group -run -prop ../etc/group-factory-er.properties -cluster wan1
+```
+
+#### 5.2. Ingest WAN data
+
+To test off-heap memory and eviction, use `group-eviction.properties` as follows.
+
+✏️ Note that `group-eviction.properties` works with the `wan` clusters only.
+
+```bash
+# wan1
+./test_group -run -prop ../etc/group-eviction.properties -cluster wan1
+
+# wan2
+./test_group -run -prop ../etc/group-eviction.properties -cluster wan2
+```
+
+#### 5.3. Execute Search (Lucene) Queries
+
+To monitor Search (Lucene) indexes and queries, execute the following `gfsh` script.
+
+```bash
+cd_app perf_test/bin_sh
+# mygemfire1
+gfsh -e "connect --locator=localhost[10434]" -e "run --file=search-lucene-queries.gfsh"
+# mygemfire2
+gfsh -e "connect --locator=localhost[10534]" -e "run --file=search-lucene-queries.gfsh"
+# mygemfire3
+gfsh -e "connect --locator=localhost[10634]" -e "run --file=search-lucene-queries.gfsh"
+# wan1
+gfsh -e "connect --locator=localhost[10734]" -e "run --file=search-lucene-queries.gfsh"
+# wan2
+gfsh -e "connect --locator=localhost[10834]" -e "run --file=search-lucene-queries.gfsh"
+```
+
+#### 5.4 Simulate workflows
+
+The included `etc/group-workflow.properties` file simulates workflows by executing various GemFire data structure operations. You can run it per cluster as follows.
+
+```bash
+cd_app perf_test/bin_sh
+
+# wan1
+./test_group -run -prop ../etc/group-workflow.properties -cluster wan1
+
+# wan2
+./test_group -run -prop ../etc/group-workflow.properties -cluster wan2
+
+# myhz1
+./test_group -run -prop ../etc/group-workflow.properties -cluster mygemfire1
+
+# myhz2
+./test_group -run -prop ../etc/group-workflow.properties -cluster mygemfire2
+
+# myhz3
+./test_group -run -prop ../etc/group-workflow.properties -cluster mygemfire3
+```
+
+## Teardown
+
+```bash
+# First, stop perf_test if running by ctrl-C
+
+# Stop Grafana and its Prometheus
+cd_app grafana/bin_sh
+./stop_grafana
+./stop_prometheus
+./stop_prometeus_wan
+
+# Stop all clusters running in the workspace
+stop_workspace -all
+```
+
+## References
+
+1. [GemFire Management Console](https://techdocs.broadcom.com/us/en/vmware-tanzu/data-solutions/tanzu-gemfire-management-console/1-3/gfmc-1-3/index.html), GFMC 1.3 documentation.
+1. [Grafana Documentation](https://grafana.com/docs/), Grafana official documentation.
+1. [PadoGrid Manual](https://github.com/padogrid/padogrid/wiki), PadoGrid official manual.
+1. [Prometheus Documentation](https://prometheus.io/docs/prometheus/latest/), Prometheus official documentation.
+1. [Installing JupyterLab for PadoGrid](README_JUPYTER.md), JupyterLab installation instructions.
 
 ---
 

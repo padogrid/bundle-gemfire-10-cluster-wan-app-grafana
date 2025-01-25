@@ -1,0 +1,2720 @@
+{
+  "meta": {
+    "type": "db",
+    "canSave": true,
+    "canEdit": true,
+    "canAdmin": true,
+    "canStar": true,
+    "canDelete": true,
+    "slug": "00dual-main",
+    "url": "/d/2f6503d9-5b23-4af6-9a87-08f799229df5/00dual-main",
+    "expires": "0001-01-01T00:00:00Z",
+    "created": "2024-12-22T02:33:11Z",
+    "updated": "2024-12-28T19:21:19Z",
+    "updatedBy": "admin",
+    "createdBy": "admin",
+    "version": 8,
+    "hasAcl": false,
+    "isFolder": false,
+    "folderId": 918,
+    "folderUid": "be7n97dap7da8a",
+    "folderTitle": "GemFireDual",
+    "folderUrl": "/dashboards/f/be7n97dap7da8a/gemfiredual",
+    "provisioned": false,
+    "provisionedExternalId": "",
+    "annotationsPermissions": {
+      "dashboard": {
+        "canAdd": true,
+        "canEdit": true,
+        "canDelete": true
+      },
+      "organization": {
+        "canAdd": true,
+        "canEdit": true,
+        "canDelete": true
+      }
+    }
+  },
+  "dashboard": {
+    "annotations": {
+      "list": [
+        {
+          "builtIn": 1,
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DataSource}"
+          },
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "type": "dashboard"
+        }
+      ]
+    },
+    "editable": true,
+    "fiscalYearStartMonth": 0,
+    "graphTooltip": 0,
+    "id": 919,
+    "links": [
+      {
+        "asDropdown": false,
+        "icon": "dashboard",
+        "includeVars": false,
+        "keepTime": true,
+        "tags": [],
+        "targetBlank": false,
+        "title": "Main",
+        "tooltip": "",
+        "type": "link",
+        "url": "/d/ed5d1905-d13d-446a-83d5-3d33d3aadddc/00main?var-DataSource=$DataSource&var-Cluster=$Cluster&${__url_time_range}"
+      },
+      {
+        "asDropdown": true,
+        "icon": "external link",
+        "includeVars": false,
+        "keepTime": true,
+        "tags": [
+          "gemfire"
+        ],
+        "targetBlank": false,
+        "title": "GemFire",
+        "tooltip": "",
+        "type": "dashboards",
+        "url": ""
+      },
+      {
+        "asDropdown": true,
+        "icon": "external link",
+        "includeVars": false,
+        "keepTime": true,
+        "tags": [
+          "dual gemfire"
+        ],
+        "targetBlank": false,
+        "title": "Dual GemFire",
+        "tooltip": "",
+        "type": "dashboards",
+        "url": ""
+      },
+      {
+        "asDropdown": false,
+        "icon": "dashboard",
+        "includeVars": false,
+        "keepTime": true,
+        "tags": [],
+        "targetBlank": false,
+        "title": "All Main",
+        "tooltip": "",
+        "type": "link",
+        "url": "/d/5a076038-1d97-4c44-abe7-26020351d90b/00main-all?${__url_time_range}"
+      },
+      {
+        "asDropdown": true,
+        "icon": "external link",
+        "includeVars": false,
+        "keepTime": true,
+        "tags": [
+          "all gemfire"
+        ],
+        "targetBlank": false,
+        "title": "All GemFire",
+        "tooltip": "",
+        "type": "dashboards",
+        "url": ""
+      },
+      {
+        "asDropdown": false,
+        "icon": "dashboard",
+        "includeVars": false,
+        "keepTime": false,
+        "tags": [],
+        "targetBlank": false,
+        "title": "PadoGrid",
+        "tooltip": "About PadoGrid",
+        "type": "link",
+        "url": "/d/96e45270-7f77-4f87-89f3-1ab707a30808/padogrid${__url_time_range}"
+      }
+    ],
+    "panels": [
+      {
+        "description": "The main dashboard of PadoGrid GemFire Dashboards (PHD) that resembles the main dashboard of GemFire Management Center (HMC). PHD includes additional metrics that are not available in HMC and vice versa. PHD exposes a finer degree of individual metric details along with federated cluster views making it more suitable for monitoring production systems.",
+        "fieldConfig": {
+          "defaults": {},
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 40,
+          "w": 3,
+          "x": 0,
+          "y": 0
+        },
+        "id": 3,
+        "options": {
+          "code": {
+            "language": "plaintext",
+            "showLineNumbers": false,
+            "showMiniMap": false
+          },
+          "content": "## Main\n\n- [Main Dashboard](/d/ed5d1905-d13d-446a-83d5-3d33d3aadddc/00main?var-DataSource=$DataSource&var-Cluster=$Cluster&${__url_time_range})\n- [Dual Main Dashboard](/d/2f6503d9-5b23-4af6-9a87-08f799229df5/00dual-main?var-DataSource=$DataSource&var-Cluster=$Cluster&var-DataSource2=$DataSource2&var-Cluster2=$Cluster2&${__url_time_range})\n- [All Main Dashboard](/d/5a076038-1d97-4c44-abe7-26020351d90b/00main-all?${__url_time_range})\n\n## Cluster\n\n- [Dual Clients](/d/d2a70fcc-3d13-4e5d-b3a8-7bb1cd5b9de7/dual-clients?var-DataSource=$DataSource&var-Cluster=$Cluster&var-DataSource2=$DataSource2&var-Cluster2=$Cluster2&${__url_time_range})\n- [Dual Members](/d/bed72936-7b5d-484b-8ace-a5d2f9acbb1a/dual-members?var-DataSource=$DataSource&var-Cluster=$Cluster&var-DataSource2=$DataSource2&var-Cluster2=$Cluster2&${__url_time_range})\n- [Dual Locators](/d/5838f815-c8ca-48a9-afb1-d1448d839919/dual-jet?var-DataSource=$DataSource&var-Cluster=$Cluster&var-DataSource2=$DataSource2&var-Cluster2=$Cluster2&${__url_time_range})\n- [Dual WAN Replication](/d/f10ab12f-ec25-4c47-a8b5-47d1707dba9f/dual-wan?var-DataSource=$DataSource&var-Cluster=$Cluster&var-DataSource2=$DataSource2&var-Cluster2=$Cluster2&${__url_time_range})\n\n## Storage\n\n- [Dual Partitioned Regions](/d/68872fcb-1dff-43f9-aeb3-28675bf6bc82/dual-partitioned_regions?var-DataSource=$DataSource&var-Cluster=$Cluster&var-DataSource2=$DataSource2&var-Cluster2=$Cluster2&${__url_time_range})\n   - [Column Charts](/d/8ce56ff5-2797-4d20-908b-26a64365659c/dual-partitioned_regions-columns-charts?var-DataSource=$DataSource&var-Cluster=$Cluster&var-DataSource2=$DataSource2&var-Cluster2=$Cluster2&${__url_time_range})\n   - [Column Tables](/d/5b5ae01d-6c1a-4f6e-8436-50c594f9c1be/dual-partitioned_regions-columns?var-DataSource=$DataSource&var-Cluster=$Cluster&var-DataSource2=$DataSource2&var-Cluster2=$Cluster2&${__url_time_range})\n   - [Row Charts](/d/6f6cbfc8-db19-4503-a197-f7a1173cddf2/dual-partitioned_regions-rows-charts?var-DataSource=$DataSource&var-Cluster=$Cluster&var-DataSource2=$DataSource2&var-Cluster2=$Cluster2&${__url_time_range})\n   - [Row Tables](/d/0089926c-8f68-4ab9-ac24-c5402f71eb20/dual-partitioned_regionsmaps-rows?var-DataSource=$DataSource&var-Cluster=$Cluster&var-DataSource2=$DataSource2&var-Cluster2=$Cluster2&${__url_time_range})\n   - [Query Charts](/d/eef75991-b012-473a-97f1-15d40a92c1a2/dual-partitioned_regions-query?var-DataSource=$DataSource&var-Cluster=$Cluster&var-DataSource2=$DataSource2&var-Cluster2=$Cluster2&${__url_time_range})\n   - [Query Tables](/d/217e8e5c-460f-42f6-ad82-b8571786fd6f/dual-partitioned_regions-query-tables?var-DataSource=$DataSource&var-Cluster=$Cluster&var-DataSource2=$DataSource2&var-Cluster2=$Cluster2&${__url_time_range})\n- [Dual Replicated Regions](/d/c2add9fe-f8ef-471f-85bd-e279ccbc35ea/dual-replicated-maps-rows?var-DataSource=$DataSource&var-Cluster=$Cluster&var-DataSource2=$DataSource2&var-Cluster2=$Cluster2&${__url_time_range})\n    - [Column Charts](/d/78c313f4-8598-4c86-ad93-677a5243628d/dual-replicated-regions-columns-charts?var-DataSource=$DataSource&var-Cluster=$Cluster&var-DataSource2=$DataSource2&var-Cluster2=$Cluster2&${__url_time_range})\n    - [Column Tables](/d/15169590-00e9-445e-acd5-f6dbb1e161f6/dual-replicated-regions-columns?var-DataSource=$DataSource&var-Cluster=$Cluster&var-DataSource2=$DataSource2&var-Cluster2=$Cluster2&${__url_time_range})\n    - [Row Charts](/d/df249eda-6210-4fba-864d-cb61fa2c8f4b/dual-replicated-regions-rows-charts?var-DataSource=$DataSource&var-Cluster=$Cluster&var-DataSource2=$DataSource2&var-Cluster2=$Cluster2&${__url_time_range})\n    - [Row Tables](/d/c2add9fe-f8ef-471f-85bd-e279ccbc35ea/dual-replicated-regions-rows?var-DataSource=$DataSource&var-Cluster=$Cluster&var-DataSource2=$DataSource2&var-Cluster2=$Cluster2&${__url_time_range})\n- [Dual Disk Stores](/d/a38c9a6e-ddfb-4fd2-804f-e066f4276157/dual-disk-stores-rows?var-DataSource=$DataSource&var-Cluster=$Cluster&var-DataSource2=$DataSource2&var-Cluster2=$Cluster2&${__url_time_range})\n   - [Column Charts](/d/4a68ce9e-066d-46be-87a4-20a4fab4409c/dual-disk-stores-rows-charts?var-DataSource=$DataSource&var-Cluster=$Cluster&var-DataSource2=$DataSource2&var-Cluster2=$Cluster2&${__url_time_range})\n   - [Column Tables](/d/5b5ae01d-6c1a-4f6e-8436-50c594f9c1be/dual-maps-columns?var-DataSource=$DataSource&var-Cluster=$Cluster&var-DataSource2=$DataSource2&var-Cluster2=$Cluster2&${__url_time_range})\n   - [Row Charts](/d/4a68ce9e-066d-46be-87a4-20a4fab4409c/dual-disk-stores-rows-charts?var-DataSource=$DataSource&var-Cluster=$Cluster&var-DataSource2=$DataSource2&var-Cluster2=$Cluster2&${__url_time_range})\n   - [Row Tables](/d/a38c9a6e-ddfb-4fd2-804f-e066f4276157/dual-disk-stores-rows?var-DataSource=$DataSource&var-Cluster=$Cluster&var-DataSource2=$DataSource2&var-Cluster2=$Cluster2&${__url_time_range})\n\n## Dual Partition\n\n- [Dual Partitions](/d/3d3767c2-a607-4b71-8ebf-a58336d11354/dual-partitions?var-DataSource=$DataSource&var-Cluster=$Cluster&var-DataSource2=$DataSource2&var-Cluster2=$Cluster2&${__url_time_range})\n\n## Compute\n\n- [Dual Functions](/d/2a25b9a9-300f-4f9e-896e-0c19326f7ab6/dual-functions?var-DataSource=$DataSource&var-Cluster=$Cluster&var-DataSource2=$DataSource2&var-Cluster2=$Cluster2&${__url_time_range})\n- [Dual Lucene](/d/34b13ca6-fe20-47b4-a7a6-6ca8efcdc22f/dual-lucene?var-DataSource=$DataSource&var-Cluster=$Cluster&var-DataSource2=$DataSource2&var-Cluster2=$Cluster2&${__url_time_range})\n- [Dual Indexes](/d/c4994f15-e364-46e9-bb7f-b386636b36ab/dual-indexes?var-DataSource=$DataSource&var-Cluster=$Cluster&var-DataSource2=$DataSource2&var-Cluster2=$Cluster2&${__url_time_range})\n- [Dual PDX](/d/d9e2f58f-b56d-4fbc-9001-b76b9ac5e149/dual-pdx?var-DataSource=$DataSource&var-Cluster=$Cluster&var-DataSource2=$DataSource2&var-Cluster2=$Cluster2&${__url_time_range})\n\n## Messaging\n\n- [Dual Async Queues](/d/335bb399-92a9-475e-b9b7-a2104b581f1d/dual-async-queues?var-DataSource=$DataSource&var-Cluster=$Cluster&var-DataSource2=$DataSource2&var-Cluster2=$Cluster2&${__url_time_range})\n- [Dual CQ](/d/71b39248-eccb-4974-b378-c0644cff627f/dual-cq?var-DataSource=$DataSource&var-Cluster=$Cluster&var-DataSource2=$DataSource2&var-Cluster2=$Cluster2&${__url_time_range})\n- [Dual Distribution](/d/e51d6022-df1c-4d1b-89ef-fbe128db1d16/dual-distribution?var-DataSource=$DataSource&var-Cluster=$Cluster&var-DataSource2=$DataSource2&var-Cluster2=$Cluster2&${__url_time_range})\n- [Dual Distributed Locks](/d/2b0b9f0f-5e01-4489-b153-7a5c934f4d51/dual-distributed-locks?var-DataSource=$DataSource&var-Cluster=$Cluster&var-DataSource2=$DataSource2&var-Cluster2=$Cluster2&${__url_time_range})\n\n## Linux\n\n- [Dual Linux Systems](/d/f890f5e3-abb1-43a6-bd05-ad5ca357d4cd/dual-linux-systems?var-DataSource=$DataSource&var-Cluster=$Cluster&var-DataSource2=$DataSource2&var-Cluster2=$Cluster2&${__url_time_range})",
+          "mode": "markdown"
+        },
+        "pluginVersion": "11.3.1",
+        "title": "Dual Main Dashboard",
+        "type": "text"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DataSource}"
+        },
+        "description": "$Cluster: Cluster up time determined by the oldest member",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                }
+              ]
+            },
+            "unit": "s"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 3,
+          "w": 3,
+          "x": 3,
+          "y": 0
+        },
+        "id": 15,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "percentChangeColorMode": "standard",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showPercentChange": false,
+          "textMode": "auto",
+          "wideLayout": true
+        },
+        "pluginVersion": "11.3.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "${DataSource}"
+            },
+            "editorMode": "code",
+            "expr": "max(gemfire_process_uptime_seconds{$ClusterFilterLabel=\"$Cluster\"})",
+            "instant": false,
+            "legendFormat": "__auto",
+            "range": true,
+            "refId": "A"
+          }
+        ],
+        "title": "Cluster Up Time ($Cluster)",
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DataSource}"
+        },
+        "description": "$Cluster: Free memory vs. used memory",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              }
+            },
+            "mappings": [],
+            "unit": "bytes"
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "{__name__=\"com_gemfire_Metrics_minorCount\", exported_instance=\"objective_tesla\", instance=\"localhost:8292\", $ClusterFilterLabel=\"gemfire\", prefix=\"gc\"}"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "red",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 7,
+          "w": 3,
+          "x": 6,
+          "y": 0
+        },
+        "id": 17,
+        "options": {
+          "displayLabels": [
+            "percent",
+            "name",
+            "value"
+          ],
+          "legend": {
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": false
+          },
+          "pieType": "pie",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "tooltip": {
+            "mode": "multi",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "11.3.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "${DataSource}"
+            },
+            "editorMode": "code",
+            "exemplar": false,
+            "expr": "sum(gemfire_usedMemory{$ClusterFilterLabel=\"$Cluster\",category=\"VMMemoryUsageStats\", exported_instance=\"vmHeapMemoryStats\"})",
+            "hide": false,
+            "instant": true,
+            "legendFormat": "Used Heap",
+            "range": false,
+            "refId": "Used Heap"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "${DataSource}"
+            },
+            "editorMode": "code",
+            "expr": "sum(gemfire_maxMemory{$ClusterFilterLabel=\"$Cluster\",category=\"VMMemoryUsageStats\"})-sum(gemfire_usedMemory{$ClusterFilterLabel=\"$Cluster\",category=\"VMMemoryUsageStats\", exported_instance=\"vmHeapMemoryStats\"})",
+            "hide": false,
+            "instant": false,
+            "legendFormat": "Free Heap",
+            "range": true,
+            "refId": "Free Heap"
+          }
+        ],
+        "title": "Total Heap Memory: Free, Used (Aggregate)",
+        "type": "piechart"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DataSource}"
+        },
+        "description": "$Cluster: Number of entries per region in descending order. Displays up to top 15 regions.",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "continuous-reds"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                }
+              ]
+            },
+            "unit": "short"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 7,
+          "w": 5,
+          "x": 9,
+          "y": 0
+        },
+        "id": 27,
+        "options": {
+          "colorMode": "background",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "percentChangeColorMode": "standard",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "limit": 15,
+            "values": true
+          },
+          "showPercentChange": false,
+          "textMode": "auto",
+          "wideLayout": true
+        },
+        "pluginVersion": "11.3.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "${DataSource}"
+            },
+            "editorMode": "code",
+            "exemplar": false,
+            "expr": "gemfire_cache_entries{$ClusterFilterLabel=\"$Cluster\"}",
+            "format": "table",
+            "hide": false,
+            "instant": true,
+            "interval": "",
+            "legendFormat": "{{exported_instance}}",
+            "range": false,
+            "refId": "C"
+          }
+        ],
+        "title": "Regions: Entries",
+        "transformations": [
+          {
+            "id": "groupBy",
+            "options": {
+              "fields": {
+                "Value": {
+                  "aggregations": [
+                    "lastNotNull"
+                  ],
+                  "operation": "aggregate"
+                },
+                "region": {
+                  "aggregations": [],
+                  "operation": "groupby"
+                }
+              }
+            }
+          },
+          {
+            "id": "sortBy",
+            "options": {
+              "fields": {},
+              "sort": [
+                {
+                  "desc": true,
+                  "field": "Value (lastNotNull)"
+                }
+              ]
+            }
+          }
+        ],
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DataSource}"
+        },
+        "description": "$Cluster2: Cluster up time determined by the oldest member",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                }
+              ]
+            },
+            "unit": "s"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 3,
+          "w": 3,
+          "x": 14,
+          "y": 0
+        },
+        "id": 16,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "percentChangeColorMode": "standard",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showPercentChange": false,
+          "textMode": "auto",
+          "wideLayout": true
+        },
+        "pluginVersion": "11.3.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "${DataSource}"
+            },
+            "editorMode": "code",
+            "expr": "max(gemfire_process_uptime_seconds{$ClusterFilterLabel=\"$Cluster2\"})",
+            "instant": false,
+            "legendFormat": "__auto",
+            "range": true,
+            "refId": "A"
+          }
+        ],
+        "title": "Cluster Up Time ($Cluster2)",
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DataSource}"
+        },
+        "description": "$Cluster2: Free memory vs. used memory",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              }
+            },
+            "mappings": [],
+            "unit": "bytes"
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "{__name__=\"com_gemfire_Metrics_minorCount\", exported_instance=\"objective_tesla\", instance=\"localhost:8292\", $ClusterFilterLabel=\"gemfire\", prefix=\"gc\"}"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "red",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 7,
+          "w": 3,
+          "x": 17,
+          "y": 0
+        },
+        "id": 18,
+        "options": {
+          "displayLabels": [
+            "percent",
+            "name",
+            "value"
+          ],
+          "legend": {
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": false
+          },
+          "pieType": "pie",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "tooltip": {
+            "mode": "multi",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "11.3.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "${DataSource}"
+            },
+            "editorMode": "code",
+            "exemplar": false,
+            "expr": "sum(gemfire_usedMemory{$ClusterFilterLabel=\"$Cluster2\",category=\"VMMemoryUsageStats\", exported_instance=\"vmHeapMemoryStats\"})",
+            "hide": false,
+            "instant": true,
+            "legendFormat": "Used Heap",
+            "range": false,
+            "refId": "Map Heap"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "${DataSource}"
+            },
+            "editorMode": "code",
+            "expr": "sum(gemfire_maxMemory{$ClusterFilterLabel=\"$Cluster2\",category=\"VMMemoryUsageStats\"})-sum(gemfire_usedMemory{$ClusterFilterLabel=\"$Cluster2\",category=\"VMMemoryUsageStats\", exported_instance=\"vmHeapMemoryStats\"})",
+            "hide": false,
+            "instant": false,
+            "legendFormat": "Free Heap",
+            "range": true,
+            "refId": "Free Heap"
+          }
+        ],
+        "title": "Total Heap Memory: Free, Used (Aggregate) ($Cluster2)",
+        "type": "piechart"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DataSource}"
+        },
+        "description": "$Cluster2: Number of entries per region in descending order. Displays up to top 15 regions.",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "continuous-reds"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                }
+              ]
+            },
+            "unit": "short"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 7,
+          "w": 4,
+          "x": 20,
+          "y": 0
+        },
+        "id": 28,
+        "options": {
+          "colorMode": "background",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "percentChangeColorMode": "standard",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "limit": 15,
+            "values": true
+          },
+          "showPercentChange": false,
+          "textMode": "auto",
+          "wideLayout": true
+        },
+        "pluginVersion": "11.3.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "${DataSource}"
+            },
+            "disableTextWrap": false,
+            "editorMode": "builder",
+            "exemplar": false,
+            "expr": "gemfire_cache_entries{$ClusterFilterLabel=\"$Cluster2\"}",
+            "format": "table",
+            "fullMetaSearch": false,
+            "hide": false,
+            "includeNullMetadata": true,
+            "instant": true,
+            "interval": "",
+            "legendFormat": "{{exported_instance}}",
+            "range": false,
+            "refId": "C",
+            "useBackend": false
+          }
+        ],
+        "title": "Regions: Entries ($Cluster2)",
+        "transformations": [
+          {
+            "id": "groupBy",
+            "options": {
+              "fields": {
+                "Value": {
+                  "aggregations": [
+                    "lastNotNull"
+                  ],
+                  "operation": "aggregate"
+                },
+                "instance": {
+                  "aggregations": []
+                },
+                "region": {
+                  "aggregations": [],
+                  "operation": "groupby"
+                }
+              }
+            }
+          },
+          {
+            "id": "sortBy",
+            "options": {
+              "fields": {},
+              "sort": [
+                {
+                  "desc": true,
+                  "field": "Value (lastNotNull)"
+                }
+              ]
+            }
+          }
+        ],
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DataSource}"
+        },
+        "description": "$Cluster: Total number of entries in all regions including primary and backup",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                }
+              ]
+            },
+            "unit": "locale"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 3,
+          "x": 3,
+          "y": 3
+        },
+        "id": 19,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "percentChangeColorMode": "standard",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showPercentChange": false,
+          "textMode": "auto",
+          "wideLayout": true
+        },
+        "pluginVersion": "11.3.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "${DataSource}"
+            },
+            "editorMode": "code",
+            "expr": "sum(gemfire_cache_entries{$ClusterFilterLabel=\"$Cluster\"})",
+            "instant": false,
+            "legendFormat": "__auto",
+            "range": true,
+            "refId": "A"
+          }
+        ],
+        "title": "Total Entries (Primary & Backup) ($Cluster)",
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DataSource}"
+        },
+        "description": "$Cluster2: Total number of entries in all regions including primary and backup",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                }
+              ]
+            },
+            "unit": "locale"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 3,
+          "x": 14,
+          "y": 3
+        },
+        "id": 20,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "percentChangeColorMode": "standard",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showPercentChange": false,
+          "textMode": "auto",
+          "wideLayout": true
+        },
+        "pluginVersion": "11.3.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "${DataSource}"
+            },
+            "editorMode": "code",
+            "expr": "sum(gemfire_cache_entries{$ClusterFilterLabel=\"$Cluster2\"})",
+            "instant": false,
+            "legendFormat": "__auto",
+            "range": true,
+            "refId": "A"
+          }
+        ],
+        "title": "Total Entries (Primary & Backup) ($Cluster2)",
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DataSource}"
+        },
+        "description": "$Cluster: Free, used, and max heap. For sustained performance, used heap should be below 80% of max heap",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "barWidthFactor": 0.6,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "bytes"
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byRegexp",
+                "options": "/Max.*/"
+              },
+              "properties": [
+                {
+                  "id": "custom.lineStyle",
+                  "value": {
+                    "dash": [
+                      10,
+                      10
+                    ],
+                    "fill": "dash"
+                  }
+                },
+                {
+                  "id": "custom.showPoints",
+                  "value": "never"
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 12,
+          "w": 6,
+          "x": 3,
+          "y": 7
+        },
+        "id": 21,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "tooltip": {
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "11.3.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "${DataSource}"
+            },
+            "editorMode": "code",
+            "expr": "sum(gemfire_maxMemory{$ClusterFilterLabel=\"$Cluster\",category=\"VMMemoryUsageStats\",exported_instance=\"vmHeapMemoryStats\"})-sum(gemfire_usedMemory{$ClusterFilterLabel=\"$Cluster\",category=\"VMMemoryUsageStats\",exported_instance=\"vmHeapMemoryStats\"})",
+            "hide": false,
+            "instant": false,
+            "legendFormat": "Free Heap",
+            "range": true,
+            "refId": "Free Heap"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "${DataSource}"
+            },
+            "editorMode": "code",
+            "expr": "sum(gemfire_usedMemory{$ClusterFilterLabel=\"$Cluster\",category=\"VMMemoryUsageStats\",exported_instance=\"vmHeapMemoryStats\"})",
+            "hide": false,
+            "instant": false,
+            "legendFormat": "Used Heap",
+            "range": true,
+            "refId": "Used Heap"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "${DataSource}"
+            },
+            "editorMode": "code",
+            "expr": "sum(gemfire_maxMemory{$ClusterFilterLabel=\"$Cluster\",category=\"VMMemoryUsageStats\",exported_instance=\"vmHeapMemoryStats\"})",
+            "instant": false,
+            "legendFormat": "Max Heap",
+            "range": true,
+            "refId": "Max Heap"
+          }
+        ],
+        "title": " Heap: Used, Free, Max (Aggregate) ($Cluster)",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DataSource}"
+        },
+        "description": "$Cluster: CPU of the member that has the higest CPU load",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "barWidthFactor": 0.6,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "dashed+area"
+              }
+            },
+            "mappings": [],
+            "max": 1,
+            "min": 0,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 0.9
+                }
+              ]
+            },
+            "unit": "percentunit"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 12,
+          "w": 5,
+          "x": 9,
+          "y": 7
+        },
+        "id": 23,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "tooltip": {
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "11.3.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "${DataSource}"
+            },
+            "editorMode": "code",
+            "expr": "max(gemfire_system_cpu_usage{$ClusterFilterLabel=\"$Cluster\"})",
+            "instant": false,
+            "legendFormat": "CPU",
+            "range": true,
+            "refId": "A"
+          }
+        ],
+        "title": "Max System CPU Load (Aggregate) ($Cluster)",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DataSource}"
+        },
+        "description": "$Cluster2: Free, used, and max heap. For sustained performance, used heap should be below 80% of max heap",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "barWidthFactor": 0.6,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "bytes"
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byRegexp",
+                "options": "/Max.*/"
+              },
+              "properties": [
+                {
+                  "id": "custom.fillBelowTo"
+                },
+                {
+                  "id": "custom.lineStyle",
+                  "value": {
+                    "dash": [
+                      10,
+                      10
+                    ],
+                    "fill": "dash"
+                  }
+                },
+                {
+                  "id": "custom.showPoints",
+                  "value": "never"
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 12,
+          "w": 5,
+          "x": 14,
+          "y": 7
+        },
+        "id": 22,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "tooltip": {
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "11.3.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "${DataSource}"
+            },
+            "editorMode": "code",
+            "expr": "sum(gemfire_maxMemory{$ClusterFilterLabel=\"$Cluster2\",category=\"VMMemoryUsageStats\",exported_instance=\"vmHeapMemoryStats\"})-sum(gemfire_usedMemory{$ClusterFilterLabel=\"$Cluster2\",category=\"VMMemoryUsageStats\",exported_instance=\"vmHeapMemoryStats\"})",
+            "hide": false,
+            "instant": false,
+            "legendFormat": "Free Heap",
+            "range": true,
+            "refId": "Free Heap"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "${DataSource}"
+            },
+            "editorMode": "code",
+            "expr": "sum(gemfire_usedMemory{$ClusterFilterLabel=\"$Cluster2\",category=\"VMMemoryUsageStats\",exported_instance=\"vmHeapMemoryStats\"})",
+            "hide": false,
+            "instant": false,
+            "legendFormat": "Used Heap",
+            "range": true,
+            "refId": "Used Heap"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "${DataSource}"
+            },
+            "editorMode": "code",
+            "expr": "sum(gemfire_maxMemory{$ClusterFilterLabel=\"$Cluster2\",category=\"VMMemoryUsageStats\",exported_instance=\"vmHeapMemoryStats\"})",
+            "instant": false,
+            "legendFormat": "Max Heap",
+            "range": true,
+            "refId": "Max Heap"
+          }
+        ],
+        "title": " Heap: Used, Free, Max (Aggregate) ($Cluster2)",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DataSource}"
+        },
+        "description": "$Cluster2: CPU of the member that has the higest CPU load",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "barWidthFactor": 0.6,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "dashed+area"
+              }
+            },
+            "mappings": [],
+            "max": 1,
+            "min": 0,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 0.9
+                }
+              ]
+            },
+            "unit": "percentunit"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 12,
+          "w": 5,
+          "x": 19,
+          "y": 7
+        },
+        "id": 24,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "tooltip": {
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "11.3.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "${DataSource}"
+            },
+            "editorMode": "code",
+            "expr": "max(gemfire_system_cpu_usage{$ClusterFilterLabel=\"$Cluster2\"})",
+            "instant": false,
+            "legendFormat": "CPU",
+            "range": true,
+            "refId": "A"
+          }
+        ],
+        "title": "Max System CPU Load (Aggregate) ($Cluster2)",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DataSource}"
+        },
+        "description": "$Cluster: Member resource statuses",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "custom": {
+              "align": "auto",
+              "cellOptions": {
+                "type": "auto"
+              },
+              "inspect": false
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                }
+              ]
+            },
+            "unit": "locale"
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Value #CPU"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "percentunit"
+                },
+                {
+                  "id": "custom.cellOptions",
+                  "value": {
+                    "mode": "lcd",
+                    "type": "gauge",
+                    "valueDisplayMode": "color"
+                  }
+                },
+                {
+                  "id": "thresholds",
+                  "value": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "green",
+                        "value": null
+                      },
+                      {
+                        "color": "red",
+                        "value": 0.9
+                      }
+                    ]
+                  }
+                },
+                {
+                  "id": "min",
+                  "value": 0
+                },
+                {
+                  "id": "max",
+                  "value": 1
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Used Heap"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "bytes"
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Max Heap"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "bytes"
+                },
+                {
+                  "id": "custom.minWidth"
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Used NonHeap"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "bytes"
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Committed NonHeap"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "bytes"
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "ZGC Pause Time"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "ms"
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "ZGC Cycle Time"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "ms"
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Member"
+              },
+              "properties": [
+                {
+                  "id": "links",
+                  "value": [
+                    {
+                      "title": "Member Link",
+                      "url": "/d/c5932a49-ac31-44d9-95fe-b3eeb7ac974f/member?orgId=1&refresh=5s&var-DataSource=$DataSource&var-Cluster=$Cluster&var-Member=${__value.raw}&${__url_time_range}&${__url_time_range}"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Max NonHeap"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "bytes"
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "ZGC Pause Count"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 112
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Heap Usage"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "percentunit"
+                },
+                {
+                  "id": "custom.cellOptions",
+                  "value": {
+                    "mode": "lcd",
+                    "type": "gauge",
+                    "valueDisplayMode": "color"
+                  }
+                },
+                {
+                  "id": "thresholds",
+                  "value": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "green",
+                        "value": null
+                      },
+                      {
+                        "color": "red",
+                        "value": 0.8
+                      }
+                    ]
+                  }
+                },
+                {
+                  "id": "min",
+                  "value": 0
+                },
+                {
+                  "id": "max",
+                  "value": 1
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 9,
+          "w": 11,
+          "x": 3,
+          "y": 19
+        },
+        "id": 31,
+        "options": {
+          "cellHeight": "sm",
+          "footer": {
+            "countRows": false,
+            "fields": "",
+            "reducer": [
+              "sum"
+            ],
+            "show": false
+          },
+          "showHeader": true,
+          "sortBy": [
+            {
+              "desc": true,
+              "displayName": "Total Heap"
+            }
+          ]
+        },
+        "pluginVersion": "11.3.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "${DataSource}"
+            },
+            "editorMode": "code",
+            "exemplar": false,
+            "expr": "gemfire_system_cpu_usage{$ClusterFilterLabel=\"$Cluster\"}",
+            "format": "table",
+            "hide": false,
+            "instant": true,
+            "legendFormat": "__auto",
+            "range": false,
+            "refId": "CPU"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "${DataSource}"
+            },
+            "editorMode": "code",
+            "exemplar": false,
+            "expr": "gemfire_usedMemory{$ClusterFilterLabel=\"$Cluster\",category=\"VMMemoryUsageStats\",exported_instance=\"vmHeapMemoryStats\"}/gemfire_maxMemory{$ClusterFilterLabel=\"$Cluster\",category=\"VMMemoryUsageStats\",exported_instance=\"vmHeapMemoryStats\"}",
+            "format": "table",
+            "hide": false,
+            "instant": true,
+            "legendFormat": "__auto",
+            "range": false,
+            "refId": "Heap Usage"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "${DataSource}"
+            },
+            "editorMode": "code",
+            "exemplar": false,
+            "expr": "gemfire_usedMemory{$ClusterFilterLabel=\"$Cluster\",category=\"VMMemoryUsageStats\",exported_instance=\"vmHeapMemoryStats\"}",
+            "format": "table",
+            "hide": false,
+            "instant": true,
+            "legendFormat": "__auto",
+            "range": false,
+            "refId": "Used Heap"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "${DataSource}"
+            },
+            "editorMode": "code",
+            "exemplar": false,
+            "expr": "gemfire_maxMemory{$ClusterFilterLabel=\"$Cluster\",category=\"VMStats\",exported_instance=\"vmStats\"}",
+            "format": "table",
+            "hide": false,
+            "instant": true,
+            "legendFormat": "__auto",
+            "range": false,
+            "refId": "Max Heap"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "${DataSource}"
+            },
+            "editorMode": "code",
+            "exemplar": false,
+            "expr": "gemfire_usedMemory{$ClusterFilterLabel=\"$Cluster\",category=\"VMMemoryUsageStats\",exported_instance=\"vmNonHeapMemoryStats\"}",
+            "format": "table",
+            "hide": false,
+            "instant": true,
+            "legendFormat": "__auto",
+            "range": false,
+            "refId": "Used NonHeap"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "${DataSource}"
+            },
+            "editorMode": "code",
+            "exemplar": false,
+            "expr": "gemfire_committedMemory{$ClusterFilterLabel=\"$Cluster\",category=\"VMMemoryUsageStats\",exported_instance=\"vmNonHeapMemoryStats\"}",
+            "format": "table",
+            "hide": false,
+            "instant": true,
+            "legendFormat": "__auto",
+            "range": false,
+            "refId": "Committed NonHeap"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "${DataSource}"
+            },
+            "editorMode": "code",
+            "exemplar": false,
+            "expr": "gemfire_maxMemory{$ClusterFilterLabel=\"$Cluster\", category=\"VMMemoryUsageStats\",exported_instance=\"vmNonHeapMemoryStats\"}",
+            "format": "table",
+            "hide": false,
+            "instant": true,
+            "legendFormat": "__auto",
+            "range": false,
+            "refId": "Max NonHeap"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "${DataSource}"
+            },
+            "editorMode": "code",
+            "exemplar": false,
+            "expr": "gemfire_collections{$ClusterFilterLabel=\"$Cluster\",exported_instance=\"ZGC Pauses\"}",
+            "format": "table",
+            "hide": false,
+            "instant": true,
+            "legendFormat": "__auto",
+            "range": false,
+            "refId": "ZGC Pause Count"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "${DataSource}"
+            },
+            "editorMode": "code",
+            "exemplar": false,
+            "expr": "gemfire_collectionTime{$ClusterFilterLabel=\"$Cluster\",exported_instance=\"ZGC Pauses\"}",
+            "format": "table",
+            "hide": false,
+            "instant": true,
+            "legendFormat": "__auto",
+            "range": false,
+            "refId": "ZGC Pause Time"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "${DataSource}"
+            },
+            "editorMode": "code",
+            "exemplar": false,
+            "expr": "gemfire_collections{$ClusterFilterLabel=\"$Cluster\",exported_instance=\"ZGC Cycles\"}",
+            "format": "table",
+            "hide": false,
+            "instant": true,
+            "legendFormat": "__auto",
+            "range": false,
+            "refId": "ZGC Cycle Count"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "${DataSource}"
+            },
+            "editorMode": "code",
+            "exemplar": false,
+            "expr": "gemfire_collectionTime{$ClusterFilterLabel=\"$Cluster\",exported_instance=\"ZGC Cycles\"}",
+            "format": "table",
+            "hide": false,
+            "instant": true,
+            "legendFormat": "__auto",
+            "range": false,
+            "refId": "ZGC Cycle Time"
+          }
+        ],
+        "title": "Members ($Cluster)",
+        "transformations": [
+          {
+            "id": "joinByField",
+            "options": {
+              "byField": "instance",
+              "mode": "outer"
+            }
+          },
+          {
+            "id": "filterFieldsByName",
+            "options": {
+              "include": {
+                "names": [
+                  "Value #CPU",
+                  "Value #Used Heap",
+                  "Value #Total Heap",
+                  "Value #Heap Usage",
+                  "Value #Used Native Memory",
+                  "Value #Committed Native Memory",
+                  "Value #GC Major Count",
+                  "Value #GC Major Time",
+                  "Value #GC Minor Count",
+                  "Value #GC Minor Time",
+                  "instance"
+                ],
+                "pattern": "Value.*"
+              }
+            }
+          },
+          {
+            "id": "renameByRegex",
+            "options": {
+              "regex": "instance",
+              "renamePattern": "Member"
+            }
+          },
+          {
+            "id": "renameByRegex",
+            "options": {
+              "regex": "^Value #(.*)",
+              "renamePattern": "$1"
+            }
+          }
+        ],
+        "type": "table"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DataSource}"
+        },
+        "description": "$Cluster2: Member resource statuses",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "custom": {
+              "align": "auto",
+              "cellOptions": {
+                "type": "auto"
+              },
+              "inspect": false
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                }
+              ]
+            },
+            "unit": "locale"
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Value #CPU"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "percentunit"
+                },
+                {
+                  "id": "custom.cellOptions",
+                  "value": {
+                    "mode": "lcd",
+                    "type": "gauge",
+                    "valueDisplayMode": "color"
+                  }
+                },
+                {
+                  "id": "thresholds",
+                  "value": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "green",
+                        "value": null
+                      },
+                      {
+                        "color": "red",
+                        "value": 0.9
+                      }
+                    ]
+                  }
+                },
+                {
+                  "id": "min",
+                  "value": 0
+                },
+                {
+                  "id": "max",
+                  "value": 1
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Used Heap"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "bytes"
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Max Heap"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "bytes"
+                },
+                {
+                  "id": "custom.minWidth"
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Used NonHeap"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "bytes"
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Committed NonHeap"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "bytes"
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "ZGC Pause Time"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "ms"
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "ZGC Cycle Time"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "ms"
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Member"
+              },
+              "properties": [
+                {
+                  "id": "links",
+                  "value": [
+                    {
+                      "title": "Member Link",
+                      "url": "/d/c5932a49-ac31-44d9-95fe-b3eeb7ac974f/member?orgId=1&refresh=5s&var-DataSource=$DataSource&var-Cluster=$Cluster2&var-Member=${__value.raw}&${__url_time_range}&${__url_time_range}"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Max NonHeap"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "bytes"
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "ZGC Pause Count"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 112
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Heap Usage"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "percentunit"
+                },
+                {
+                  "id": "custom.cellOptions",
+                  "value": {
+                    "mode": "lcd",
+                    "type": "gauge",
+                    "valueDisplayMode": "color"
+                  }
+                },
+                {
+                  "id": "thresholds",
+                  "value": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "green",
+                        "value": null
+                      },
+                      {
+                        "color": "red",
+                        "value": 0.8
+                      }
+                    ]
+                  }
+                },
+                {
+                  "id": "min",
+                  "value": 0
+                },
+                {
+                  "id": "max",
+                  "value": 1
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 9,
+          "w": 10,
+          "x": 14,
+          "y": 19
+        },
+        "id": 32,
+        "options": {
+          "cellHeight": "sm",
+          "footer": {
+            "countRows": false,
+            "fields": "",
+            "reducer": [
+              "sum"
+            ],
+            "show": false
+          },
+          "showHeader": true,
+          "sortBy": [
+            {
+              "desc": true,
+              "displayName": "Total Heap"
+            }
+          ]
+        },
+        "pluginVersion": "11.3.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "${DataSource}"
+            },
+            "editorMode": "code",
+            "exemplar": false,
+            "expr": "gemfire_system_cpu_usage{$ClusterFilterLabel=\"$Cluster2\"}",
+            "format": "table",
+            "hide": false,
+            "instant": true,
+            "legendFormat": "__auto",
+            "range": false,
+            "refId": "CPU"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "${DataSource}"
+            },
+            "editorMode": "code",
+            "exemplar": false,
+            "expr": "gemfire_usedMemory{$ClusterFilterLabel=\"$Cluster2\",category=\"VMMemoryUsageStats\",exported_instance=\"vmHeapMemoryStats\"}/gemfire_maxMemory{$ClusterFilterLabel=\"$Cluster2\",category=\"VMMemoryUsageStats\",exported_instance=\"vmHeapMemoryStats\"}",
+            "format": "table",
+            "hide": false,
+            "instant": true,
+            "legendFormat": "__auto",
+            "range": false,
+            "refId": "Heap Usage"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "${DataSource}"
+            },
+            "editorMode": "code",
+            "exemplar": false,
+            "expr": "gemfire_usedMemory{$ClusterFilterLabel=\"$Cluster2\",category=\"VMMemoryUsageStats\",exported_instance=\"vmHeapMemoryStats\"}",
+            "format": "table",
+            "hide": false,
+            "instant": true,
+            "legendFormat": "__auto",
+            "range": false,
+            "refId": "Used Heap"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "${DataSource}"
+            },
+            "editorMode": "code",
+            "exemplar": false,
+            "expr": "gemfire_maxMemory{$ClusterFilterLabel=\"$Cluster2\",category=\"VMStats\",exported_instance=\"vmStats\"}",
+            "format": "table",
+            "hide": false,
+            "instant": true,
+            "legendFormat": "__auto",
+            "range": false,
+            "refId": "Max Heap"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "${DataSource}"
+            },
+            "editorMode": "code",
+            "exemplar": false,
+            "expr": "gemfire_usedMemory{$ClusterFilterLabel=\"$Cluster2\",category=\"VMMemoryUsageStats\",exported_instance=\"vmNonHeapMemoryStats\"}",
+            "format": "table",
+            "hide": false,
+            "instant": true,
+            "legendFormat": "__auto",
+            "range": false,
+            "refId": "Used NonHeap"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "${DataSource}"
+            },
+            "editorMode": "code",
+            "exemplar": false,
+            "expr": "gemfire_committedMemory{$ClusterFilterLabel=\"$Cluster2\",category=\"VMMemoryUsageStats\",exported_instance=\"vmNonHeapMemoryStats\"}",
+            "format": "table",
+            "hide": false,
+            "instant": true,
+            "legendFormat": "__auto",
+            "range": false,
+            "refId": "Committed NonHeap"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "${DataSource}"
+            },
+            "editorMode": "code",
+            "exemplar": false,
+            "expr": "gemfire_maxMemory{$ClusterFilterLabel=\"$Cluster2\", category=\"VMMemoryUsageStats\",exported_instance=\"vmNonHeapMemoryStats\"}",
+            "format": "table",
+            "hide": false,
+            "instant": true,
+            "legendFormat": "__auto",
+            "range": false,
+            "refId": "Max NonHeap"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "${DataSource}"
+            },
+            "editorMode": "code",
+            "exemplar": false,
+            "expr": "gemfire_collections{$ClusterFilterLabel=\"$Cluster2\",exported_instance=\"ZGC Pauses\"}",
+            "format": "table",
+            "hide": false,
+            "instant": true,
+            "legendFormat": "__auto",
+            "range": false,
+            "refId": "ZGC Pause Count"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "${DataSource}"
+            },
+            "editorMode": "code",
+            "exemplar": false,
+            "expr": "gemfire_collectionTime{$ClusterFilterLabel=\"$Cluster2\",exported_instance=\"ZGC Pauses\"}",
+            "format": "table",
+            "hide": false,
+            "instant": true,
+            "legendFormat": "__auto",
+            "range": false,
+            "refId": "ZGC Pause Time"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "${DataSource}"
+            },
+            "editorMode": "code",
+            "exemplar": false,
+            "expr": "gemfire_collections{$ClusterFilterLabel=\"$Cluster2\",exported_instance=\"ZGC Cycles\"}",
+            "format": "table",
+            "hide": false,
+            "instant": true,
+            "legendFormat": "__auto",
+            "range": false,
+            "refId": "ZGC Cycle Count"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "${DataSource}"
+            },
+            "editorMode": "code",
+            "exemplar": false,
+            "expr": "gemfire_collectionTime{$ClusterFilterLabel=\"$Cluster2\",exported_instance=\"ZGC Cycles\"}",
+            "format": "table",
+            "hide": false,
+            "instant": true,
+            "legendFormat": "__auto",
+            "range": false,
+            "refId": "ZGC Cycle Time"
+          }
+        ],
+        "title": "Members ($Cluster2)",
+        "transformations": [
+          {
+            "id": "joinByField",
+            "options": {
+              "byField": "instance",
+              "mode": "outer"
+            }
+          },
+          {
+            "id": "filterFieldsByName",
+            "options": {
+              "include": {
+                "names": [
+                  "Value #CPU",
+                  "Value #Used Heap",
+                  "Value #Total Heap",
+                  "Value #Heap Usage",
+                  "Value #Used Native Memory",
+                  "Value #Committed Native Memory",
+                  "Value #GC Major Count",
+                  "Value #GC Major Time",
+                  "Value #GC Minor Count",
+                  "Value #GC Minor Time",
+                  "instance"
+                ],
+                "pattern": "Value.*"
+              }
+            }
+          },
+          {
+            "id": "renameByRegex",
+            "options": {
+              "regex": "instance",
+              "renamePattern": "Member"
+            }
+          },
+          {
+            "id": "renameByRegex",
+            "options": {
+              "regex": "^Value #(.*)",
+              "renamePattern": "$1"
+            }
+          }
+        ],
+        "type": "table"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DataSource}"
+        },
+        "description": "$Cluster: Total number of entries in each region",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "custom": {
+              "align": "auto",
+              "cellOptions": {
+                "type": "auto"
+              },
+              "inspect": false
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                }
+              ]
+            },
+            "unit": "locale"
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "region"
+              },
+              "properties": [
+                {
+                  "id": "links",
+                  "value": [
+                    {
+                      "title": "Region Link",
+                      "url": "/d/110366ca-9675-498f-bb1a-75c2273336fb/map?var-DataSource=$DataSource&var-Cluster=$Cluster&var-Map=/${__value.text}&var-MapType=map&${__url_time_range}"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 12,
+          "w": 11,
+          "x": 3,
+          "y": 28
+        },
+        "id": 33,
+        "options": {
+          "cellHeight": "sm",
+          "footer": {
+            "countRows": false,
+            "fields": "",
+            "reducer": [
+              "sum"
+            ],
+            "show": false
+          },
+          "showHeader": true,
+          "sortBy": [
+            {
+              "desc": true,
+              "displayName": "Entries"
+            }
+          ]
+        },
+        "pluginVersion": "11.3.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "${DataSource}"
+            },
+            "editorMode": "code",
+            "exemplar": false,
+            "expr": "gemfire_cache_entries{$ClusterFilterLabel=\"$Cluster\"}",
+            "format": "table",
+            "hide": false,
+            "instant": true,
+            "interval": "",
+            "legendFormat": "{{exported_instance}}",
+            "range": false,
+            "refId": "C"
+          }
+        ],
+        "title": "Region Entries ($Cluster)",
+        "transformations": [
+          {
+            "id": "sortBy",
+            "options": {
+              "fields": {},
+              "sort": [
+                {
+                  "desc": false,
+                  "field": "Value"
+                }
+              ]
+            }
+          },
+          {
+            "id": "groupBy",
+            "options": {
+              "fields": {
+                "Value": {
+                  "aggregations": [
+                    "lastNotNull"
+                  ],
+                  "operation": "aggregate"
+                },
+                "data_policy": {
+                  "aggregations": [],
+                  "operation": "groupby"
+                },
+                "exported_instance": {
+                  "aggregations": [],
+                  "operation": "groupby"
+                },
+                "region": {
+                  "aggregations": [],
+                  "operation": "groupby"
+                }
+              }
+            }
+          },
+          {
+            "id": "organize",
+            "options": {
+              "excludeByName": {},
+              "includeByName": {},
+              "indexByName": {
+                "Value (lastNotNull)": 1,
+                "data_policy": 2,
+                "region": 0
+              },
+              "renameByName": {
+                "Value": "Entries",
+                "Value (lastNotNull)": "Entries",
+                "data_policy": "Data Policy",
+                "region": "Region"
+              }
+            }
+          }
+        ],
+        "type": "table"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DataSource}"
+        },
+        "description": "$Cluster2: Total number of entries in each region",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "custom": {
+              "align": "auto",
+              "cellOptions": {
+                "type": "auto"
+              },
+              "inspect": false
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                }
+              ]
+            },
+            "unit": "locale"
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "region"
+              },
+              "properties": [
+                {
+                  "id": "links",
+                  "value": [
+                    {
+                      "title": "Region Link",
+                      "url": "/d/110366ca-9675-498f-bb1a-75c2273336fb/map?var-DataSource=$DataSource&var-Cluster=$Cluster2&var-Map=/${__value.text}&var-MapType=map&${__url_time_range}"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 12,
+          "w": 10,
+          "x": 14,
+          "y": 28
+        },
+        "id": 34,
+        "options": {
+          "cellHeight": "sm",
+          "footer": {
+            "countRows": false,
+            "fields": "",
+            "reducer": [
+              "sum"
+            ],
+            "show": false
+          },
+          "showHeader": true,
+          "sortBy": [
+            {
+              "desc": true,
+              "displayName": "Entries"
+            }
+          ]
+        },
+        "pluginVersion": "11.3.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "${DataSource}"
+            },
+            "editorMode": "code",
+            "exemplar": false,
+            "expr": "gemfire_cache_entries{$ClusterFilterLabel=\"$Cluster2\"}",
+            "format": "table",
+            "hide": false,
+            "instant": true,
+            "interval": "",
+            "legendFormat": "{{exported_instance}}",
+            "range": false,
+            "refId": "C"
+          }
+        ],
+        "title": "Region Entries ($Cluster2)",
+        "transformations": [
+          {
+            "id": "sortBy",
+            "options": {
+              "fields": {},
+              "sort": [
+                {
+                  "desc": false,
+                  "field": "Value"
+                }
+              ]
+            }
+          },
+          {
+            "id": "groupBy",
+            "options": {
+              "fields": {
+                "Value": {
+                  "aggregations": [
+                    "lastNotNull"
+                  ],
+                  "operation": "aggregate"
+                },
+                "data_policy": {
+                  "aggregations": [],
+                  "operation": "groupby"
+                },
+                "exported_instance": {
+                  "aggregations": [],
+                  "operation": "groupby"
+                },
+                "region": {
+                  "aggregations": [],
+                  "operation": "groupby"
+                }
+              }
+            }
+          },
+          {
+            "id": "organize",
+            "options": {
+              "excludeByName": {},
+              "includeByName": {},
+              "indexByName": {
+                "Value (lastNotNull)": 1,
+                "data_policy": 2,
+                "region": 0
+              },
+              "renameByName": {
+                "Value": "Entries",
+                "Value (lastNotNull)": "Entries",
+                "data_policy": "Data Policy",
+                "region": "Region"
+              }
+            }
+          }
+        ],
+        "type": "table"
+      }
+    ],
+    "preload": false,
+    "refresh": "5s",
+    "schemaVersion": 40,
+    "tags": [
+      "dual gemfire",
+      "dual main"
+    ],
+    "templating": {
+      "list": [
+        {
+          "hide": 2,
+          "name": "ClusterFilterLabel",
+          "query": "job",
+          "skipUrlSync": true,
+          "type": "constant"
+        },
+        {
+          "includeAll": false,
+          "label": "Source",
+          "name": "DataSource",
+          "options": [],
+          "query": "prometheus",
+          "refresh": 1,
+          "regex": "",
+          "type": "datasource"
+        },
+        {
+          "current": {
+            "text": [
+              ""
+            ],
+            "value": [
+              ""
+            ]
+          },
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DataSource}"
+          },
+          "definition": "label_values($ClusterFilterLabel)",
+          "includeAll": false,
+          "label": "Cluster",
+          "name": "Cluster",
+          "options": [],
+          "query": {
+            "qryType": 1,
+            "query": "label_values($ClusterFilterLabel)",
+            "refId": "PrometheusVariableQueryEditor-VariableQuery"
+          },
+          "refresh": 1,
+          "regex": "",
+          "type": "query"
+        },
+        {
+          "includeAll": false,
+          "label": "Source2",
+          "name": "DataSource2",
+          "options": [],
+          "query": "prometheus",
+          "refresh": 1,
+          "regex": "",
+          "type": "datasource"
+        },
+        {
+          "current": {
+            "text": [
+              ""
+            ],
+            "value": [
+              ""
+            ]
+          },
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DataSource}"
+          },
+          "definition": "label_values($ClusterFilterLabel)",
+          "includeAll": false,
+          "label": "Cluster2",
+          "name": "Cluster2",
+          "options": [],
+          "query": {
+            "qryType": 1,
+            "query": "label_values($ClusterFilterLabel)",
+            "refId": "PrometheusVariableQueryEditor-VariableQuery"
+          },
+          "refresh": 1,
+          "regex": "",
+          "type": "query"
+        }
+      ]
+    },
+    "time": {
+      "from": "now-5m",
+      "to": "now"
+    },
+    "timepicker": {},
+    "timezone": "browser",
+    "title": "00Dual Main",
+    "uid": "2f6503d9-5b23-4af6-9a87-08f799229df5",
+    "version": 8,
+    "weekStart": ""
+  }
+}
