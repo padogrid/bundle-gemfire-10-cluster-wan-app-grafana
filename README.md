@@ -55,26 +55,29 @@ bundle-gemfire-grafana
 │   ├── grafana
 │   │   ├── bin_sh
 │   │   └── etc
-│   ├── perf_test1
-│   │   ├── bin_sh
-│   │   └── etc
-│   ├── perf_test2
-│   │   ├── bin_sh
-│   │   └── etc
-│   └── prometheus_gfmc
+│   └── perf_test
 │       ├── bin_sh
 │       └── etc
 └── clusters
+    ├── mygemfire1
+    │   ├── bin_sh
+    │   ├── etc
+    │   └── pom.xml
+    ├── mygemfire2
+    │   ├── bin_sh
+    │   ├── etc
+    │   └── pom.xml
+    ├── mygemfire3
+    │   ├── bin_sh
+    │   ├── etc
+    │   └── pom.xml
     ├── wan1
     │   ├── bin_sh
     │   ├── etc
-    │   ├── pom.xml
-    │   ├── run
-    │   └── src
+    │   └── pom.xml
     └── wan2
         ├── bin_sh
         ├── etc
-        ├── lib
         └── pom.xml
 ```
 
@@ -146,7 +149,7 @@ sed -i "s/HOST-ADDRESS/`hostname -i`/g" *.yml
 
 ## Adding Members to Clusters
 
-✏️  *This bundle automcatically configures the clusters with two (2) members each.* 
+✏️  *This bundle automcatically configures the clusters with three (3) members each.* 
 
 To view the member counts, run the following:
 
@@ -154,7 +157,7 @@ To view the member counts, run the following:
 show_cluster -all
 ```
 
-To add more locators or members to a cluster, run `add_locator` or `add_member`. For example, the following adds one locator and one member to the `wan1` cluster.
+To add more locators or members to a cluster, run `add_locator` or `add_member`. For example, the following adds one (1) locator and one member (1) to the `wan1` cluster.
 
 ```bash
 add_locator -cluster wan1
@@ -222,7 +225,7 @@ The following starts both clusters, `wan1` and `wan2`.
 start_group -group wan
 ```
 
-The following starts both clusters, `mygemfire1`, `mygemfire2, and `mygemfire2`.
+The following starts both clusters, `mygemfire1`, `mygemfire2`, and `mygemfire3`.
 
 ```bash
 # Start mygemfire1, mygemfire2, mygemfire3
@@ -387,9 +390,9 @@ cd_app perf_test/bin_sh
 
 # Stop Grafana and its Prometheus
 cd_app grafana/bin_sh
+# '-all' stops both mygemfire and wan Prometheus instances
+./stop_prometheus -all
 ./stop_grafana
-./stop_prometheus
-./stop_prometeus_wan
 
 # Stop all clusters running in the workspace
 stop_workspace -all
@@ -397,7 +400,6 @@ stop_workspace -all
 
 ## References
 
-1. [GemFire Management Console](https://techdocs.broadcom.com/us/en/vmware-tanzu/data-solutions/tanzu-gemfire-management-console/1-3/gfmc-1-3/index.html), GFMC 1.3 documentation.
 1. [Grafana Documentation](https://grafana.com/docs/), Grafana official documentation.
 1. [PadoGrid Manual](https://github.com/padogrid/padogrid/wiki), PadoGrid official manual.
 1. [Prometheus Documentation](https://prometheus.io/docs/prometheus/latest/), Prometheus official documentation.

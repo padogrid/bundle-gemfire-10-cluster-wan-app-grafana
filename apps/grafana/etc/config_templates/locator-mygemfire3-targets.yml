@@ -1,0 +1,3 @@
+- targets: [HOST-ADDRESS:8681, HOST-ADDRESS:8682, HOST-ADDRESS:8683]
+  labels:
+    member_type: 'locator'

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # ========================================================================
-# Copyright (c) 2020-2024 Netcrest Technologies, LLC. All rights reserved.
+# Copyright (c) 2020-2025 Netcrest Technologies, LLC. All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -36,7 +36,7 @@
 #
 # Default folder name
 #
-DEFAULT_FOLDER="padogrid-perf_test"
+DEFAULT_FOLDER="GemFire"
 
 #
 # Default data source name
