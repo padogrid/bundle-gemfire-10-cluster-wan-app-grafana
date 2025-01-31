@@ -1,0 +1,1 @@
+This bundle demonstrates Grafana capabilities of monitoring five (5) GemFire clusters. It includes three (3) independent clusters and two (2) bi-directional WAN clusters along with a workflow simulator.
