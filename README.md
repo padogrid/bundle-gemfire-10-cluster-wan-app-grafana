@@ -7,7 +7,9 @@
 
 # GemFire Multi-Cluster Grafana Demo
 
-This workspace bundle automatically installs the `grafana` app included in PadoGrid 1.0.2+ and supplemental scripts for driving the demo.
+This bundle demonstrates Grafana capabilities of monitoring five (5) GemFire clusters. It includes three (3) independent clusters and two (2) bi-directional WAN clusters along with a workflow simulator.
+
+✏️  *This workspace bundle automatically installs the `grafana` app included in PadoGrid 1.0.2+ and supplemental scripts for driving the demo.*
 
 Please see [Release Notes](RELEASE_NOTES.md) for change logs.
 
@@ -23,7 +25,7 @@ install_bundle -init -checkout bundle-gemfire-10-cluster-wan-app-grafana
 
 This demo bundle configures five (5) GemFire clusters, one (1) `grafana` app, and two(2) `perf_test` apps as shown below. The `perf_test` app is used to ingest data into all the clusters.
 
-![GemFire Grafana Demo](images/gemfire-grafana-demo.drawio.png)
+![GemFire Grafana Demo](images/multi-clusters.drawio.png)
 
 ## Screenshots
 
