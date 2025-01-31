@@ -7,11 +7,13 @@
 
 # GemFire Multi-Cluster Grafana Demo
 
-This bundle includes a set of PadoGrid Grafana templates for building product-specific dashboards along with all the scripts extracted from the PadoGrid's `grafana` app. In addition to Grafana, this demo also includes GemFire Management Console (GFMC) for monitoring the same GemFire clusters as Grafana.
+This workspace bundle automatically installs the `grafana` app included in PadoGrid 1.0.2+ and supplemental scripts for driving the demo.
 
 Please see [Release Notes](RELEASE_NOTES.md) for change logs.
 
 ## Installing Bundle
+
+❗️ Before installing this bundle, create and switch to a GemFire cluster configured with GemFire 10.1.0+. This is required due to the auto-intialization step performed by this bundle.
 
 ```bash
 install_bundle -init -checkout bundle-gemfire-10-cluster-wan-app-grafana
@@ -25,16 +27,38 @@ This demo bundle configures five (5) GemFire clusters, one (1) `grafana` app, an
 
 ## Screenshots
 
-![GemFire All Screenshot](images/gemfire-all-screenshot.png)
+### Single Main Dashboard
 
-![System Screenshot](images/system-screenshot.png)
+The Single dashboards monitor one GemFire cluster at a time. 
 
-![Partitioned Regions Rows Total Charts Screenshot](images/partitioned-regions-rows-total-charts.png)
+![GemFire Single Screenshot](images/gemfire-single-main-small.png)
+
+### Dual Main Dashboard
+
+The Dual dashboards monitor two (2) GemFire clusters side-by-side.
+
+![GemFire Dual Screenshot](images/gemfire-dual-main-small.png)
+
+### All Main Dashboard
+
+The All dashboards monitor multiple GemFire clusters in a single view.
+
+![GemFire All Screenshot](images/gemfire-all-main-small.png)
+
+### System Dashboard
+
+The System dashboard monitors individual and aggregated system resources.
+
+![System Screenshot](images/system-small.png)
+
+## Many Other Dashboards
+
+There are numerous dashboards orginized by Cluster, Storage, Compute, Distribution, and OS (Linux) as shown in the left pane of the Main dashboards.
 
 ## Required Software
 
 - PadoGrid 1.0.2+
-- GemFire 10.x
+- GemFire 10.1.0+
 - GemFire Management Console 1.3+
 - Grafana 11.x, 10.x
 - Prometheus 2.x

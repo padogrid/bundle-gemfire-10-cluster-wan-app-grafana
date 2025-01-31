@@ -2,8 +2,8 @@
 
 ## Version 1.0.0
 
-### Release Date: 01/24/25
+### Release Date: 01/30/25
 
-- Initial release.
+- Initial release. Tested with PadoGrid 1.0.2.
 
 ---
