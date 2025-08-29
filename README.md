@@ -420,11 +420,11 @@ stop_workspace -all
 
 ## References
 
-1. [PadoGrid GemFire Dashboards in Docker/Kubernetes](https://hub.docker.com/repository/docker/padogrid/padogrid-grafana/general), PadoGrid GemFire Dashboards installation via container.
-1. [Grafana Documentation](https://grafana.com/docs/), Grafana official documentation.
-1. [PadoGrid Manual](https://github.com/padogrid/padogrid/wiki), PadoGrid official manual.
-1. [Prometheus Documentation](https://prometheus.io/docs/prometheus/latest/), Prometheus official documentation.
-1. [Installing JupyterLab for PadoGrid](README_JUPYTER.md), JupyterLab installation instructions.
+1. [*PadoGrid GemFire Dashboards in Docker/Kubernetes*](https://hub.docker.com/repository/docker/padogrid/padogrid-grafana/general), PadoGrid GemFire Dashboards installation via container.
+1. [*Grafana Documentation*](https://grafana.com/docs/), Grafana official documentation.
+1. [*PadoGrid Manual*](https://github.com/padogrid/padogrid/wiki), PadoGrid official manual.
+1. [*Prometheus Documentation*](https://prometheus.io/docs/prometheus/latest/), Prometheus official documentation.
+1. [*Installing JupyterLab for PadoGrid*](README_JUPYTER.md), JupyterLab installation instructions.
 
 ---
 
