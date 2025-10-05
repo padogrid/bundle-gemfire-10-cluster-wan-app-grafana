@@ -15,7 +15,7 @@ Please see [Release Notes](RELEASE_NOTES.md) for change logs.
 
 ## Installing Bundle
 
-❗️ Before installing this bundle, create and switch to a GemFire cluster configured with GemFire 10.1.0+. This is required due to the auto-intialization step performed by this bundle.
+❗️ Before installing this bundle, create and switch to a GemFire cluster configured with GemFire 10.1.0+. This is required due to the auto-intialization step performed by this bundle. See [Installing GemFire](#installing-gemfire) for instructions.
 
 ```bash
 install_bundle -init -checkout bundle-gemfire-10-cluster-wan-app-grafana
@@ -62,8 +62,8 @@ There are numerous dashboards orginized by Cluster, Storage, Compute, Distributi
 - PadoGrid 1.0.2+
 - GemFire 10.1.0+
 - GemFire Management Console 1.3+
-- Grafana 11.x, 10.x
-- Prometheus 2.x
+- Grafana 12.x, 11.x, 10.x
+- Prometheus 2.x (As tested on GemFire 10.1.1, GemFire Prometheus does not support Prometheus 3.x)
 - Maven 3.x
 - jq 1.x
 
@@ -105,6 +105,42 @@ bundle-gemfire-grafana
         ├── bin_sh
         ├── etc
         └── pom.xml
+```
+
+## Installing GemFire
+
+**You must first to a GemFire cluster before executing the `install_bundle` command. If you have not installed GemFire in the PadoGrid environment, then following the steps below.**
+
+- Download the latest GemFire distribution tar ball (v10.1.0+) in `$PADOGRID_ENV_BASE_PATH/downloads/` and execute the following.
+
+```bash
+# Untar GemFire tar ball in the PadoGrid products directory
+tar -C $PADOGRID_ENV_BASE_PATH/products/ -xzf $PADOGRID_ENV_BASE_PATH/downloads/vmware-gemfire-10.0.2.tgz
+update_padogrid -product gemfire
+
+# Refresh workspace
+switch_workspace
+```
+
+- Create and switch to a GemFire cluster.
+
+```bash
+create_cluster -product gemfire -cluster mygemfire
+switch_cluster mygemfire
+```
+
+## Installing Grafana
+
+```bash
+install_padogrid -product grafana-enterprise
+update_padogrid -product grafana
+```
+
+## Installing Prometheus
+
+```bash
+install_padogrid -product prometheus
+update_padogrid -product prometheus
 ```
 
 ## Used Ports
@@ -336,14 +372,14 @@ The `group-factory-er.properties` file is configured to write and read objects t
 First, we need to download the `javafaker` package for generating mock data by building the `perf_test` app.
 
 ```bash
-cd_app perf_test1/bin_sh
+cd_app perf_test/bin_sh
 ./build_app
 ```
 
 Now, execute the following commands to ingest `nw` data any of the clusters. For example, the following ingests `nw` data to `mygemfire1` and `wan1`
 
 ```bash
-cd_app perf_test1/bin_sh
+cd_app perf_test/bin_sh
 ./test_group -run -prop ../etc/group-factory-er.properties -cluster mygemfire1
 ./test_group -run -prop ../etc/group-factory-er.properties -cluster wan1
 ```
