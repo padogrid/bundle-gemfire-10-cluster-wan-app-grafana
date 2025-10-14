@@ -15,6 +15,8 @@ Please see [Release Notes](RELEASE_NOTES.md) for change logs.
 
 ## Installing Bundle
 
+✏️  *Please see [Installing Bundles](https://github.com/padogrid/padogrid/wiki/Installing-Bundles) for instructions on how to install bundles and their required software.*
+
 ❗️ Before installing this bundle, create and switch to a GemFire cluster configured with GemFire 10.1.0+. This is required due to the auto-intialization step performed by this bundle. See [Installing GemFire](#installing-gemfire) for instructions.
 
 ```bash
