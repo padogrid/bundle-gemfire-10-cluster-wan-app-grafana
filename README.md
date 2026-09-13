@@ -110,7 +110,7 @@ bundle-gemfire-grafana
         └── pom.xml
 ```
 
-## Installing GemFire {#installing-gemfire}
+## Installing GemFire
 
 ❗️**You must first switch to a GemFire cluster before executing the `install_bundle` command. If you have not installed GemFire in the PadoGrid environment, then follow the steps below.**
 
