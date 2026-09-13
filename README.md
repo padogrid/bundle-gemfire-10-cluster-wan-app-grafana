@@ -112,7 +112,7 @@ bundle-gemfire-grafana
 
 ## Installing GemFire {#installing-gemfire}
 
-**You must first swwitch to a GemFire cluster before executing the `install_bundle` command. If you have not installed GemFire in the PadoGrid environment, then follow the steps below.**
+❗️**You must first switch to a GemFire cluster before executing the `install_bundle` command. If you have not installed GemFire in the PadoGrid environment, then follow the steps below.**
 
 -   Download the latest GemFire distribution tar ball (v10.1.0+) in `$PADOGRID_ENV_BASE_PATH/downloads/` and execute the following.
 
