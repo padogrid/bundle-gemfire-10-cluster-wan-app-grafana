@@ -1,25 +1,26 @@
-![PadoGrid](https://github.com/padogrid/padogrid/raw/develop/images/padogrid-3d-16x16.png) [*PadoGrid*](https://github.com/padogrid) | [*Catalogs*](https://github.com/padogrid/catalog-bundles/blob/master/all-catalog.md) | [*Manual*](https://github.com/padogrid/padogrid/wiki) | [*FAQ*](https://github.com/padogrid/padogrid/wiki/faq) | [*Releases*](https://github.com/padogrid/padogrid/releases) | [*Templates*](https://github.com/padogrid/padogrid/wiki/Using-Bundle-Templates) | [*Pods*](https://github.com/padogrid/padogrid/wiki/Understanding-Padogrid-Pods) | [*Kubernetes*](https://github.com/padogrid/padogrid/wiki/Kubernetes) | [*Docker*](https://github.com/padogrid/padogrid/wiki/Docker) | [*Apps*](https://github.com/padogrid/padogrid/wiki/Apps) | [*Quick Start*](https://github.com/padogrid/padogrid/wiki/Quick-Start)
+![PadoGrid](https://github.com/padogrid/padogrid/raw/develop/images/padogrid-3d-16x16.png) [*PadoGrid*](https://github.com/padogrid) \| [*Catalogs*](https://github.com/padogrid/catalog-bundles/blob/master/all-catalog.md) \| [*Manual*](https://github.com/padogrid/padogrid/wiki) \| [*FAQ*](https://github.com/padogrid/padogrid/wiki/faq) \| [*Releases*](https://github.com/padogrid/padogrid/releases) \| [*Templates*](https://github.com/padogrid/padogrid/wiki/Using-Bundle-Templates) \| [*Pods*](https://github.com/padogrid/padogrid/wiki/Understanding-Padogrid-Pods) \| [*Kubernetes*](https://github.com/padogrid/padogrid/wiki/Kubernetes) \| [*Docker*](https://github.com/padogrid/padogrid/wiki/Docker) \| [*Apps*](https://github.com/padogrid/padogrid/wiki/Apps) \| [*Quick Start*](https://github.com/padogrid/padogrid/wiki/Quick-Start)
 
----
+------------------------------------------------------------------------
 
 <!-- Platforms -->
+
 [![Host OS](https://github.com/padogrid/padogrid/wiki/images/padogrid-host-os.drawio.svg)](https://github.com/padogrid/padogrid/wiki/Platform-Host-OS) [![VM](https://github.com/padogrid/padogrid/wiki/images/padogrid-vm.drawio.svg)](https://github.com/padogrid/padogrid/wiki/Platform-VM) [![Docker](https://github.com/padogrid/padogrid/wiki/images/padogrid-docker.drawio.svg)](https://github.com/padogrid/padogrid/wiki/Platform-Docker) [![Kubernetes](https://github.com/padogrid/padogrid/wiki/images/padogrid-kubernetes.drawio.svg)](https://github.com/padogrid/padogrid/wiki/Platform-Kubernetes)
 
 # GemFire Multi-Cluster Grafana Demo
 
 This bundle demonstrates Grafana capabilities of monitoring five (5) GemFire clusters. It includes three (3) independent clusters and two (2) bi-directional WAN clusters along with a workflow simulator.
 
-✏️  *This workspace bundle automatically installs the `grafana` app included in PadoGrid 1.0.2+ and supplemental scripts for driving the demo.*
+✏️ *This workspace bundle automatically installs the `grafana` app included in PadoGrid 1.0.2+ and supplemental scripts for driving the demo.*
 
 Please see [Release Notes](RELEASE_NOTES.md) for change logs.
 
 ## Installing Bundle
 
-✏️  *Please see [Installing Bundles](https://github.com/padogrid/padogrid/wiki/Installing-Bundles) for instructions on how to install bundles and their required software.*
+✏️ *Please see [Installing Bundles](https://github.com/padogrid/padogrid/wiki/Installing-Bundles) for instructions on how to install bundles and their required software.*
 
 ❗️ Before installing this bundle, create and switch to a GemFire cluster configured with GemFire 10.1.0+. This is required due to the auto-intialization step performed by this bundle. See [Installing GemFire](#installing-gemfire) for instructions.
 
-```bash
+``` bash
 install_bundle -init -checkout bundle-gemfire-10-cluster-wan-app-grafana
 ```
 
@@ -33,7 +34,7 @@ This demo bundle configures five (5) GemFire clusters, one (1) `grafana` app, an
 
 ### Single Main Dashboard
 
-The Single dashboards monitor one GemFire cluster at a time. 
+The Single dashboards monitor one GemFire cluster at a time.
 
 ![GemFire Single Screenshot](images/gemfire-single-main-small.png)
 
@@ -61,23 +62,23 @@ There are numerous dashboards orginized by Cluster, Storage, Compute, Distributi
 
 ## Required Software
 
-- PadoGrid 1.0.2+
-- GemFire 10.1.0+
-- GemFire Management Console 1.3+
-- Grafana 12.x, 11.x, 10.x
-- Prometheus 2.x (As tested on GemFire 10.1.1, GemFire Prometheus does not support Prometheus 3.x)
-- Maven 3.x
-- jq 1.x
+-   PadoGrid 1.0.2+
+-   GemFire 10.1.0+
+-   GemFire Management Console 1.3+
+-   Grafana 12.x, 11.x, 10.x
+-   Prometheus 2.x (As tested on GemFire 10.1.1, GemFire Prometheus does not support Prometheus 3.x)
+-   Maven 3.x
+-   jq 1.x
 
 ## Required Hardware
 
-- Linux OS
-- \>16 GB (~10 GB for non-wan clusters) RAM
-- \>30 GB Disk Space
+-   Linux OS
+-   \>16 GB (\~10 GB for non-wan clusters) RAM
+-   \>30 GB Disk Space
 
 ## Bundle Contents
 
-```console
+``` console
 bundle-gemfire-grafana
 ├── apps
 │   ├── grafana
@@ -109,13 +110,13 @@ bundle-gemfire-grafana
         └── pom.xml
 ```
 
-## Installing GemFire
+## Installing GemFire {#installing-gemfire}
 
-**You must first to a GemFire cluster before executing the `install_bundle` command. If you have not installed GemFire in the PadoGrid environment, then following the steps below.**
+**You must first swwitch to a GemFire cluster before executing the `install_bundle` command. If you have not installed GemFire in the PadoGrid environment, then follow the steps below.**
 
-- Download the latest GemFire distribution tar ball (v10.1.0+) in `$PADOGRID_ENV_BASE_PATH/downloads/` and execute the following.
+-   Download the latest GemFire distribution tar ball (v10.1.0+) in `$PADOGRID_ENV_BASE_PATH/downloads/` and execute the following.
 
-```bash
+``` bash
 # Untar GemFire tar ball in the PadoGrid products directory
 tar -C $PADOGRID_ENV_BASE_PATH/products/ -xzf $PADOGRID_ENV_BASE_PATH/downloads/vmware-gemfire-10.0.2.tgz
 update_padogrid -product gemfire
@@ -124,41 +125,42 @@ update_padogrid -product gemfire
 switch_workspace
 ```
 
-- Create and switch to a GemFire cluster.
+-   Create and switch to a GemFire cluster.
 
-```bash
+``` bash
 create_cluster -product gemfire -cluster mygemfire
 switch_cluster mygemfire
 ```
 
 ## Installing Grafana
 
-```bash
+``` bash
 install_padogrid -product grafana-enterprise
 update_padogrid -product grafana
 ```
 
 ## Installing Prometheus
 
-```bash
+``` bash
 install_padogrid -product prometheus
 update_padogrid -product prometheus
 ```
 
 ## Used Ports
+
 The following ports are used by this demo.
 
-- Grafana: 3000
-- Prometheus: 9090, 9091
-- GemFire
+-   Grafana: 3000
+-   Prometheus: 9090, 9091
+-   GemFire
 
-| Cluster      | Locators      | Servers       | Locator Prometheus | Server Prometheus | HTTP Service  | Server HTTP |
-| ------------ | ------------- | ------------- | ------------------ | ----------------- | ------------- | ----------- |
-| `mygemfire1` | [10434-10436] | [40404-40413] | **[8481-8483]**    | **[8491-8499]**   | [7470]        | [7480-7488] |
-| `mygemfire2` | [10534-10536] | [40504-40513] | **[8581-8583]**    | **[8591-8599]**   | [7570]        | [7580-7588] |
-| `mygemfire3` | [10634-10636] | [40604-40513] | **[8681-8683]**    | **[8691-8699]**   | [7670]        | [7680-7688] |
-| `wan1`       | [10734-10736] | [40704-40713] | **[8781-8783]**    | **[8791-8799]**   | [7770]        | [7780-7788] |
-| `wan2`       | [10834-10836] | [40804-40813] | **[8881-8883]**    | **[8891-8899]**   | [7870]        | [7880-7888] |
+| Cluster | Locators | Servers | Locator Prometheus | Server Prometheus | HTTP Service | Server HTTP |
+|----|----|----|----|----|----|----|
+| `mygemfire1` | [10434-10436] | [40404-40413] | **[8481-8483]** | **[8491-8499]** | [7470] | [7480-7488] |
+| `mygemfire2` | [10534-10536] | [40504-40513] | **[8581-8583]** | **[8591-8599]** | [7570] | [7580-7588] |
+| `mygemfire3` | [10634-10636] | [40604-40513] | **[8681-8683]** | **[8691-8699]** | [7670] | [7680-7688] |
+| `wan1` | [10734-10736] | [40704-40713] | **[8781-8783]** | **[8791-8799]** | [7770] | [7780-7788] |
+| `wan2` | [10834-10836] | [40804-40813] | **[8881-8883]** | **[8891-8899]** | [7870] | [7880-7888] |
 
 ## Apps
 
@@ -166,19 +168,19 @@ The following ports are used by this demo.
 
 The `grafana` app contains scripts for starting and stopping Grafana and Prometheus. This app has been configured to scrape metrics from the GemFire clusters `mygemfire1`, `mygemfire2`, `mygemfire3`, `wan1` and `wan2`. Grafana and Prometheus are accessible as follows.
 
-- Grafana: [http://0.0.0.0:3000](http://0.0.0.0:3000)
-- Prometheus for `mygemfire` clusters: [http://0.0.0.0:9090](http://0.0.0.0:9090)
-- Prometheus for `wan` clusters: [http://0.0.0.0:9091](http://0.0.0.0:9091)
+-   Grafana: <http://0.0.0.0:3000>
+-   Prometheus for `mygemfire` clusters: <http://0.0.0.0:9090>
+-   Prometheus for `wan` clusters: <http://0.0.0.0:9091>
 
 ### perf_test
 
-The `perf_test` app is for ingesting test data into clusters. It allows you to read and write mock data to individual clusters. We will be using the app to simulate workflows that actively interact with the clusters.
+The `perf_test` app is for ingesting test data into clusters. It allows you to read and write mock data to individual clusters. We will be using this app to simulate workflows that actively interact with the clusters.
 
 ## Clusters
 
 ### mygemfire1, mygemfire2, mygemfire3
 
-The `mygemfire1`, `mygemfire2`, `mygemfire3` clusters run independently without WAN replication configured.
+The `mygemfire1`, `mygemfire2`, and `mygemfire3` clusters run independently without WAN replication configured.
 
 ### wan1
 
@@ -190,58 +192,60 @@ The `wan2` cluster defines `wan2-to-wan1` gateway senders for replication data o
 
 ## Updating Prometheus Configuration Files (Optional)
 
-✏️  *This section is for your information only. The steps shown below are automatically done by PadoGrid when you installed the bundle.*
+✏️ *This section is for your information only. The steps shown below will be automatically carried out by PadoGrid when you install this bundle.*
 
 Because GemFire binds the host address to the Prometheus endpoint, `localhost` cannot be used in the Prometheus configuration files. To resolve this issue, the `etc/config_templates` directory has been created to isolate the working configuration files so that you can make changes without impacting `git`. Copy the configuration templates into the `etc` directory and update the host address as shown below.
 
-```bash
+``` bash
 # Change directory
 cd_app grafana/etc
 
 # Copy all configuration files to etc.
 cp config_templates/* .
 
-# Update the EIB address
+# Update the host address
 sed -i "s/HOST-ADDRESS/`hostname`/g" *.yml
 ```
 
-## Adding Members to Clusters (Optional)
+## Adding/Removing Members to Clusters (Optional)
 
-✏️  *This bundle automcatically configures the clusters with one (1) locator and three (3) members for each cluster.* 
+✏️ *This bundle automcatically configures the clusters with one (1) locator and three (3) members for each cluster. You can change the cluster sizes by adding or removing members by executing the commands shown below.*
 
 To view the member counts, run the following:
 
-```bash
+``` bash
 show_cluster -all
 ```
 
 To add more locators or members to a cluster, run `add_locator` or `add_member`. For example, the following adds one (1) locator and one member (1) to the `wan1` cluster.
 
-```bash
+``` bash
 add_locator -cluster wan1
 add_member -cluster wan1
 ```
 
 To start the added locators and members, run the `start_cluster` command, which starts only the locators and members that are not currently running.
 
-```bash
+``` bash
 start_cluster -cluster wan1
 ```
 
 To remove locators or members, run the following (Note that these commands will fail if they are still running):
 
-```bash
+``` bash
 remove_locator -cluster wan1
 remove_member -cluster wan1
 ```
 
 ## Generating GemFire Dashboard Templates (Optional)
 
-✏️  *This bundle includes the default set of generated dashboards, which may not include some stats that were not captured during development. The missing stats can be captured by running the scripts described in this section.*
+✏️ *This bundle includes the default set of generated dashboards, which may not include some stats that were not captured during development. The missing stats can be easily captured by running the scripts described in this section.*
+
+❗️**You must run Prometheus and at least one GemFire cluster before taking the steps below. The `generate_all` command scrapes GemFire metrics from Prometheus.**
 
 You can generate dashboards including a complete list of GemFire statistics as shown below. The generated dashboards are useful for quickly navigating through individual stats to determine the ones that are suited for your needs.
 
-```bash
+``` bash
 # Change directory to the grafana app's bin_sh directory
 cd_app grafana/bin_sh
 
@@ -257,7 +261,7 @@ cd_app grafana/bin_sh
 
 Once the templates are generated, place them in the `etc/dashboards/` directory and execute the following commands to import them back to Grafana.
 
-```bash
+``` bash
 # Copy the entire directory of the generated templates
 cp -r ../templates/GemFireTemplates ../etc/dashboards/
 
@@ -270,7 +274,7 @@ cp -r ../templates/GemFireTemplates ../etc/dashboards/
 
 Now, go to the browser and select *Home/Dashboards/GemFireTemplates*.
 
-✏️  *The dashboards in the GemFireTemplates folder are also selectable from the *Others* left-pane menu in the **Main** dashboard.*
+✏️ *The dashboards in the GemFireTemplates folder are also selectable from the **Generated** left-pane menu in the **Main** dashboard.*
 
 ## Startup Sequence
 
@@ -278,23 +282,23 @@ Now, go to the browser and select *Home/Dashboards/GemFireTemplates*.
 
 The following starts `mygemfire` clusters, `mygemfire1`, `mygemfire2`, and `mygemfire3`.
 
-```bash
+``` bash
 # Start mygemfire1, mygemfire2, mygemfire3
 start_group -group mygemfire
 ```
 
 The following starts the `wan` clusters, `wan1` and `wan2`.
 
-```bash
+``` bash
 # Start wan1, wan2
 start_group -group wan
 ```
 
 ### 2. Start Prometheus and Grafana
 
-- Start Promtheus for the `mygemfire` clusters. Also, start Grafana for monitoring both `mygemfire` and `wan` groups of clusters.
+-   Start Promtheus for the `mygemfire` clusters. Also, start Grafana for monitoring both `mygemfire` and `wan` groups of clusters.
 
-```bash
+``` bash
 cd_app grafana/bin_sh
 ./start_prometheus
 ./start_grafana
@@ -302,66 +306,62 @@ cd_app grafana/bin_sh
 
 To view Prometheus and Grafana statuses:
 
-```bash
+``` bash
 ./show_prometheus
 ./show_grafana
 ```
 
-- Start Prometheus for the `wan` clusters.
+-   Start Prometheus for the `wan` clusters.
 
-```bash
+``` bash
 ./start_prometheus_wan
 ```
 
 ### 3. Set user and password from Grafana
 
-URL: [http://0.0.0.0:3000](http://0.0.0.0:3000)
+URL: <http://0.0.0.0:3000>
 
 From the Grafana login prompt, set the user name and password. This bundle uses the following user name and password.
 
-```console
+``` console
 user: admin
 password: padogrid
 ```
 
 If you want to use a different user and password, then you can change them in the following file.
 
-```bash
+``` bash
 cd_app grafana/bin_sh
 vi setenv.sh
 ```
 
 ### 4. Import all dashboards into Grafana
 
-```bash
+``` bash
 cd_app grafana/bin_sh
 ./import_folder -all
 ```
 
 ### 5. Open Grafana in the browser
 
- *Connections/Add new connection* from the left pull-out menu.
-- Search and add `Promtheus` from the *Add new connection* page.
-- Enter the following
+*Connections/Add new connection* from the left pull-out menu. - Search and add `Promtheus` from the *Add new connection* page. - Enter the following
 
-  Prometheus server URL: <http://localhost:9090>
-- Select *Save & test* at the bottom.
-- If you have the `wan` clusters running, then add another Prometheus datasource with the following URL. You can use any name.
-  
-  Prometheus server URL: <http://localhost:9091>
+Prometheus server URL: <http://localhost:9090> - Select *Save & test* at the bottom. - If you have the `wan` clusters running, then add another Prometheus datasource with the following URL. You can use any name.
 
-	Alternatively, if you are using PadoGrid v0.9.33+, then you can add a new Prometheus datasource as follows.
+Prometheus server URL: <http://localhost:9091>
 
-	```bash
-	cd_app grafana/bin_sh
-	./create_datasource_prometheus -datasource Prometheus-WAN -url http://localhost:9091
-	```
+Alternatively, you can execute the following to add a new Prometheus datasource to Grafana.
+
+```bash
+cd_app grafana/bin_sh
+./create_datasource_prometheus -datasource Prometheus-WAN -url http://localhost:9091
+```
 
 Open the **00Main** dashboard.
 
-- Select *Dashboards* from the left pull-out menu.
-- Select *GemFire*.
-- Select **00Main**.
+-   Select *Dashboards* from the left pull-out menu.
+-   Select *GemFire*.
+-   Select **00Main**.
 
 The **00Main** dashboard is the main (home) dashboard that provides a menu of all available dashaboards for displaying a single cluster at a time. From there, you can navigate to **00MainDual** for monitoring two (2) clusters side-by-side and **00MainAll** for monitoring all clusters in federated views. See [Navigating GemFire Dashboards](#navigating-gemfire-dashboards) for dashboard instructions.
 
@@ -373,14 +373,14 @@ The `group-factory-er.properties` file is configured to write and read objects t
 
 First, we need to download the `javafaker` package for generating mock data by building the `perf_test` app.
 
-```bash
+``` bash
 cd_app perf_test/bin_sh
 ./build_app
 ```
 
 Now, execute the following commands to ingest `nw` data any of the clusters. For example, the following ingests `nw` data to `mygemfire1` and `wan1`
 
-```bash
+``` bash
 cd_app perf_test/bin_sh
 ./test_group -run -prop ../etc/group-factory-er.properties -cluster mygemfire1
 ./test_group -run -prop ../etc/group-factory-er.properties -cluster wan1
@@ -392,7 +392,7 @@ To test off-heap memory and eviction, use `group-eviction.properties` as follows
 
 ✏️ Note that `group-eviction.properties` works with the `wan` clusters only.
 
-```bash
+``` bash
 # wan1
 ./test_group -run -prop ../etc/group-eviction.properties -cluster wan1
 
@@ -404,7 +404,7 @@ To test off-heap memory and eviction, use `group-eviction.properties` as follows
 
 To monitor Search (Lucene) indexes and queries, execute the following `gfsh` script.
 
-```bash
+``` bash
 cd_app perf_test/bin_sh
 # mygemfire1
 gfsh -e "connect --locator=localhost[10434]" -e "run --file=search-lucene-queries.gfsh"
@@ -422,7 +422,7 @@ gfsh -e "connect --locator=localhost[10834]" -e "run --file=search-lucene-querie
 
 The included `etc/group-workflow.properties` file simulates workflows by executing various GemFire data structure operations. You can run it per cluster as follows.
 
-```bash
+``` bash
 cd_app perf_test/bin_sh
 
 # mygemfire1
@@ -443,7 +443,7 @@ cd_app perf_test/bin_sh
 
 ## Teardown
 
-```bash
+``` bash
 # First, stop perf_test if running by ctrl-C
 
 # Stop Grafana and its Prometheus
@@ -458,12 +458,12 @@ stop_workspace -all
 
 ## References
 
-1. [*PadoGrid GemFire Dashboards in Docker/Kubernetes*](https://hub.docker.com/repository/docker/padogrid/padogrid-grafana/general), PadoGrid GemFire Dashboards installation via container.
-1. [*Grafana Documentation*](https://grafana.com/docs/), Grafana official documentation.
-1. [*PadoGrid Manual*](https://github.com/padogrid/padogrid/wiki), PadoGrid official manual.
-1. [*Prometheus Documentation*](https://prometheus.io/docs/prometheus/latest/), Prometheus official documentation.
-1. [*Installing JupyterLab for PadoGrid*](README_JUPYTER.md), JupyterLab installation instructions.
+1.  [*PadoGrid GemFire Dashboards in Docker/Kubernetes*](https://hub.docker.com/repository/docker/padogrid/padogrid-grafana/general), PadoGrid GemFire Dashboards installation via container.
+2.  [*Grafana Documentation*](https://grafana.com/docs/), Grafana official documentation.
+3.  [*PadoGrid Manual*](https://github.com/padogrid/padogrid/wiki), PadoGrid official manual.
+4.  [*Prometheus Documentation*](https://prometheus.io/docs/prometheus/latest/), Prometheus official documentation.
+5.  [*Installing JupyterLab for PadoGrid*](README_JUPYTER.md), JupyterLab installation instructions.
 
----
+------------------------------------------------------------------------
 
-![PadoGrid](https://github.com/padogrid/padogrid/raw/develop/images/padogrid-3d-16x16.png) [*PadoGrid*](https://github.com/padogrid) | [*Catalogs*](https://github.com/padogrid/catalog-bundles/blob/master/all-catalog.md) | [*Manual*](https://github.com/padogrid/padogrid/wiki) | [*FAQ*](https://github.com/padogrid/padogrid/wiki/faq) | [*Releases*](https://github.com/padogrid/padogrid/releases) | [*Templates*](https://github.com/padogrid/padogrid/wiki/Using-Bundle-Templates) | [*Pods*](https://github.com/padogrid/padogrid/wiki/Understanding-Padogrid-Pods) | [*Kubernetes*](https://github.com/padogrid/padogrid/wiki/Kubernetes) | [*Docker*](https://github.com/padogrid/padogrid/wiki/Docker) | [*Apps*](https://github.com/padogrid/padogrid/wiki/Apps) | [*Quick Start*](https://github.com/padogrid/padogrid/wiki/Quick-Start)
+![PadoGrid](https://github.com/padogrid/padogrid/raw/develop/images/padogrid-3d-16x16.png) [*PadoGrid*](https://github.com/padogrid) \| [*Catalogs*](https://github.com/padogrid/catalog-bundles/blob/master/all-catalog.md) \| [*Manual*](https://github.com/padogrid/padogrid/wiki) \| [*FAQ*](https://github.com/padogrid/padogrid/wiki/faq) \| [*Releases*](https://github.com/padogrid/padogrid/releases) \| [*Templates*](https://github.com/padogrid/padogrid/wiki/Using-Bundle-Templates) \| [*Pods*](https://github.com/padogrid/padogrid/wiki/Understanding-Padogrid-Pods) \| [*Kubernetes*](https://github.com/padogrid/padogrid/wiki/Kubernetes) \| [*Docker*](https://github.com/padogrid/padogrid/wiki/Docker) \| [*Apps*](https://github.com/padogrid/padogrid/wiki/Apps) \| [*Quick Start*](https://github.com/padogrid/padogrid/wiki/Quick-Start)
